@@ -1,0 +1,7 @@
+{
+  "name": "production-control-board-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
