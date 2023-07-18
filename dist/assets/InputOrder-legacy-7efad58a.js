@@ -1,1 +1,0 @@
-System.register(["./index-legacy-bd75f99b.js","./AdminLayout-legacy-7a43eda3.js"],(function(e,t){"use strict";var r,n,s,i;return{setters:[e=>{r=e.r,n=e._,s=e.j},e=>{i=e.A}],execute:function(){const c=r.lazy((()=>n((()=>t.import("./ContainerInputOrder-legacy-061b16f5.js")),void 0)));e("default",(()=>s.jsx(i,{title:"Input Order",children:s.jsx(c,{})})))}}}));

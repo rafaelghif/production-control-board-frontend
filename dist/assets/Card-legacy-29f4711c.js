@@ -1,1 +1,0 @@
-System.register(["./index-legacy-bd75f99b.js"],(function(e,r){"use strict";var c,i,s,t,l;return{setters:[e=>{c=e.j,i=e.af,s=e.ag,t=e.ah,l=e.ai}],execute:function(){e("C",(({children:e,title:r,color:n,headerColor:o})=>c.jsxs(i,{color:n,children:[c.jsx(s,{color:o,children:c.jsx(t,{children:r})}),c.jsx(l,{children:e})]})))}}}));

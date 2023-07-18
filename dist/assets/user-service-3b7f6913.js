@@ -1,1 +1,0 @@
-import{b as a,a as o,c}from"./useToast-6e1913b2.js";const e="/user",p=async()=>{try{return(await a(`${e}/`)).data}catch(r){throw r}},i=async r=>{try{return(await o(`${e}/`,r)).message}catch(s){throw s}},h=async r=>{try{return(await c(`${e}/`,r)).message}catch(s){throw s}};export{i as c,p as g,h as u};
