@@ -1,0 +1,1 @@
+import{j as s,e as r,f as t,g as e,h as n,i,k as x}from"./index-df07a18a.js";const j=({title:a,children:o})=>s.jsxs(r,{children:[s.jsx(t,{children:s.jsx(e,{children:s.jsx(n,{children:a})})}),s.jsx(i,{children:o}),s.jsx(x,{children:s.jsx(e,{children:s.jsx(n,{className:"text-sm text-center",children:"Yokogawa Manufacturing Batam © 2023"})})})]});export{j as A};

@@ -1,0 +1,1 @@
+import{j as o,a as t,b as a,c as s,d as i}from"./index-df07a18a.js";const e=({handleClick:n})=>o.jsx(t,{slot:"fixed",vertical:"bottom",horizontal:"end",children:o.jsx(a,{onClick:()=>n(),children:o.jsx(s,{icon:i})})});export{e as F};

@@ -1,0 +1,1 @@
+import{j as a,af as e,ag as d,ah as t,ai as i}from"./index-df07a18a.js";const C=({children:r,title:s,color:n,headerColor:o})=>a.jsxs(e,{color:n,children:[a.jsx(d,{color:o,children:a.jsx(t,{children:s})}),a.jsx(i,{children:r})]});export{C};

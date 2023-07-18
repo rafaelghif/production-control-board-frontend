@@ -1,0 +1,46 @@
+import { useEffect, useState } from "react";
+import Modal from "../../../components/Modal"
+import { IonButton, IonInput, IonItem } from "@ionic/react";
+import { ControlBoardPlanningDetailInterface, UpdateControlBoardPlanningDetailType } from "../../../types/control-board-planning-type";
+import { useUpdateControlBoardPlanningDetail } from "../hooks/useUpdateControlBoardPlanningDetail";
+
+interface ModalUpdateControlBoardPlanningDetailProps {
+    isOpen: boolean;
+    data?: ControlBoardPlanningDetailInterface;
+    onDidDismiss: () => void;
+}
+
+const ModalUpdateControlBoardPlanningDetail: React.FC<ModalUpdateControlBoardPlanningDetailProps> = ({ isOpen, data, onDidDismiss }) => {
+    const [formData, setFormData] = useState<UpdateControlBoardPlanningDetailType>({});
+    const { mutate } = useUpdateControlBoardPlanningDetail();
+
+    const handleInput = (key: keyof UpdateControlBoardPlanningDetailType, value: string | number) => {
+        setFormData((prevState) => ({ ...prevState, [key]: value }));
+    }
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        mutate(formData);
+        onDidDismiss();
+    }
+
+    useEffect(() => {
+        setFormData((prevState) => ({ ...prevState, id: data?.id, qty: data?.qty }));
+    }, [data]);
+
+    return (
+        <Modal title="Update Control Board Planning Detail" isOpen={isOpen} onDidDismiss={onDidDismiss}>
+            <form onSubmit={handleSubmit}>
+                <IonItem>
+                    <IonInput type="text" label="Id" labelPlacement="floating" value={formData?.id} onIonInput={(e) => handleInput("id", e.detail.value!)} required disabled />
+                </IonItem>
+                <IonItem>
+                    <IonInput type="number" label="Qty" labelPlacement="floating" value={formData?.qty} onIonInput={(e) => handleInput("qty", e.detail.value!)} required />
+                </IonItem>
+                <IonButton type="submit" expand="block">Submit</IonButton>
+            </form>
+        </Modal>
+    );
+}
+
+export default ModalUpdateControlBoardPlanningDetail;

@@ -1,25 +1,17 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
-import './Home.css';
+import { Suspense, lazy } from "react";
+import AdminLayout from "../layouts/AdminLayout";
+import { IonSpinner } from "@ionic/react";
+
+const ContainerDashboard = lazy(() => import("../features/dashboard-features/components/ContainerDashboard"));
 
 const Home: React.FC = () => {
-  return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer />
-      </IonContent>
-    </IonPage>
-  );
-};
+    return (
+        <AdminLayout title="Home">
+            <Suspense fallback={<IonSpinner name="crescent" />}>
+                <ContainerDashboard />
+            </Suspense>
+        </AdminLayout>
+    );
+}
 
 export default Home;
