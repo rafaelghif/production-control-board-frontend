@@ -1,10 +1,13 @@
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { IonInput, IonItem, IonRefresher, IonRefresherContent, IonSpinner, RefresherEventDetail, useIonRouter } from "@ionic/react";
 import { formatDateString } from "../../../libs/date-fns";
 import { useQueryControlBoard } from "../hooks/useQueryControlBoard";
 import GridControlBoard from "../../../components/GridControlBoard";
 import { useHistory } from "react-router";
 import logo from "../../../assets/images/logo.png";
+import { getLine, setLine } from "../../../services/local-storage-service";
+import socket from "../../../libs/socket.io";
+import ModalDetailRemark from "./ModalDetailRemark";
 
 const SelectLine = lazy(() => import("../../../components/SelectLine"));
 
@@ -12,18 +15,31 @@ const ContainerDashboard: React.FC = () => {
     const { routeInfo } = useIonRouter();
     const history = useHistory();
     const [dateFilter, setDateFilter] = useState<string>(formatDateString(new Date()));
-    const [lineFilter, setLineFilter] = useState<string>("none");
+    const [lineFilter, setLineFilter] = useState<string>(getLine());
 
     const { data, isLoading, refetch } = useQueryControlBoard(lineFilter, dateFilter);
+    const [isOpenRemark, setIsOpenRemark] = useState<boolean>(false);
 
     const handleRefresh = (event: CustomEvent<RefresherEventDetail>) => {
         refetch();
         event.detail.complete();
     }
 
-    const handleClickBtnLogin = () => {
-        history.push("/login");
+    const handleChangeLine = (id: string) => {
+        setLineFilter(id);
+        setLine(id);
     }
+
+    const handleClickBtnLogin = () => {
+        history.replace("/login");
+    }
+
+    useEffect(() => {
+        socket.on("input", () => {
+            console.log("input");
+            refetch();
+        });
+    }, []);
 
     return (
         <div className="relative h-screen w-full overflow-auto scroll-smooth bg-white dark:bg-[#121212]">
@@ -43,24 +59,27 @@ const ContainerDashboard: React.FC = () => {
                 <div className="font-['Source_Sans_3']">
                     <span className="text-2xl font-bold">Production Control Board</span>
                 </div>
-                <div className="grid w-6/12 grid-cols-2 gap-3 p-5 rounded shadow xl:w-4/12 dark:bg-[#181818]">
+                <div className="grid w-11/12 grid-cols-2 gap-3 p-5 rounded shadow lg:w-8/12 xl:w-4/12 dark:bg-[#181818]">
                     <Suspense fallback={<IonSpinner />}>
-                        <SelectLine value={lineFilter} onChange={(id) => setLineFilter(id)} />
+                        <SelectLine value={lineFilter} onChange={(id) => handleChangeLine(id)} />
                     </Suspense>
                     <IonItem>
-                        <IonInput type="date" label="date" labelPlacement="floating" value={dateFilter} onIonChange={(e) => setDateFilter(e.detail.value!)} />
+                        <IonInput type="date" label="Date" labelPlacement="floating" value={dateFilter} onIonChange={(e) => setDateFilter(e.detail.value!)} />
                     </IonItem>
                 </div>
                 <div className="w-full">
                     {isLoading
                         ? (<IonSpinner name="crescent" />)
-                        : (<GridControlBoard data={data} />)
+                        : (
+                            <GridControlBoard data={data} dateFilter={dateFilter} openModal={() => setIsOpenRemark(true)} />
+                        )
                     }
                 </div>
             </div>
-            <div className="absolute bottom-0 flex items-center justify-center w-full p-2">
+            <div className="sticky bottom-0 flex items-center justify-center w-full p-2">
                 <span className="text-xs tracking-tight font-['Source_Sans_3']">Yokogawa Manufacturing Batam &copy; 2023</span>
             </div>
+            <ModalDetailRemark isOpen={isOpenRemark} onDidDismiss={() => setIsOpenRemark(false)} />
         </div>
     );
 }

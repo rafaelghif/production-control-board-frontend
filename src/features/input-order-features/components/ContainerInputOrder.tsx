@@ -7,8 +7,9 @@ import OrderInformationGrid from "./OrderInformationGrid";
 import OrderInformationColumn from "./OrderInformationColumn";
 import useLineStore from "../../../stores/useLineStore";
 import { useCreateOrder } from "../hooks/useCreateOrder";
+import socket from "../../../libs/socket.io";
 
-const Clock = lazy(()=> import("../../../components/Clock"));
+const Clock = lazy(() => import("../../../components/Clock"));
 
 const ContainerInputOrder: React.FC = () => {
     const { line } = useLineStore();

@@ -25,7 +25,7 @@ const ModalUpdateControlBoardPlanningDetail: React.FC<ModalUpdateControlBoardPla
     }
 
     useEffect(() => {
-        setFormData((prevState) => ({ ...prevState, id: data?.id, qty: data?.qty }));
+        setFormData((prevState) => ({ ...prevState, id: data?.id, qty: data?.qty, remark: data?.remark }));
     }, [data]);
 
     return (
@@ -36,6 +36,9 @@ const ModalUpdateControlBoardPlanningDetail: React.FC<ModalUpdateControlBoardPla
                 </IonItem>
                 <IonItem>
                     <IonInput type="number" label="Qty" labelPlacement="floating" value={formData?.qty} onIonInput={(e) => handleInput("qty", e.detail.value!)} required />
+                </IonItem>
+                <IonItem>
+                    <IonInput type="text" label="Remark" labelPlacement="floating" value={formData?.remark} onIonInput={(e) => handleInput("remark", e.detail.value!)} />
                 </IonItem>
                 <IonButton type="submit" expand="block">Submit</IonButton>
             </form>

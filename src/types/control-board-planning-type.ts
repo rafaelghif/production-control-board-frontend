@@ -3,6 +3,16 @@ import { LineInterface } from "./line-type";
 export interface ControlBoardPlanningInterface {
     id: string;
     date: string;
+    actualWorkingTimeAll: number;
+    productLoadingPlanQty: number;
+    productLoadingPlanBacklogQty: number;
+    tackTime: number;
+    totalProcessTime: number;
+    actualWorkingTime: number;
+    actualWorkingTimeOvertime: number;
+    manPowerCount: number;
+    manPowerAdditionalCount: number;
+    manPowerAbleToSpare: number;
     inActive: boolean;
     createdBy: string;
     updatedBy: string;
@@ -16,6 +26,7 @@ export interface ControlBoardPlanningDetailInterface {
     time: string;
     sequence: number;
     qty: number;
+    remark: string;
     inActive: boolean;
     createdBy: string;
     updatedBy: string;
@@ -28,7 +39,21 @@ export interface ControlBoardPlanningWithLineInterface extends ControlBoardPlann
     Line: Pick<LineInterface, "id" | "name">;
 }
 
-export type CreateControlBoardPlanningType = Pick<ControlBoardPlanningInterface, "date" | "LineId">;
+export type CreateControlBoardPlanningType = Pick<ControlBoardPlanningInterface,
+    "date" |
+    "LineId" |
+    "actualWorkingTimeAll" |
+    "productLoadingPlanQty" |
+    "productLoadingPlanBacklogQty" |
+    "tackTime" |
+    "totalProcessTime" |
+    "actualWorkingTime" |
+    "actualWorkingTimeOvertime" |
+    "manPowerCount" |
+    "manPowerAdditionalCount" |
+    "manPowerAbleToSpare"
+>;
+
 export type UpdateControlBoardPlanningType = Partial<ControlBoardPlanningInterface>;
 export type CreateControlBoardPlanningDetailType = Pick<ControlBoardPlanningDetailInterface, "time" | "sequence" | "qty">;
 

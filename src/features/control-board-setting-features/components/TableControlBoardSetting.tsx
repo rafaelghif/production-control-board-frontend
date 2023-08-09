@@ -17,23 +17,53 @@ const TableControlBoardSetting: React.FC<TableControlBoardSettingProps> = ({ dat
         sortable: true,
         wrap: true
     }, {
+        name: "Actual Working Time All",
+        selector: (row) => row.actualWorkingTimeAll,
+        sortable: true,
+        wrap: true
+    }, {
+        name: "Production Plan Qty",
+        selector: (row) => row.productLoadingPlanQty,
+        sortable: true,
+        wrap: true
+    }, {
+        name: "Production Plan Backlog Qty",
+        selector: (row) => row.productLoadingPlanBacklogQty || "-",
+        sortable: true,
+        wrap: true
+    }, {
+        name: "Tack Time",
+        selector: (row) => row.tackTime,
+        sortable: true,
+        wrap: true
+    }, {
+        name: "Total Process Time",
+        selector: (row) => row.totalProcessTime,
+        sortable: true,
+        wrap: true
+    }, {
         name: "Actual Working Time",
         selector: (row) => row.actualWorkingTime,
         sortable: true,
         wrap: true
     }, {
-        name: "Man Power Regular",
-        selector: (row) => row.manPowerRegular,
+        name: "Actual Working Time Overtime",
+        selector: (row) => row.actualWorkingTimeOvertime || "-",
         sortable: true,
         wrap: true
     }, {
-        name: "Total Shift",
-        selector: (row) => row.shiftTotal,
+        name: "Man Power Count",
+        selector: (row) => row.manPowerCount,
         sortable: true,
         wrap: true
     }, {
-        name: "Plan Qty",
-        selector: (row) => row.planQty,
+        name: "Man Power Additional Count",
+        selector: (row) => row.manPowerAdditionalCount || "-",
+        sortable: true,
+        wrap: true
+    }, {
+        name: "Man Power Able to Spare Count",
+        selector: (row) => row.manPowerAbleToSpare || "-",
         sortable: true,
         wrap: true
     }, {

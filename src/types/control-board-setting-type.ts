@@ -2,10 +2,16 @@ import { LineInterface } from "./line-type";
 
 export interface ControlBoardSettingInterface {
     id: string;
+    actualWorkingTimeAll: number;
+    productLoadingPlanQty: number;
+    productLoadingPlanBacklogQty: number;
+    tackTime: number;
+    totalProcessTime: number;
     actualWorkingTime: number;
-    planQty: number;
-    manPowerRegular: number;
-    shiftTotal: number;
+    actualWorkingTimeOvertime: number;
+    manPowerCount: number;
+    manPowerAdditionalCount: number;
+    manPowerAbleToSpare: number;
     inActive: boolean;
     createdBy: string;
     updatedBy: string;
@@ -18,5 +24,18 @@ export interface ControlBoardSettingWithLineInterface extends ControlBoardSettin
     Line: Pick<LineInterface, "id" | "name">;
 }
 
-export type CreateControlBoardSettingType = Pick<ControlBoardSettingInterface, "actualWorkingTime" | "planQty" | "manPowerRegular" | "shiftTotal" | "LineId">;
+export type CreateControlBoardSettingType = Pick<
+    ControlBoardSettingInterface,
+    "actualWorkingTimeAll" |
+    "productLoadingPlanQty" |
+    "productLoadingPlanBacklogQty" |
+    "tackTime" |
+    "totalProcessTime" |
+    "actualWorkingTime" |
+    "actualWorkingTimeOvertime" |
+    "manPowerCount" |
+    "manPowerAdditionalCount" |
+    "manPowerAbleToSpare" |
+    "LineId"
+>;
 export type UpdateControlBoardSettingType = Partial<ControlBoardSettingInterface>;

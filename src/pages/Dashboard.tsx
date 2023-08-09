@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonSpinner, IonTitle, IonToolbar } from "@ionic/react";
+import { IonContent, IonPage, IonSpinner } from "@ionic/react";
 import { Suspense, lazy } from "react";
 
 const ContainerDashboard = lazy(() => import("../features/dashboard-features/components/ContainerDashboard"));

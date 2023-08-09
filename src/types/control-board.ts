@@ -1,3 +1,5 @@
+import { ControlBoardPlanningInterface } from "./control-board-planning-type";
+
 export interface ControlBoardInterface {
     LineId: string;
     planningDate: string;
@@ -13,4 +15,10 @@ export interface ControlBoardInterface {
 export interface ControlBoardWithLineInterface {
     lineName: string;
     plannings: ControlBoardInterface[];
+    settings: ControlBoardPlanningInterface;
+}
+
+export interface RemarkControlBoardPayloadInterface {
+    LineId: string;
+    date: string;
 }

@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import Modal from "../../../components/Modal"
 import { IonButton, IonCol, IonGrid, IonRow, IonSpinner } from "@ionic/react";
 import { CreateControlBoardPlanningDetailType, CreateControlBoardPlanningType } from "../../../types/control-board-planning-type";
@@ -11,10 +11,26 @@ import { initialValueDetail } from "../../../datas/control-board-planning-data";
 import { useCreateControlBoardPlanning } from "../hooks/useCreateControlBoardPlanning";
 
 const FormControlBoardPlanning = lazy(() => import("./FormControlBoardPlanning"));
+const FormControlBoardSetting = lazy(() => import("./FormControlBoardSetting"));
 
 interface ModalCreateControlBoardPlanningProps {
     isOpen: boolean;
     onDidDismiss: () => void;
+}
+
+const initialValue: CreateControlBoardPlanningType = {
+    date: formatDateString(new Date()),
+    actualWorkingTimeAll: 0,
+    productLoadingPlanQty: 0,
+    productLoadingPlanBacklogQty: 0,
+    tackTime: 0,
+    totalProcessTime: 0,
+    actualWorkingTime: 0,
+    actualWorkingTimeOvertime: 0,
+    manPowerCount: 0,
+    manPowerAdditionalCount: 0,
+    manPowerAbleToSpare: 0,
+    LineId: ""
 }
 
 const ModalCreateControlBoardPlanning: React.FC<ModalCreateControlBoardPlanningProps> = ({ isOpen, onDidDismiss }) => {
@@ -22,11 +38,11 @@ const ModalCreateControlBoardPlanning: React.FC<ModalCreateControlBoardPlanningP
     const { warningToast } = useToast();
 
     const [isSubmitPlanning, setIsSubmitPlanning] = useState<boolean>(false);
-    const [controlBoardPlanning, setControlBoardPlanning] = useState<CreateControlBoardPlanningType>({ date: formatDateString(new Date()), LineId: line.id });
+    const [controlBoardPlanning, setControlBoardPlanning] = useState<CreateControlBoardPlanningType>({ ...initialValue, LineId: line.id });
     const [controlBoardPlanningDetails, setControlBoardPlanningDetails] = useState<CreateControlBoardPlanningDetailType[]>(initialValueDetail);
     const { mutate } = useCreateControlBoardPlanning();
 
-    const handleInputControlBoardPlanning = (key: keyof CreateControlBoardPlanningType, value: string) => {
+    const handleInputControlBoardPlanning = (key: keyof CreateControlBoardPlanningType, value: string | number) => {
         setControlBoardPlanning((prevState) => ({ ...prevState, [key]: value }));
     }
 
@@ -38,7 +54,7 @@ const ModalCreateControlBoardPlanning: React.FC<ModalCreateControlBoardPlanningP
     const handleDismissModal = () => {
         onDidDismiss();
         setIsSubmitPlanning(false);
-        setControlBoardPlanning({ date: formatDateString(new Date()), LineId: line.id });
+        setControlBoardPlanning({ ...initialValue, LineId: line.id });
         setControlBoardPlanningDetails(initialValueDetail);
     }
 
@@ -58,26 +74,41 @@ const ModalCreateControlBoardPlanning: React.FC<ModalCreateControlBoardPlanningP
 
     return (
         <Modal title="Create Control Board Planning" isOpen={isOpen} onDidDismiss={handleDismissModal}>
-            <Suspense fallback={<IonSpinner name="crescent" />}>
-                {isSubmitPlanning ? (
-                    <IonGrid>
-                        <IonRow>
-                            {controlBoardPlanningDetails.map((controlBoardPlanningDetail, index) => (
-                                <IonCol size="12" sizeMd="6" key={`planning-detail-${index}`}>
-                                    <Card title={`Time ${controlBoardPlanningDetail.time} - ${plus1HourTime(controlBoardPlanningDetail.time)}`} headerColor="light">
-                                        <FormControlBoardPlanningDetail value={controlBoardPlanningDetail} onChange={(data) => handleChange(data, index)} />
-                                    </Card>
-                                </IonCol>
-                            ))}
-                            <IonCol size="12">
-                                <IonButton expand="block" onClick={onClickBtnSubmit}>Submit</IonButton>
-                            </IonCol>
-                        </IonRow>
-                    </IonGrid>
-                ) : (
-                    <FormControlBoardPlanning controlBoardPlanning={controlBoardPlanning} handleInputControlBoardPlanning={handleInputControlBoardPlanning} handleSubmit={handleSubmitControlBoardPlanning} line={line.id} />
-                )}
-            </Suspense>
+            <IonGrid>
+                <IonRow>
+                    <IonCol size="12">
+                        <Suspense fallback={<IonSpinner name="crescent" />}>
+                            {isSubmitPlanning ? (
+                                <IonGrid>
+                                    <IonRow>
+                                        <IonCol size="12">
+                                            <FormControlBoardSetting value={controlBoardPlanning} lineId={controlBoardPlanning.LineId} handleInputControlBoardPlanning={handleInputControlBoardPlanning} />
+                                        </IonCol>
+                                        <IonCol size="12">
+                                            <IonGrid>
+                                                <IonRow>
+                                                    {controlBoardPlanningDetails.map((controlBoardPlanningDetail, index) => (
+                                                        <IonCol size="12" sizeMd="6" key={`planning-detail-${index}`}>
+                                                            <Card title={`Time ${controlBoardPlanningDetail.time} - ${plus1HourTime(controlBoardPlanningDetail.time)}`} headerColor="light">
+                                                                <FormControlBoardPlanningDetail value={controlBoardPlanningDetail} onChange={(data) => handleChange(data, index)} />
+                                                            </Card>
+                                                        </IonCol>
+                                                    ))}
+                                                </IonRow>
+                                            </IonGrid>
+                                        </IonCol>
+                                        <IonCol size="12">
+                                            <IonButton expand="block" onClick={onClickBtnSubmit}>Submit</IonButton>
+                                        </IonCol>
+                                    </IonRow>
+                                </IonGrid>
+                            ) : (
+                                <FormControlBoardPlanning controlBoardPlanning={controlBoardPlanning} handleInputControlBoardPlanning={handleInputControlBoardPlanning} handleSubmit={handleSubmitControlBoardPlanning} line={line.id} />
+                            )}
+                        </Suspense>
+                    </IonCol>
+                </IonRow>
+            </IonGrid>
         </Modal>
     );
 }

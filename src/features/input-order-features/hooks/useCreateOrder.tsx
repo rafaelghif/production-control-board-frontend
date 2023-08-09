@@ -3,6 +3,7 @@ import useLoadingStore from "../../../stores/useLoadingStore";
 import { useToast } from "../../../hooks/useToast";
 import { createOrder } from "../../../services/order-service";
 import { CreateOrderType } from "../../../types/order-type";
+import socket from "../../../libs/socket.io";
 
 export const useCreateOrder = () => {
     const { setLoading } = useLoadingStore();
@@ -18,6 +19,7 @@ export const useCreateOrder = () => {
         },
         onSuccess: (response) => {
             successToast(response.message);
+            socket.emit("input", "input");
         },
         onSettled: () => {
             setLoading(false)

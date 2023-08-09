@@ -5,6 +5,7 @@ import { useQueryControlBoardPlanningDetail } from "../hooks/useQueryControlBoar
 import { Suspense, lazy, useState } from "react";
 import { IonGrid, IonRow, IonCol, IonSpinner } from "@ionic/react";
 import ModalUpdateControlBoardPlanningDetail from "./ModalUpdateControlBoardPlanningDetail";
+import ContainerSettingDashboard from "../../../components/ContainerSettingDashboard";
 
 const TableControlBoardPlanningDetail = lazy(() => import("./TableControlBoardPlanningDetail"));
 
@@ -22,6 +23,11 @@ const ContainerControlBoardPlanningDetail: React.FC<ExpanderComponentProps<Contr
         <>
             <IonGrid>
                 <IonRow>
+                    <IonCol size="12">
+                        <Card title={`Control Board Planning ${controlBoardPlanning.Line.name} ${controlBoardPlanning.date}`} headerColor="light">
+                            <ContainerSettingDashboard data={controlBoardPlanning} />
+                        </Card>
+                    </IonCol>
                     <IonCol size="12">
                         <Card title={`Detail ${controlBoardPlanning.Line.name} ${controlBoardPlanning.date}`} headerColor="light">
                             {isLoading ? (

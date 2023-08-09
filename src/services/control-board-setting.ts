@@ -25,6 +25,16 @@ export const getControlBoardSettingByDepartment = async (departmentId: string): 
     }
 }
 
+export const getControlBoardSettingByLine = async (lineId: string): Promise<ControlBoardSettingInterface> => {
+    try {
+        const response: ApiResponseInterface<ControlBoardSettingInterface> = await axiosGet(`${apiName}/lineId/${lineId || "none"}`);
+        return response.data;
+    } catch (error) {
+        const err = error as AxiosError<ApiResponseErrorInterface>;
+        throw err;
+    }
+}
+
 export const createControlBoardSetting = async (payload: CreateControlBoardSettingType): Promise<string> => {
     try {
         const response: ApiResponseInterface<ControlBoardSettingInterface> = await axiosPost(`${apiName}/`, payload);

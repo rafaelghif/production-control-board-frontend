@@ -6,16 +6,18 @@ const ContainerControlBoard = lazy(() => import("./ContainerControlBoard"));
 
 interface GridControlBoardProps {
     data?: ControlBoardWithLineInterface[];
+    dateFilter: string;
+    openModal: () => void;
 }
 
-const GridControlBoard: React.FC<GridControlBoardProps> = ({ data }) => {
+const GridControlBoard: React.FC<GridControlBoardProps> = ({ data, dateFilter, openModal }) => {
     return (
         <IonGrid>
             <IonRow>
                 {data?.map((controlBoard) => (
                     <IonCol size="12" key={`control-board-${controlBoard.lineName}`}>
                         <Suspense fallback={<IonSpinner name="crescent" />}>
-                            <ContainerControlBoard title={`Control Board ${controlBoard.lineName}`} data={controlBoard.plannings} />
+                            <ContainerControlBoard title={`Control Board ${controlBoard.lineName}`} data={controlBoard.plannings} settings={controlBoard.settings} dateFilter={dateFilter} openModal={openModal} />
                         </Suspense>
                     </IonCol>
                 ))}

@@ -22,6 +22,11 @@ const TableControlBoardPlanningDetail: React.FC<TableControlBoardPlanningDetailP
         sortable: true,
         wrap: true
     }, {
+        name: "Remark",
+        selector: (row) => row.remark,
+        sortable: true,
+        wrap: true
+    }, {
         name: "Status",
         cell: (row) => <IonText color={row.inActive ? "danger" : "success"}>{row.inActive ? "InActive" : "Active"}</IonText>,
         sortable: true,

@@ -23,11 +23,22 @@ import "./theme/font.css";
 
 import useLoadingStore from "./stores/useLoadingStore";
 import MainRouter from "./routes/MainRouter";
+import { useEffect } from "react";
+import socket from "./libs/socket.io";
 
 setupIonicReact();
 
 const App: React.FC = () => {
     const { isLoading } = useLoadingStore();
+    useEffect(() => {
+        socket.connect();
+        socket.on("connect", () => {
+            console.log("Connected", socket.id);
+        });
+        return () => {
+            socket.disconnect()
+        }
+    }, []);
     return (
         <IonApp>
             <IonLoading isOpen={isLoading} />

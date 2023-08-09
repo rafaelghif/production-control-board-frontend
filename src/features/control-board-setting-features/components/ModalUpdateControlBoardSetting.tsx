@@ -32,10 +32,17 @@ const ModalUpdateControlBoardSetting: React.FC<ModalUpdateControlBoardSettingPro
     useEffect(() => {
         setFormData((prevState) => ({
             ...prevState,
+            id: data?.id,
+            actualWorkingTimeAll: data?.actualWorkingTimeAll,
+            productLoadingPlanQty: data?.productLoadingPlanQty,
+            productLoadingPlanBacklogQty: data?.productLoadingPlanBacklogQty,
+            tackTime: data?.tackTime,
+            totalProcessTime: data?.totalProcessTime,
             actualWorkingTime: data?.actualWorkingTime,
-            planQty: data?.planQty,
-            manPowerRegular: data?.manPowerRegular,
-            shiftTotal: data?.shiftTotal,
+            actualWorkingTimeOvertime: data?.actualWorkingTimeOvertime,
+            manPowerCount: data?.manPowerCount,
+            manPowerAdditionalCount: data?.manPowerAdditionalCount,
+            manPowerAbleToSpare: data?.manPowerAbleToSpare,
             LineId: data?.LineId
         }));
     }, [data]);
@@ -47,16 +54,34 @@ const ModalUpdateControlBoardSetting: React.FC<ModalUpdateControlBoardSettingPro
                     <SelectLine value={formData?.LineId} departmentId={department.id} onChange={(id) => handleInput("LineId", id)} />
                 </Suspense>
                 <IonItem>
-                    <IonInput type="number" label="Actual Working Time" labelPlacement="floating" value={formData?.actualWorkingTime} onIonInput={(e) => handleInput("actualWorkingTime", e.detail.value!)} required />
+                    <IonInput type="number" min={0} label="Actual Working Time All" labelPlacement="floating" value={formData?.actualWorkingTimeAll} onIonInput={(e) => handleInput("actualWorkingTimeAll", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonInput type="number" label="Plan QTY" labelPlacement="floating" value={formData?.planQty} onIonInput={(e) => handleInput("planQty", e.detail.value!)} required />
+                    <IonInput type="number" min={0} label="Production Loading Plan Qty" labelPlacement="floating" value={formData?.productLoadingPlanQty} onIonInput={(e) => handleInput("productLoadingPlanQty", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonInput type="number" label="Man Power Regular" labelPlacement="floating" value={formData?.manPowerRegular} onIonInput={(e) => handleInput("manPowerRegular", e.detail.value!)} required />
+                    <IonInput type="number" min={0} label="Production Loading Backlog Qty" labelPlacement="floating" value={formData?.productLoadingPlanBacklogQty} onIonInput={(e) => handleInput("productLoadingPlanBacklogQty", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
-                    <IonInput type="number" label="Shift Total" labelPlacement="floating" value={formData?.shiftTotal} onIonInput={(e) => handleInput("shiftTotal", e.detail.value!)} required />
+                    <IonInput type="text" min={0} label="Tack Time" labelPlacement="floating" value={formData?.tackTime} onIonInput={(e) => handleInput("tackTime", e.detail.value!)} required />
+                </IonItem>
+                <IonItem>
+                    <IonInput type="number" min={0} label="Total Process Time" labelPlacement="floating" value={formData?.totalProcessTime} onIonInput={(e) => handleInput("totalProcessTime", e.detail.value!)} required />
+                </IonItem>
+                <IonItem>
+                    <IonInput type="number" min={0} label="Actual Working Time" labelPlacement="floating" value={formData?.actualWorkingTime} onIonInput={(e) => handleInput("actualWorkingTime", e.detail.value!)} required />
+                </IonItem>
+                <IonItem>
+                    <IonInput type="number" min={0} label="Actual Working Time Overtime" labelPlacement="floating" value={formData?.actualWorkingTimeOvertime} onIonInput={(e) => handleInput("actualWorkingTimeOvertime", e.detail.value!)} required />
+                </IonItem>
+                <IonItem>
+                    <IonInput type="number" min={0} label="Man Power Count" labelPlacement="floating" value={formData?.manPowerCount} onIonInput={(e) => handleInput("manPowerCount", e.detail.value!)} required />
+                </IonItem>
+                <IonItem>
+                    <IonInput type="number" min={0} label="Man Power Additional Count" labelPlacement="floating" value={formData?.manPowerAdditionalCount} onIonInput={(e) => handleInput("manPowerAdditionalCount", e.detail.value!)} required />
+                </IonItem>
+                <IonItem>
+                    <IonInput type="number" min={0} label="Man Power Able to Spare Count" labelPlacement="floating" value={formData?.manPowerAbleToSpare} onIonInput={(e) => handleInput("manPowerAbleToSpare", e.detail.value!)} required />
                 </IonItem>
                 <IonItem>
                     <IonCheckbox checked={formData?.inActive} onIonChange={(e) => handleInput("inActive", e.detail.checked!)}>InActive</IonCheckbox>

@@ -8,7 +8,7 @@ interface FormControlBoardPlanningDetailProps {
 }
 
 const FormControlBoardPlanningDetail: React.FC<FormControlBoardPlanningDetailProps> = ({ value, onChange }) => {
-    const [controlBoardPlanning, setControlBoardPlanning] = useState<CreateControlBoardPlanningDetailType>({ time: "07:00", qty: 0 });
+    const [controlBoardPlanning, setControlBoardPlanning] = useState<CreateControlBoardPlanningDetailType>({ time: "07:00", qty: 0, sequence: 1 });
 
     const handleInput = (key: keyof CreateControlBoardPlanningDetailType, value: string | number) => {
         setControlBoardPlanning((prevState) => ({ ...prevState, [key]: value }));
