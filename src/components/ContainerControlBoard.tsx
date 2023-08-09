@@ -33,10 +33,10 @@ const ContainerControlBoard: React.FC<ContainerControlBoardProps> = ({ title, da
                 <div>
                     <ContainerSettingDashboardLarge data={settings} />
                 </div>
-                <div className={`grid grid-cols-6 relative w-full overflow-auto scroll-smooth font-['Source_Sans_3'] dark:text-white snap-x snap-mandatory`}>
+                <div className={`grid grid-cols-5 relative w-full overflow-auto scroll-smooth font-['Source_Sans_3'] dark:text-white snap-x snap-mandatory`}>
                     {data?.map((planning, index) => (
                         <Fragment key={`planning-${planning.planningTime}`}>
-                            {index % 5 === 0 && <ColumnHeaderControlBoard />}
+                            {index % 4 === 0 && <ColumnHeaderControlBoard />}
                             <ColumnControlBoard data={planning} />
                         </Fragment>
                     ))}

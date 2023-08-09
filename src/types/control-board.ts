@@ -10,6 +10,7 @@ export interface ControlBoardInterface {
     totalOrderComplete: number;
     totalOrderCompleteCumulative: number;
     differenceQty: number;
+    remark: string;
 }
 
 export interface ControlBoardWithLineInterface {

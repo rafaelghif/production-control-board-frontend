@@ -3,6 +3,7 @@ import useLoadingStore from "../../../stores/useLoadingStore";
 import { useToast } from "../../../hooks/useToast";
 import { UpdateControlBoardPlanningDetailType } from "../../../types/control-board-planning-type";
 import { updateControlBoardPlanningDetail } from "../../../services/control-board-planning";
+import socket from "../../../libs/socket.io";
 
 export const useUpdateControlBoardPlanningDetail = () => {
     const queryClient = useQueryClient();
@@ -22,6 +23,7 @@ export const useUpdateControlBoardPlanningDetail = () => {
             queryClient.invalidateQueries({
                 queryKey: ["control-board-planning-detail"]
             });
+            socket.emit("input", "input");
         },
         onSettled: () => {
             setLoading(false)
