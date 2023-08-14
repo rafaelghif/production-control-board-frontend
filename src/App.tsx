@@ -32,9 +32,6 @@ const App: React.FC = () => {
     const { isLoading } = useLoadingStore();
     useEffect(() => {
         socket.connect();
-        socket.on("connect", () => {
-            console.log("Connected", socket.id);
-        });
         return () => {
             socket.disconnect()
         }

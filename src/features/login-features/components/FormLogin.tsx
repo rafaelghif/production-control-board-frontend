@@ -7,15 +7,26 @@ import { useAuthentication } from "../hooks/useAuthentication";
 const FormLogin: React.FC = () => {
     const [formData, setFormData] = useState<AuthenticationInterface>({ badgeId: "", password: "" });
     const { mutate } = useAuthentication();
-    
+
     const handleInput = (key: keyof AuthenticationInterface, value: string) => {
         setFormData((prevState) => ({ ...prevState, [key]: value }));
     }
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        handleLogin();
+    }
+
+    const handleLogin = () => {
         mutate(formData);
     }
+
+    const handleKeyDown = (key: string) => {
+        if (key === "Enter") {
+            handleLogin();
+        }
+    }
+
     return (
         <form onSubmit={handleSubmit}>
             <IonItem>
@@ -24,7 +35,7 @@ const FormLogin: React.FC = () => {
             </IonItem>
             <IonItem>
                 <IonIcon icon={lockClosedOutline} slot="start" />
-                <IonInput type="password" label="Password" labelPlacement="floating" value={formData.password} onIonInput={(e) => handleInput("password", e.detail.value!)} />
+                <IonInput type="password" label="Password" labelPlacement="floating" value={formData.password} onKeyDown={(e) => handleKeyDown(e.key)} onIonInput={(e) => handleInput("password", e.detail.value!)} />
             </IonItem>
             <IonButton type="submit" expand="block">Login</IonButton>
         </form>

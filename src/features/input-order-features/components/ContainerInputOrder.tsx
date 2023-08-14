@@ -29,6 +29,9 @@ const ContainerInputOrder: React.FC = () => {
             try {
                 const data = await orderInput.mutateAsync(serialNumber);
                 setOrder(data ?? initialData);
+                if (data) {
+                    await submitInput(data);
+                }
             } catch (err) {
                 resetForm();
             }
@@ -37,6 +40,11 @@ const ContainerInputOrder: React.FC = () => {
 
     const handleClickBtnSubmit = () => {
         createOrder.mutate({ ...order, LineId: line.id });
+        resetForm();
+    }
+
+    const submitInput = async (data: OrderResponseType) => {
+        createOrder.mutate({ ...data, LineId: line.id });
         resetForm();
     }
 

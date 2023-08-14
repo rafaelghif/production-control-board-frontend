@@ -1,5 +1,5 @@
 import { IonContent, IonFooter, IonHeader, IonImg, IonMenu, IonTitle, IonToolbar } from "@ionic/react";
-import { homeOutline, logOutOutline, newspaperOutline, pushOutline, radioButtonOffOutline, serverOutline } from "ionicons/icons";
+import { homeOutline, logOutOutline, newspaperOutline, pushOutline, radioButtonOffOutline, readerOutline, serverOutline } from "ionicons/icons";
 import profilePicture from "../assets/images/profile.png";
 import MenuItem from "../components/MenuItem";
 import MenuItemDropDown from "../components/MenuItemDropDown";
@@ -55,6 +55,7 @@ const Menu: React.FC<MenuProps> = ({ isAuth }) => {
                         <MenuItem url="/control-board-setting" text="Setting" icon={radioButtonOffOutline} />
                         <MenuItem url="/control-board-planning" text="Planning" icon={radioButtonOffOutline} />
                     </MenuItemDropDown>
+                    <MenuItem url="/report" text="Report" icon={readerOutline} />
                     <MenuItem url="/dashboard" text="Logout" icon={logOutOutline} handleClick={() => handleClickBtnLogout()} />
                 </div>
             </IonContent>

@@ -15,6 +15,7 @@ const User = lazy(() => import("../pages/User"));
 const ControlBoardSetting = lazy(() => import("../pages/ControlBoardSetting"));
 const ControlBoardPlanning = lazy(() => import("../pages/ControlBoardPlanning"));
 const InputOrder = lazy(() => import("../pages/InputOrder"));
+const Report = lazy(() => import("../pages/Report"));
 
 const MainRouter: React.FC = () => {
     const { isAuth } = useAuthStore();
@@ -31,6 +32,7 @@ const MainRouter: React.FC = () => {
                         <Route exact path="/user" component={() => <PrivateRoute isAuth={isAuth} component={User} isStrictRole={true} roles={["Super User"]} />} />
                         <Route exact path="/control-board-setting" component={() => <PrivateRoute isAuth={isAuth} component={ControlBoardSetting} isStrictRole={true} roles={["Super User", "Admin"]} />} />
                         <Route exact path="/control-board-planning" component={() => <PrivateRoute isAuth={isAuth} component={ControlBoardPlanning} />} />
+                        <Route exact path="/report" component={() => <PrivateRoute isAuth={isAuth} component={Report} />} />
                     </Suspense>
                     <Route exact path="/">
                         <Redirect to={isAuth ? "/home" : "/dashboard"} />

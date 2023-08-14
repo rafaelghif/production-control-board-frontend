@@ -36,9 +36,18 @@ const ContainerDashboard: React.FC = () => {
 
     useEffect(() => {
         socket.on("input", () => {
-            console.log("input");
             refetch();
         });
+    }, []);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (dateFilter !== formatDateString(new Date())) {
+                setDateFilter(formatDateString(new Date()));
+            }
+        }, 1000);
+
+        return () => clearInterval(interval);
     }, []);
 
     return (
@@ -64,7 +73,7 @@ const ContainerDashboard: React.FC = () => {
                         <SelectLine value={lineFilter} onChange={(id) => handleChangeLine(id)} />
                     </Suspense>
                     <IonItem>
-                        <IonInput type="date" label="Date" labelPlacement="floating" value={dateFilter} onIonChange={(e) => setDateFilter(e.detail.value!)} />
+                        <IonInput type="date" label="Date" labelPlacement="floating" value={dateFilter} onIonInput={(e) => setDateFilter(e.detail.value!)} />
                     </IonItem>
                 </div>
                 <div className="w-full">

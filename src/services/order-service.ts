@@ -1,9 +1,19 @@
 import { AxiosError } from "axios";
 import { ApiResponseErrorInterface, ApiResponseInterface } from "../types/api-response-type";
-import { axiosPost } from "./api-service";
-import { CreateOrderType, OrderInterface, OrderResponseInterface, OrderResponseType } from "../types/order-type";
+import { axiosGet, axiosPost } from "./api-service";
+import { CreateOrderType, OrderResponseInterface, OrderResponseType, OrderWithLineInterface } from "../types/order-type";
 
 const apiName = "/order";
+
+export const getOrders = async (line: string, date: string, search: string): Promise<OrderWithLineInterface[]> => {
+    try {
+        const response: ApiResponseInterface<OrderWithLineInterface[]> = await axiosGet(`${apiName}/orderDate/${date}/lineId/${line}?search=${search}`);
+        return response.data;
+    } catch (error) {
+        const err = error as AxiosError<ApiResponseErrorInterface>;
+        throw err;
+    }
+}
 
 export const getOrderInput = async (serialNumber: string): Promise<OrderResponseType> => {
     try {

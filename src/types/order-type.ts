@@ -1,3 +1,5 @@
+import { LineInterface } from "./line-type";
+
 export interface OrderInterface {
     id: string;
     model: string;
@@ -15,6 +17,10 @@ export interface OrderInterface {
 
 export type OrderResponseType = Pick<OrderInterface, "serialNumberType" | "serialNumber" | "model" | "barcodeIssueNo" | "sapLinkageNo">;
 export type CreateOrderType = Pick<OrderInterface, "serialNumberType" | "serialNumber" | "model" | "barcodeIssueNo" | "sapLinkageNo" | "LineId">;
+
+export interface OrderWithLineInterface extends OrderInterface {
+    Line: Pick<LineInterface, "id" | "name">;
+}
 
 export interface OrderResponseInterface {
     message: string;

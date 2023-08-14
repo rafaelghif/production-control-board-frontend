@@ -13,7 +13,7 @@ export const useCreateOrder = () => {
         onMutate: () => {
             setLoading(true);
         },
-        onError: async (error) => {
+        onError: (error) => {
             setLoading(false);
             errorToast(error);
         },
