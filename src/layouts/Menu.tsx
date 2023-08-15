@@ -35,7 +35,7 @@ const Menu: React.FC<MenuProps> = ({ isAuth }) => {
             <IonContent className="bg-slate-600">
                 <div className="flex items-center h-40 px-5 text-white border-b-2 border-white shadow bg-opacity-80 bg-slate-500">
                     <div>
-                        <IonImg src={profilePicture} className="w-16 h-auto border-2 border-white rounded-full shadow-md" />
+                        <IonImg src={profilePicture} alt="Profile Picture" className="w-16 h-auto border-2 border-white rounded-full shadow-md" />
                     </div>
                     <div className="ml-3">
                         <span className="block text-lg font-bold font-['Source_Sans_3']">{user.badgeId}</span>
