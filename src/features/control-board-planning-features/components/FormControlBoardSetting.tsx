@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { CreateControlBoardPlanningType } from "../../../types/control-board-planning-type";
+import { CreateControlBoardPlanningDetailType, CreateControlBoardPlanningType } from "../../../types/control-board-planning-type";
 import { useQueryControlBoardSettingByLine } from "../hooks/useQueryControlBoardSettingByLine";
 import { IonInput, IonItem } from "@ionic/react";
 import Card from "../../../components/Card";
@@ -8,9 +8,10 @@ interface FormControlBoardSettingProps {
     lineId: string;
     value: CreateControlBoardPlanningType;
     handleInputControlBoardPlanning: (key: keyof CreateControlBoardPlanningType, value: string | number) => void;
+    handleInputControlBoardDetail: (data: CreateControlBoardPlanningDetailType[]) => void;
 }
 
-const FormControlBoardSetting: React.FC<FormControlBoardSettingProps> = ({ lineId, value, handleInputControlBoardPlanning }) => {
+const FormControlBoardSetting: React.FC<FormControlBoardSettingProps> = ({ lineId, value, handleInputControlBoardPlanning, handleInputControlBoardDetail }) => {
     const { data } = useQueryControlBoardSettingByLine(lineId);
 
     useEffect(() => {
@@ -25,6 +26,10 @@ const FormControlBoardSetting: React.FC<FormControlBoardSettingProps> = ({ lineI
             handleInputControlBoardPlanning("manPowerCount", data.manPowerCount);
             handleInputControlBoardPlanning("manPowerAdditionalCount", data.manPowerAdditionalCount);
             handleInputControlBoardPlanning("manPowerAbleToSpare", data.manPowerAbleToSpare);
+
+            if (data.ControlBoardSettingDetails.length > 0) {
+                handleInputControlBoardDetail(data.ControlBoardSettingDetails);
+            }
         }
     }, [data]);
 

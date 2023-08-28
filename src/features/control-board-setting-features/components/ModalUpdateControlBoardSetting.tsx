@@ -43,6 +43,7 @@ const ModalUpdateControlBoardSetting: React.FC<ModalUpdateControlBoardSettingPro
             manPowerCount: data?.manPowerCount,
             manPowerAdditionalCount: data?.manPowerAdditionalCount,
             manPowerAbleToSpare: data?.manPowerAbleToSpare,
+            inActive: data?.inActive,
             LineId: data?.LineId
         }));
     }, [data]);

@@ -20,6 +20,23 @@ export interface ControlBoardSettingInterface {
     LineId: string;
 }
 
+export interface ControlBoardSettingInterfaceWithDetail extends ControlBoardSettingInterface {
+    ControlBoardSettingDetails: ControlBoardSettingDetailInterface[];
+}
+
+export interface ControlBoardSettingDetailInterface {
+    id: string;
+    time: string;
+    sequence: number;
+    qty: number;
+    inActive: boolean;
+    createdBy: string;
+    updatedBy: string;
+    createdAt: string;
+    updatedAt: string;
+    ControlBoardSettingId: string;
+}
+
 export interface ControlBoardSettingWithLineInterface extends ControlBoardSettingInterface {
     Line: Pick<LineInterface, "id" | "name">;
 }
@@ -38,4 +55,13 @@ export type CreateControlBoardSettingType = Pick<
     "manPowerAbleToSpare" |
     "LineId"
 >;
+
 export type UpdateControlBoardSettingType = Partial<ControlBoardSettingInterface>;
+
+export type CreateControlBoardSettingDetailType = Pick<ControlBoardSettingDetailInterface, "time" | "sequence" | "qty">;
+export type UpdateControlBoardSettingDetailType = Partial<ControlBoardSettingDetailInterface>;
+
+export interface CreateControlBoardSettingInterface {
+    setting: CreateControlBoardSettingType;
+    settingDetails: CreateControlBoardSettingDetailType[];
+}

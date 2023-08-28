@@ -29,9 +29,9 @@ const ContainerInputOrder: React.FC = () => {
             try {
                 const data = await orderInput.mutateAsync(serialNumber);
                 setOrder(data ?? initialData);
-                if (data) {
-                    await submitInput(data);
-                }
+                // if (data) {
+                //     await submitInput(data);
+                // }
             } catch (err) {
                 resetForm();
             }
@@ -60,7 +60,7 @@ const ContainerInputOrder: React.FC = () => {
                         </div>
                         <div className="w-1/3">
                             <IonItem>
-                                <IonInput type="text" label="Serial Number" labelPlacement="floating" onFocus={resetForm} onIonInput={(e) => setSerialNumber(e.detail.value!)} onKeyUp={handleKeyUp} clearOnEdit />
+                                <IonInput type="text" label="Serial Number" tabIndex={0} autoFocus={true} labelPlacement="floating" onFocus={resetForm} onIonInput={(e) => setSerialNumber(e.detail.value!)} onKeyUp={handleKeyUp} clearOnEdit />
                             </IonItem>
                         </div>
                     </div>

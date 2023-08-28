@@ -46,6 +46,10 @@ const ModalCreateControlBoardPlanning: React.FC<ModalCreateControlBoardPlanningP
         setControlBoardPlanning((prevState) => ({ ...prevState, [key]: value }));
     }
 
+    const handleInputControlBoardDetail = (data: CreateControlBoardPlanningDetailType[]) => {
+        setControlBoardPlanningDetails(data);
+    }
+
     const handleSubmitControlBoardPlanning = (e: React.FormEvent) => {
         e.preventDefault();
         controlBoardPlanning.LineId ? setIsSubmitPlanning(true) : warningToast("Please fill Line");
@@ -82,7 +86,7 @@ const ModalCreateControlBoardPlanning: React.FC<ModalCreateControlBoardPlanningP
                                 <IonGrid>
                                     <IonRow>
                                         <IonCol size="12">
-                                            <FormControlBoardSetting value={controlBoardPlanning} lineId={controlBoardPlanning.LineId} handleInputControlBoardPlanning={handleInputControlBoardPlanning} />
+                                            <FormControlBoardSetting value={controlBoardPlanning} lineId={controlBoardPlanning.LineId} handleInputControlBoardPlanning={handleInputControlBoardPlanning} handleInputControlBoardDetail={(data) => handleInputControlBoardDetail(data)} />
                                         </IonCol>
                                         <IonCol size="12">
                                             <IonGrid>

@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { IonButton, IonText } from "@ionic/react";
 import { formatDateTime } from "../../../libs/date-fns";
 import { ControlBoardSettingInterface, ControlBoardSettingWithLineInterface } from "../../../types/control-board-setting-type";
+import ContainerControlBoardSettingDetail from "./ContainerControlBoardSettingDetail";
 
 interface TableControlBoardSettingProps {
     data?: ControlBoardSettingWithLineInterface[];
@@ -85,7 +86,7 @@ const TableControlBoardSetting: React.FC<TableControlBoardSettingProps> = ({ dat
         center: true
     }], [handleClickBtnEdit]);
     return (
-        <Table columns={columns} data={data} responsive pagination striped highlightOnHover />
+        <Table columns={columns} data={data} responsive pagination striped highlightOnHover expandableRows expandableRowsComponent={ContainerControlBoardSettingDetail} />
     );
 }
 

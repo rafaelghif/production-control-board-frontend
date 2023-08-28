@@ -3,6 +3,8 @@ import { ControlBoardPlanningInterface } from "../types/control-board-planning-t
 import Card from "./Card";
 import ContainerSettingDashboardLarge from "./ContainerSettingDashboardLarge";
 import { convertNumberToTimeString } from "../helpers/text-manipulation";
+import { useEffect, useState } from "react";
+import { formatDateString } from "../libs/date-fns";
 
 interface ContainerControlBoardProps {
 	title: string
@@ -10,8 +12,18 @@ interface ContainerControlBoardProps {
 	settings?: ControlBoardPlanningInterface;
 }
 
+const hours = [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6];
 
 const ContainerControlBoardV2: React.FC<ContainerControlBoardProps> = ({ title, data, settings }) => {
+	const [currentDate, setCurrentDate] = useState<string>(formatDateString(new Date()));
+	const [currentIndex, setCurrentIndex] = useState<number>(0);
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setCurrentIndex(hours.findIndex((hour) => hour === new Date().getHours()));
+			setCurrentDate(formatDateString(new Date()));
+		}, 1000);
+		return () => clearInterval(interval);
+	}, []);
 	return (
 		<Card title={title}>
 			<div className="flex flex-col gap-1">
@@ -36,16 +48,22 @@ const ContainerControlBoardV2: React.FC<ContainerControlBoardProps> = ({ title, 
 									<td>{res.planningQty} / {res.planningQtyCumulative}</td>
 									<td>{res.totalOrderComplete} / {res.totalOrderCompleteCumulative}</td>
 									<td>
-										<span className={
-											(res.totalOrderComplete - res.planningQty) > 0
-												? "text-[#3880ff]"
-												: (res.totalOrderComplete - res.planningQty) < 0 ? "text-red-500" : ""
-										}>{res.totalOrderComplete - res.planningQty}</span>
-										<span> / </span>
-										<span className={
-											res.differenceQty > 0 ? "text-[#3880ff]"
-												: res.differenceQty < 0 ? "text-red-500" : ""
-										}>{res.differenceQty}</span>
+										{index > currentIndex && currentDate === res.planningDate ? (
+											<span>-</span>
+										) : (
+											<>
+												<span className={
+													(res.totalOrderComplete - res.planningQty) > 0
+														? "text-[#3880ff]"
+														: (res.totalOrderComplete - res.planningQty) < 0 ? "text-red-500" : ""
+												}>{res.totalOrderComplete - res.planningQty}</span>
+												<span> / </span>
+												<span className={
+													res.differenceQty > 0 ? "text-[#3880ff]"
+														: res.differenceQty < 0 ? "text-red-500" : ""
+												}>{res.differenceQty}</span>
+											</>
+										)}
 									</td>
 									<td className="text-red-500">{res.remark}</td>
 								</tr>

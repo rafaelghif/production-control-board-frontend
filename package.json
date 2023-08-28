@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "test.e2e": "cypress run",
     "test.unit": "vitest",
-    "lint": "eslint"
+    "lint": "eslint",
+    "serve-build": "serve -l 3007 -s dist --ssl-cert ssl/server.crt --ssl-key ssl/server.key"
   },
   "dependencies": {
     "@capacitor/app": "5.0.5",
