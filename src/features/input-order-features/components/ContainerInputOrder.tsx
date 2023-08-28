@@ -1,5 +1,5 @@
 import { IonButton, IonCol, IonGrid, IonInput, IonItem, IonRow, IonSpinner } from "@ionic/react"
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useRef, useState } from "react";
 import { useGetOrderInput } from "../hooks/useGetOrderInput";
 import { OrderResponseType } from "../../../types/order-type";
 import Card from "../../../components/Card";
@@ -7,7 +7,6 @@ import OrderInformationGrid from "./OrderInformationGrid";
 import OrderInformationColumn from "./OrderInformationColumn";
 import useLineStore from "../../../stores/useLineStore";
 import { useCreateOrder } from "../hooks/useCreateOrder";
-import socket from "../../../libs/socket.io";
 
 const Clock = lazy(() => import("../../../components/Clock"));
 
@@ -19,6 +18,8 @@ const ContainerInputOrder: React.FC = () => {
     const orderInput = useGetOrderInput();
     const createOrder = useCreateOrder();
 
+    const inputRef = useRef<HTMLIonInputElement>(null);
+
     const resetForm = () => {
         setOrder(initialData);
         setSerialNumber("");
@@ -29,9 +30,6 @@ const ContainerInputOrder: React.FC = () => {
             try {
                 const data = await orderInput.mutateAsync(serialNumber);
                 setOrder(data ?? initialData);
-                // if (data) {
-                //     await submitInput(data);
-                // }
             } catch (err) {
                 resetForm();
             }
@@ -40,11 +38,6 @@ const ContainerInputOrder: React.FC = () => {
 
     const handleClickBtnSubmit = () => {
         createOrder.mutate({ ...order, LineId: line.id });
-        resetForm();
-    }
-
-    const submitInput = async (data: OrderResponseType) => {
-        createOrder.mutate({ ...data, LineId: line.id });
         resetForm();
     }
 
@@ -60,7 +53,7 @@ const ContainerInputOrder: React.FC = () => {
                         </div>
                         <div className="w-1/3">
                             <IonItem>
-                                <IonInput type="text" label="Serial Number" tabIndex={0} autoFocus={true} labelPlacement="floating" onFocus={resetForm} onIonInput={(e) => setSerialNumber(e.detail.value!)} onKeyUp={handleKeyUp} clearOnEdit />
+                                <IonInput ref={inputRef} autofocus type="text" label="Serial Number" tabIndex={0} autoFocus={true} labelPlacement="floating" onFocus={resetForm} onIonInput={(e) => setSerialNumber(e.detail.value!)} onKeyUp={handleKeyUp} clearOnEdit />
                             </IonItem>
                         </div>
                     </div>
