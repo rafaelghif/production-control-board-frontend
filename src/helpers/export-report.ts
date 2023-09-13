@@ -1,13 +1,12 @@
-import * as XLSX from "xlsx";
+import { utils, writeFile, set_fs } from "xlsx";
 import * as fs from "fs";
 import { formatDateString, formatDateTime } from "../libs/date-fns";
 import { OrderWithLineInterface } from "../types/order-type";
 
 export const ExportExcel = (apiData: OrderWithLineInterface[], fileName: string) => {
-	const fileType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8";
 	const fileExtension = ".xlsx";
 
-	XLSX.set_fs(fs);
+	set_fs(fs);
 
 	let no = 0;
 	const newData = apiData.map((res) => {
@@ -23,8 +22,8 @@ export const ExportExcel = (apiData: OrderWithLineInterface[], fileName: string)
 		};
 	});
 
-	const worksheet = XLSX.utils.json_to_sheet(newData);
-	const workbook = XLSX.utils.book_new();
-	XLSX.utils.book_append_sheet(workbook, worksheet, "Report");
-	XLSX.writeFile(workbook, fileName + "-" + formatDateString(new Date()) + fileExtension, { compression: true });
+	const worksheet = utils.json_to_sheet(newData);
+	const workbook = utils.book_new();
+	utils.book_append_sheet(workbook, worksheet, "Report");
+	writeFile(workbook, fileName + "-" + formatDateString(new Date()) + fileExtension, { compression: true });
 }
