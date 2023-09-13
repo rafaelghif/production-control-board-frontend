@@ -61,7 +61,7 @@ const Menu: React.FC<MenuProps> = ({ isAuth }) => {
             </IonContent>
             <IonFooter>
                 <IonToolbar color={"light"}>
-                    <IonTitle className="text-sm text-center">Version 1.0.0</IonTitle>
+                    <IonTitle className="text-sm text-center">Version {import.meta.env.VITE_APP_VERSION}</IonTitle>
                 </IonToolbar>
             </IonFooter>
         </IonMenu>

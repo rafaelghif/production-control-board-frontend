@@ -1,9 +1,10 @@
-import { IonCol, IonGrid, IonInput, IonItem, IonRefresher, IonRefresherContent, IonRow, IonSearchbar, IonSpinner, RefresherEventDetail } from "@ionic/react"
+import { IonButton, IonCol, IonGrid, IonInput, IonItem, IonRefresher, IonRefresherContent, IonRow, IonSearchbar, IonSpinner, RefresherEventDetail } from "@ionic/react"
 import { Suspense, lazy, useState } from "react";
 import { formatDateString } from "../../../libs/date-fns";
 import useLineStore from "../../../stores/useLineStore";
 import { useQueryReport } from "../hooks/useQueryReport";
 import Card from "../../../components/Card";
+import { ExportExcel } from "../../../helpers/export-report";
 
 const SelectLine = lazy(() => import("../../../components/SelectLine"));
 const TableReport = lazy(() => import("./TableReport"));
@@ -47,9 +48,12 @@ const ContainerReport: React.FC = () => {
 							{isLoading ? (
 								<IonSpinner name="crescent" />
 							) : (
-								<Suspense fallback={<IonSpinner name="crescent" />}>
-									<TableReport data={data} />
-								</Suspense>
+								<>
+									<IonButton className="float-right mb-3" onClick={() => ExportExcel(data ? data : [], "Report")}>Export to Excel</IonButton>
+									<Suspense fallback={<IonSpinner name="crescent" />}>
+										<TableReport data={data} />
+									</Suspense>
+								</>
 							)}
 						</Card>
 					</IonCol>
