@@ -8,10 +8,12 @@ import OrderInformationColumn from "./OrderInformationColumn";
 import useLineStore from "../../../stores/useLineStore";
 import { useCreateOrder } from "../hooks/useCreateOrder";
 
+const SelectLine = lazy(() => import("../../../components/SelectLine"));
 const Clock = lazy(() => import("../../../components/Clock"));
 
 const ContainerInputOrder: React.FC = () => {
     const { line } = useLineStore();
+    const [lineId, setLineId] = useState<string>("");
     const initialData: OrderResponseType = { serialNumberType: "Inhouse", serialNumber: "", model: "", barcodeIssueNo: "", sapLinkageNo: "" };
     const [order, setOrder] = useState<OrderResponseType>(initialData);
     const [serialNumber, setSerialNumber] = useState<string>("");
@@ -37,7 +39,8 @@ const ContainerInputOrder: React.FC = () => {
     }
 
     const handleClickBtnSubmit = () => {
-        createOrder.mutate({ ...order, LineId: line.id });
+        const lineIdForm = line?.id ? line.id : lineId;
+        createOrder.mutate({ ...order, LineId: lineIdForm });
         resetForm();
     }
 
@@ -55,6 +58,11 @@ const ContainerInputOrder: React.FC = () => {
                             <IonItem>
                                 <IonInput ref={inputRef} autofocus type="text" label="Serial Number" tabIndex={0} autoFocus={true} labelPlacement="floating" onFocus={resetForm} onIonInput={(e) => setSerialNumber(e.detail.value!)} onKeyUp={handleKeyUp} clearOnEdit />
                             </IonItem>
+                            {!line?.id && (
+                                <Suspense fallback={<IonSpinner name="crescent" />}>
+                                    <SelectLine value={lineId} onChange={(id) => setLineId(id)} />
+                                </Suspense>
+                            )}
                         </div>
                     </div>
                 </IonCol>
