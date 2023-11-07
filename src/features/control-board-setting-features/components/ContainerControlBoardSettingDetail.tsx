@@ -1,43 +1,67 @@
-import { ExpanderComponentProps } from "react-data-table-component";
-import Card from "../../../components/Card";
+import { IonCol, IonGrid, IonRow, IonSpinner } from "@ionic/react";
+
 import { Suspense, lazy, useState } from "react";
-import { IonGrid, IonRow, IonCol, IonSpinner } from "@ionic/react";
-import { ControlBoardSettingDetailInterface, ControlBoardSettingWithLineInterface } from "../../../types/control-board-setting-type";
+import { ExpanderComponentProps } from "react-data-table-component";
+
+import Card from "../../../components/Card";
+import {
+	ControlBoardSettingDetailInterface,
+	ControlBoardSettingWithLineInterface,
+} from "../../../types/control-board-setting-type";
 import { useQueryControlBoardSettingDetail } from "../hooks/useQueryControlBoardSettingDetail";
 import ModalUpdateControlBoardSettingDetail from "./ModalUpdateControlBoardSettingDetail";
 
-const TableControlBoardSettingDetail = lazy(() => import("./TableControlBoardSettingDetail"));
+const TableControlBoardSettingDetail = lazy(
+	() => import("./TableControlBoardSettingDetail"),
+);
 
-const ContainerControlBoardSettingDetail: React.FC<ExpanderComponentProps<ControlBoardSettingWithLineInterface>> = ({ data: controlBoardSetting }) => {
-    const { data, isLoading } = useQueryControlBoardSettingDetail(controlBoardSetting.id);
+const ContainerControlBoardSettingDetail: React.FC<
+	ExpanderComponentProps<ControlBoardSettingWithLineInterface>
+> = ({ data: controlBoardSetting }) => {
+	const { data, isLoading } = useQueryControlBoardSettingDetail(
+		controlBoardSetting.id,
+	);
 
-    const [selectValue, setSelectValue] = useState<ControlBoardSettingDetailInterface>();
-    const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(false);
+	const [selectValue, setSelectValue] =
+		useState<ControlBoardSettingDetailInterface>();
+	const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(false);
 
-    const handleClickBtnEdit = (data: ControlBoardSettingDetailInterface) => {
-        setSelectValue(data);
-        setIsOpenModalUpdate(true);
-    }
-    return (
-        <>
-            <IonGrid>
-                <IonRow>
-                    <IonCol size="12">
-                        <Card title={`Detail ${controlBoardSetting.Line.name}`} headerColor="light">
-                            {isLoading ? (
-                                <IonSpinner name="crescent" />
-                            ) : (
-                                <Suspense fallback={<IonSpinner name="crescent" />}>
-                                    <TableControlBoardSettingDetail data={data} handleClickBtnEdit={(data) => handleClickBtnEdit(data)} />
-                                </Suspense>
-                            )}
-                        </Card>
-                    </IonCol>
-                </IonRow>
-            </IonGrid>
-            <ModalUpdateControlBoardSettingDetail isOpen={isOpenModalUpdate} data={selectValue} onDidDismiss={() => setIsOpenModalUpdate(false)} />
-        </>
-    );
-}
+	const handleClickBtnEdit = (data: ControlBoardSettingDetailInterface) => {
+		setSelectValue(data);
+		setIsOpenModalUpdate(true);
+	};
+	return (
+		<>
+			<IonGrid>
+				<IonRow>
+					<IonCol size="12">
+						<Card
+							title={`Detail ${controlBoardSetting.Line.name}`}
+							headerColor="light">
+							{isLoading ? (
+								<IonSpinner name="crescent" />
+							) : (
+								<Suspense
+									fallback={<IonSpinner name="crescent" />}>
+									<TableControlBoardSettingDetail
+										data={data}
+										handleClickBtnEdit={(data) =>
+											handleClickBtnEdit(data)
+										}
+									/>
+								</Suspense>
+							)}
+						</Card>
+					</IonCol>
+				</IonRow>
+			</IonGrid>
+			<ModalUpdateControlBoardSettingDetail
+				isOpen={isOpenModalUpdate}
+				data={selectValue}
+				onDidDismiss={() => setIsOpenModalUpdate(false)}
+			/>
+		</>
+	);
+};
 
 export default ContainerControlBoardSettingDetail;

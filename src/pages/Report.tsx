@@ -1,8 +1,12 @@
-import { Suspense, lazy } from "react";
-import AdminLayout from "../layouts/AdminLayout";
 import { IonSpinner } from "@ionic/react";
 
-const ContainerReport = lazy(() => import("../features/report-features/components/ContainerReport"));
+import { Suspense, lazy } from "react";
+
+import AdminLayout from "../layouts/AdminLayout";
+
+const ContainerReport = lazy(
+	() => import("../features/report-features/components/ContainerReport"),
+);
 
 const Report: React.FC = () => {
 	return (
@@ -12,6 +16,6 @@ const Report: React.FC = () => {
 			</Suspense>
 		</AdminLayout>
 	);
-}
+};
 
 export default Report;

@@ -1,49 +1,77 @@
-import { ExpanderComponentProps } from "react-data-table-component";
-import { ControlBoardPlanningDetailInterface, ControlBoardPlanningWithLineInterface } from "../../../types/control-board-planning-type";
-import Card from "../../../components/Card";
-import { useQueryControlBoardPlanningDetail } from "../hooks/useQueryControlBoardPlanningDetail";
+import { IonCol, IonGrid, IonRow, IonSpinner } from "@ionic/react";
+
 import { Suspense, lazy, useState } from "react";
-import { IonGrid, IonRow, IonCol, IonSpinner } from "@ionic/react";
-import ModalUpdateControlBoardPlanningDetail from "./ModalUpdateControlBoardPlanningDetail";
+import { ExpanderComponentProps } from "react-data-table-component";
+
+import Card from "../../../components/Card";
 import ContainerSettingDashboard from "../../../components/ContainerSettingDashboard";
+import {
+	ControlBoardPlanningDetailInterface,
+	ControlBoardPlanningWithLineInterface,
+} from "../../../types/control-board-planning-type";
+import { useQueryControlBoardPlanningDetail } from "../hooks/useQueryControlBoardPlanningDetail";
+import ModalUpdateControlBoardPlanningDetail from "./ModalUpdateControlBoardPlanningDetail";
 
-const TableControlBoardPlanningDetail = lazy(() => import("./TableControlBoardPlanningDetail"));
+const TableControlBoardPlanningDetail = lazy(
+	() => import("./TableControlBoardPlanningDetail"),
+);
 
-const ContainerControlBoardPlanningDetail: React.FC<ExpanderComponentProps<ControlBoardPlanningWithLineInterface>> = ({ data: controlBoardPlanning }) => {
-    const { data, isLoading } = useQueryControlBoardPlanningDetail(controlBoardPlanning.id);
+const ContainerControlBoardPlanningDetail: React.FC<
+	ExpanderComponentProps<ControlBoardPlanningWithLineInterface>
+> = ({ data: controlBoardPlanning }) => {
+	const { data, isLoading } = useQueryControlBoardPlanningDetail(
+		controlBoardPlanning.id,
+	);
 
-    const [selectValue, setSelectValue] = useState<ControlBoardPlanningDetailInterface>();
-    const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(false);
+	const [selectValue, setSelectValue] =
+		useState<ControlBoardPlanningDetailInterface>();
+	const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(false);
 
-    const handleClickBtnEdit = (data: ControlBoardPlanningDetailInterface) => {
-        setSelectValue(data);
-        setIsOpenModalUpdate(true);
-    }
-    return (
-        <>
-            <IonGrid>
-                <IonRow>
-                    <IonCol size="12">
-                        <Card title={`Control Board Planning ${controlBoardPlanning.Line.name} ${controlBoardPlanning.date}`} headerColor="light">
-                            <ContainerSettingDashboard data={controlBoardPlanning} />
-                        </Card>
-                    </IonCol>
-                    <IonCol size="12">
-                        <Card title={`Detail ${controlBoardPlanning.Line.name} ${controlBoardPlanning.date}`} headerColor="light">
-                            {isLoading ? (
-                                <IonSpinner name="crescent" />
-                            ) : (
-                                <Suspense fallback={<IonSpinner name="crescent" />}>
-                                    <TableControlBoardPlanningDetail data={data} handleClickBtnEdit={(data) => handleClickBtnEdit(data)} />
-                                </Suspense>
-                            )}
-                        </Card>
-                    </IonCol>
-                </IonRow>
-            </IonGrid>
-            <ModalUpdateControlBoardPlanningDetail isOpen={isOpenModalUpdate} data={selectValue} onDidDismiss={() => setIsOpenModalUpdate(false)} />
-        </>
-    );
-}
+	const handleClickBtnEdit = (data: ControlBoardPlanningDetailInterface) => {
+		setSelectValue(data);
+		setIsOpenModalUpdate(true);
+	};
+	return (
+		<>
+			<IonGrid>
+				<IonRow>
+					<IonCol size="12">
+						<Card
+							title={`Control Board Planning ${controlBoardPlanning.Line.name} ${controlBoardPlanning.date}`}
+							headerColor="light">
+							<ContainerSettingDashboard
+								data={controlBoardPlanning}
+							/>
+						</Card>
+					</IonCol>
+					<IonCol size="12">
+						<Card
+							title={`Detail ${controlBoardPlanning.Line.name} ${controlBoardPlanning.date}`}
+							headerColor="light">
+							{isLoading ? (
+								<IonSpinner name="crescent" />
+							) : (
+								<Suspense
+									fallback={<IonSpinner name="crescent" />}>
+									<TableControlBoardPlanningDetail
+										data={data}
+										handleClickBtnEdit={(data) =>
+											handleClickBtnEdit(data)
+										}
+									/>
+								</Suspense>
+							)}
+						</Card>
+					</IonCol>
+				</IonRow>
+			</IonGrid>
+			<ModalUpdateControlBoardPlanningDetail
+				isOpen={isOpenModalUpdate}
+				data={selectValue}
+				onDidDismiss={() => setIsOpenModalUpdate(false)}
+			/>
+		</>
+	);
+};
 
 export default ContainerControlBoardPlanningDetail;
