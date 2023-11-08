@@ -1,5 +1,7 @@
 import { ControlBoardPlanningInterface } from "./control-board-planning-type";
 
+export type ShiftType = "Normal" | "Short" | "Long";
+
 export interface ControlBoardInterface {
 	LineId: string;
 	planningDate: string;
