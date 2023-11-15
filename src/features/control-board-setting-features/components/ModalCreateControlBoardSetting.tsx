@@ -14,14 +14,14 @@ import { Suspense, lazy, useState } from "react";
 
 import Card from "../../../components/Card";
 import Modal from "../../../components/Modal";
-import { initialValueDetail } from "../../../datas/control-board-setting-data";
-import { plus1HourTime } from "../../../libs/date-fns";
-import useDepartmentStore from "../../../stores/useDepartmentStore";
+import { initialValueDetail } from "../../../datas";
+import { plus1HourTime } from "../../../libs";
+import { useDepartmentStore } from "../../../stores";
 import {
 	CreateControlBoardSettingDetailType,
 	CreateControlBoardSettingType,
-} from "../../../types/control-board-setting-type";
-import { useCreateControlBoardSetting } from "../hooks/useCreateControlBoardSetting";
+} from "../../../types";
+import { useCreateControlBoardSetting } from "../hooks";
 import FormControlBoardSettingDetail from "./FormControlBoardSettingDetail";
 
 const SelectLineByDepartment = lazy(

@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { getLineByDepartment } from "../../../services/line-service";
-import useLoadingStore from "../../../stores/useLoadingStore";
+import { useToast } from "../../../hooks";
+import { getLineByDepartment } from "../../../services";
+import { useLoadingStore } from "../../../stores";
 
 export const useQueryLine = (departmentId: string) => {
 	const { setLoading } = useLoadingStore();

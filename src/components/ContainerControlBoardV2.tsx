@@ -1,8 +1,16 @@
-import { ControlBoardInterface, ShiftType } from "../types/control-board";
-import { ControlBoardPlanningInterface } from "../types/control-board-planning-type";
+import { IonSpinner } from "@ionic/react";
+
+import { Suspense, lazy } from "react";
+
+import { ControlBoardInterface, ShiftType } from "../types";
+import { ControlBoardPlanningInterface } from "../types";
 import Card from "./Card";
-import ContainerSettingDashboardLarge from "./ContainerSettingDashboardLarge";
-import TableControlBoard from "./TableControlBoard";
+
+const TableControlBoard = lazy(() => import("./TableControlBoard"));
+
+const ContainerSettingDashboardLarge = lazy(
+	() => import("./ContainerSettingDashboardLarge"),
+);
 
 interface ContainerControlBoardProps {
 	title: string;
@@ -21,13 +29,20 @@ const ContainerControlBoardV2: React.FC<ContainerControlBoardProps> = ({
 		<Card title={title}>
 			<div className="flex flex-col gap-1">
 				<div>
-					<ContainerSettingDashboardLarge
-						data={settings}
-						shiftFilter={shiftFilter}
-					/>
+					<Suspense fallback={<IonSpinner name="dots" />}>
+						<ContainerSettingDashboardLarge
+							data={settings}
+							shiftFilter={shiftFilter}
+						/>
+					</Suspense>
 				</div>
 				<div>
-					<TableControlBoard data={data} shiftFilter={shiftFilter} />
+					<Suspense fallback={<IonSpinner name="dots" />}>
+						<TableControlBoard
+							data={data}
+							shiftFilter={shiftFilter}
+						/>
+					</Suspense>
 				</div>
 			</div>
 		</Card>

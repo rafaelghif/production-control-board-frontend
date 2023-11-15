@@ -8,7 +8,7 @@ import {
 
 import { Suspense, lazy } from "react";
 
-import { ShiftType } from "../../../types/control-board";
+import { ShiftType } from "../../../types";
 
 const SelectLine = lazy(() => import("../../../components/SelectLine"));
 

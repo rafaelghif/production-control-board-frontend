@@ -1,7 +1,7 @@
 import { Redirect } from "react-router";
 
 import Strict from "../pages/Strict";
-import useUserStore from "../stores/useUserStore";
+import { useUserStore } from "../stores";
 
 interface PrivateRouteProps {
 	component: React.FC<any>;

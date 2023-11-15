@@ -1,9 +1,9 @@
 import * as fs from "fs";
 import { set_fs, utils, writeFile } from "xlsx";
 
-import { formatDateString, formatDateTime } from "../libs/date-fns";
-import { ControlBoardInterface } from "../types/control-board";
-import { OrderWithLineInterface } from "../types/order-type";
+import { formatDateString, formatDateTime } from "../libs";
+import { ControlBoardInterface } from "../types";
+import { OrderWithLineInterface } from "../types";
 import { convertNumberToTimeString } from "./text-manipulation";
 
 export const ExportExcel = (

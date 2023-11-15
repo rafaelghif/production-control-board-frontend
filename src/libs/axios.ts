@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { getToken } from "../services/local-storage-service";
+import { getToken } from "../services";
 
 const axiosClient = axios.create({
 	baseURL: import.meta.env.VITE_APP_HOST,

@@ -6,7 +6,7 @@ import {
 	checkmarkOutline,
 } from "ionicons/icons";
 
-export const useToast = () => {
+const useToast = () => {
 	const [present] = useIonToast();
 
 	const successToast = (message: string, duration: number = 1500) => {
@@ -73,3 +73,5 @@ export const useToast = () => {
 		errorToast,
 	};
 };
+
+export default useToast;

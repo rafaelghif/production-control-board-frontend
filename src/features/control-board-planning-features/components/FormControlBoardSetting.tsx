@@ -6,8 +6,8 @@ import Card from "../../../components/Card";
 import {
 	CreateControlBoardPlanningDetailType,
 	CreateControlBoardPlanningType,
-} from "../../../types/control-board-planning-type";
-import { useQueryControlBoardSettingByLine } from "../hooks/useQueryControlBoardSettingByLine";
+} from "../../../types";
+import { useQueryControlBoardSettingByLine } from "../hooks";
 
 interface FormControlBoardSettingProps {
 	lineId: string;

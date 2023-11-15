@@ -11,8 +11,8 @@ import {
 import { Suspense, lazy, useState } from "react";
 
 import Card from "../../../components/Card";
-import { DepartmentInterface } from "../../../types/department-type";
-import { useQueryDepartment } from "../hooks/useQueryDepartment";
+import { DepartmentInterface } from "../../../types";
+import { useQueryDepartment } from "../hooks";
 import ModalUpdateDepartment from "./ModalUpdateDepartment";
 
 const TableDepartment = lazy(() => import("./TableDepartment"));

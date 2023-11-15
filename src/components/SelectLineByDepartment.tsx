@@ -1,6 +1,6 @@
 import { IonItem, IonSelect, IonSelectOption } from "@ionic/react";
 
-import { useQueryActiveLineByDepartment } from "../hooks/useQueryActiveLineByDepartment";
+import { useQueryActiveLineByDepartment } from "../hooks";
 
 interface SelectLineByDepartmentProps {
 	value?: string;

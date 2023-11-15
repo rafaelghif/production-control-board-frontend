@@ -7,19 +7,19 @@ import Modal from "../../../components/Modal";
 import {
 	initialValueDetailLong,
 	initialValueDetailShort,
-} from "../../../datas/control-board-planning-data";
+} from "../../../datas";
 import {
 	convertNumberToTimeHalfString,
 	convertNumberToTimeString,
-} from "../../../helpers/text-manipulation";
-import { useToast } from "../../../hooks/useToast";
-import { formatDateString } from "../../../libs/date-fns";
-import useLineStore from "../../../stores/useLineStore";
+} from "../../../helpers";
+import { useToast } from "../../../hooks";
+import { formatDateString } from "../../../libs";
+import { useLineStore } from "../../../stores";
 import {
 	CreateControlBoardPlanningDetailType,
 	CreateControlBoardPlanningType,
-} from "../../../types/control-board-planning-type";
-import { useCreateControlBoardPlanning } from "../hooks/useCreateControlBoardPlanning";
+} from "../../../types";
+import { useCreateControlBoardPlanning } from "../hooks";
 import FormControlBoardPlanningDetail from "./FormControlBoardPlanningDetail";
 
 const FormControlBoardPlanning = lazy(

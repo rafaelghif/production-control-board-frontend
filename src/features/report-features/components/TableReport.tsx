@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { TableColumn } from "react-data-table-component";
 
 import Table from "../../../components/Table";
-import { formatDateTime } from "../../../libs/date-fns";
-import { OrderWithLineInterface } from "../../../types/order-type";
+import { formatDateTime } from "../../../libs";
+import { OrderWithLineInterface } from "../../../types";
 
 interface TableReportProps {
 	data?: OrderWithLineInterface[];

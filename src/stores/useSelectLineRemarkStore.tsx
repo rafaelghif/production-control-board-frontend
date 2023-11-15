@@ -1,9 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { formatDateString } from "../libs/date-fns";
-import { getLine } from "../services/local-storage-service";
-import { RemarkControlBoardPayloadInterface } from "../types/control-board";
+import { formatDateString } from "../libs";
+import { getLine } from "../services";
+import { RemarkControlBoardPayloadInterface } from "../types";
 
 type SelectLineRemarkType = RemarkControlBoardPayloadInterface;
 

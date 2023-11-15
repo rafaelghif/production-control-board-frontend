@@ -3,8 +3,8 @@ import { IonButton, IonCheckbox, IonInput, IonItem } from "@ionic/react";
 import { useEffect, useState } from "react";
 
 import Modal from "../../../components/Modal";
-import { LineInterface, UpdateLineType } from "../../../types/line-type";
-import { useUpdateLine } from "../hooks/useUpdateLine";
+import { LineInterface, UpdateLineType } from "../../../types";
+import { useUpdateLine } from "../hooks";
 
 interface ModalUpdateLineProps {
 	isOpen: boolean;

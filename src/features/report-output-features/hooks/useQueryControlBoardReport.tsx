@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
+import useToast from "../../../hooks/useToast";
 import { getControlBoard } from "../../../services/control-board";
 import useLoadingStore from "../../../stores/useLoadingStore";
 

@@ -10,8 +10,8 @@ import {
 import { Suspense, lazy, useState } from "react";
 
 import Modal from "../../../components/Modal";
-import { CreateUserType } from "../../../types/user-type";
-import { useCreateUser } from "../hooks/useCreateUser";
+import { CreateUserType } from "../../../types";
+import { useCreateUser } from "../hooks";
 
 const SelectDepartment = lazy(
 	() => import("../../../components/SelectDepartment"),

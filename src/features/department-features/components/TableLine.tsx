@@ -4,8 +4,8 @@ import { useMemo } from "react";
 import { TableColumn } from "react-data-table-component";
 
 import Table from "../../../components/Table";
-import { formatDateTime } from "../../../libs/date-fns";
-import { LineInterface } from "../../../types/line-type";
+import { formatDateTime } from "../../../libs";
+import { LineInterface } from "../../../types";
 
 interface TableLineProps {
 	data?: LineInterface[];

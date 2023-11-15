@@ -1,10 +1,10 @@
 import { AxiosError } from "axios";
 
-import { ApiResponseErrorInterface } from "../types/api-response-type";
 import {
+	ApiResponseErrorInterface,
 	AuthenticationInterface,
 	AuthenticationResponseInterface,
-} from "../types/authentication-type";
+} from "../types";
 import { axiosPost } from "./api-service";
 
 const apiName = "/authentication";

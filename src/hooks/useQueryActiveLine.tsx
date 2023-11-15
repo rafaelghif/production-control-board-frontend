@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
 
-import { getActiveLines } from "../services/line-service";
-import useLoadingStore from "../stores/useLoadingStore";
-import { useToast } from "./useToast";
+import { getActiveLines } from "../services";
+import { useLoadingStore } from "../stores";
+import useToast from "./useToast";
 
-export const useQueryActiveLine = () => {
+const useQueryActiveLine = () => {
 	const { setLoading } = useLoadingStore();
 	const { errorToast } = useToast();
 	return useQuery({
@@ -21,3 +21,5 @@ export const useQueryActiveLine = () => {
 		retry: false,
 	});
 };
+
+export default useQueryActiveLine;

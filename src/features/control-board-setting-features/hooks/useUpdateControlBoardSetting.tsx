@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { updateControlBoardSetting } from "../../../services/control-board-setting";
-import useLoadingStore from "../../../stores/useLoadingStore";
-import { UpdateControlBoardSettingType } from "../../../types/control-board-setting-type";
+import { useToast } from "../../../hooks";
+import { updateControlBoardSetting } from "../../../services";
+import { useLoadingStore } from "../../../stores";
+import { UpdateControlBoardSettingType } from "../../../types";
 
 export const useUpdateControlBoardSetting = () => {
 	const queryClient = useQueryClient();

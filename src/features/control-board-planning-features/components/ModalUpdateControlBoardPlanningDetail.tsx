@@ -6,8 +6,8 @@ import Modal from "../../../components/Modal";
 import {
 	ControlBoardPlanningDetailInterface,
 	UpdateControlBoardPlanningDetailType,
-} from "../../../types/control-board-planning-type";
-import { useUpdateControlBoardPlanningDetail } from "../hooks/useUpdateControlBoardPlanningDetail";
+} from "../../../types";
+import { useUpdateControlBoardPlanningDetail } from "../hooks";
 
 interface ModalUpdateControlBoardPlanningDetailProps {
 	isOpen: boolean;

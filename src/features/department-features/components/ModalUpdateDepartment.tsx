@@ -3,11 +3,8 @@ import { IonButton, IonCheckbox, IonInput, IonItem } from "@ionic/react";
 import { useEffect, useState } from "react";
 
 import Modal from "../../../components/Modal";
-import {
-	DepartmentInterface,
-	UpdateDepartmentType,
-} from "../../../types/department-type";
-import { useUpdateDepartment } from "../hooks/useUpdateDepartment";
+import { DepartmentInterface, UpdateDepartmentType } from "../../../types";
+import { useUpdateDepartment } from "../hooks";
 
 interface ModalUpdateDepartmentProps {
 	isOpen: boolean;

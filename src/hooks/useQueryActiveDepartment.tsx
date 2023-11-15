@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
 
-import { getActiveDepartments } from "../services/department-service";
-import useLoadingStore from "../stores/useLoadingStore";
-import { useToast } from "./useToast";
+import { getActiveDepartments } from "../services";
+import { useLoadingStore } from "../stores";
+import useToast from "./useToast";
 
-export const useQueryActiveDepartment = () => {
+const useQueryActiveDepartment = () => {
 	const { setLoading } = useLoadingStore();
 	const { errorToast } = useToast();
 	return useQuery({
@@ -21,3 +21,5 @@ export const useQueryActiveDepartment = () => {
 		retry: false,
 	});
 };
+
+export default useQueryActiveDepartment;

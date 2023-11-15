@@ -7,11 +7,12 @@ import {
 
 import { Suspense, lazy, useEffect, useState } from "react";
 
-import { formatDateString } from "../../../libs/date-fns";
-import socket from "../../../libs/socket.io";
-import { getLine, setLine } from "../../../services/local-storage-service";
-import { ShiftType } from "../../../types/control-board";
-import { useQueryControlBoardV2 } from "../hooks/useQueryControlBoardV2";
+import { application } from "../../../constant";
+import { formatDateString } from "../../../libs";
+import { socket } from "../../../libs";
+import { getLine, setLine } from "../../../services";
+import { ShiftType } from "../../../types";
+import { useQueryControlBoardV2 } from "../hooks";
 import FooterDashboard from "./FooterDashboard";
 import ModalDetailRemark from "./ModalDetailRemark";
 import NavbarDashboard from "./NavbarDashboard";
@@ -74,7 +75,7 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 			<div className="flex flex-col items-center justify-center w-full gap-2 p-5">
 				<div className="font-['Source_Sans_3']">
 					<span className="text-2xl font-bold">
-						Production Control Board
+						{application.title}
 					</span>
 				</div>
 				<Suspense fallback={<IonSpinner name="dots" />}>

@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { getDepartments } from "../../../services/department-service";
-import useLoadingStore from "../../../stores/useLoadingStore";
+import { useToast } from "../../../hooks";
+import { getDepartments } from "../../../services";
+import { useLoadingStore } from "../../../stores";
 
 export const useQueryDepartment = () => {
 	const { setLoading } = useLoadingStore();

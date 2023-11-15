@@ -1,14 +1,15 @@
-import { ControlBoardPlanningInterface } from "../types/control-board-planning-type";
+import { ControlBoardPlanningInterface } from "../types";
 
 interface ContainerSettingDashboardLargeProps {
 	data?: ControlBoardPlanningInterface;
-	shiftFilter: string;
+	shiftFilter?: string;
 }
 
 const ContainerSettingDashboardLarge: React.FC<
 	ContainerSettingDashboardLargeProps
 > = ({ data, shiftFilter }) => {
-	const fontSize = shiftFilter === "Normal" ? "text-xl" : "text-4xl";
+	const fontSize =
+		shiftFilter && shiftFilter === "Normal" ? "text-xl" : "text-4xl";
 	return (
 		<div className="flex flex-col gap-3 p-5">
 			<div className="flex flex-col justify-center gap-3 lg:flex-row">

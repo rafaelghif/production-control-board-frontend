@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { TableColumn } from "react-data-table-component";
 
 import Table from "../../../components/Table";
-import { convertNumberToTimeString } from "../../../helpers/text-manipulation";
-import { ControlBoardInterface } from "../../../types/control-board";
+import { convertNumberToTimeString } from "../../../helpers";
+import { ControlBoardInterface } from "../../../types";
 
 interface TableReportOutputProps {
 	data?: ControlBoardInterface[];

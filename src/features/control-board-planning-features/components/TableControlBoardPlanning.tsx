@@ -4,11 +4,11 @@ import { useMemo } from "react";
 import { TableColumn } from "react-data-table-component";
 
 import Table from "../../../components/Table";
-import { formatDateTime } from "../../../libs/date-fns";
+import { formatDateTime } from "../../../libs";
 import {
 	ControlBoardPlanningInterface,
 	ControlBoardPlanningWithLineInterface,
-} from "../../../types/control-board-planning-type";
+} from "../../../types";
 import ContainerControlBoardPlanningDetail from "./ContainerControlBoardPlanningDetail";
 
 interface TableControlBoardPlanningProps {

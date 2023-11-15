@@ -5,27 +5,13 @@ import {
 	IonCardTitle,
 } from "@ionic/react";
 
+import { IonicColorType } from "../types";
+
 interface CardProps {
 	children: React.ReactNode;
 	title: string;
-	color?:
-		| "primary"
-		| "secondary"
-		| "warning"
-		| "danger"
-		| "dark"
-		| "light"
-		| "medium"
-		| "tertiary";
-	headerColor?:
-		| "primary"
-		| "secondary"
-		| "warning"
-		| "danger"
-		| "dark"
-		| "light"
-		| "medium"
-		| "tertiary";
+	color?: IonicColorType;
+	headerColor?: IonicColorType;
 	optionButton?: React.ReactNode;
 }
 

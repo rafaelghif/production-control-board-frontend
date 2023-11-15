@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 
-import axiosClient from "../libs/axios";
-import { ApiResponseInterface } from "../types/api-response-type";
+import { axiosClient } from "../libs";
+import { ApiResponseInterface } from "../types";
 
 export const axiosGet = async <T>(
 	url: string,

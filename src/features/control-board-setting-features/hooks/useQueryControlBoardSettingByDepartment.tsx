@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { getControlBoardSettingByDepartment } from "../../../services/control-board-setting";
-import useLoadingStore from "../../../stores/useLoadingStore";
+import { useToast } from "../../../hooks";
+import { getControlBoardSettingByDepartment } from "../../../services";
+import { useLoadingStore } from "../../../stores";
 
 export const useQueryControlBoardSettingByDepartment = (
 	departmentId: string,

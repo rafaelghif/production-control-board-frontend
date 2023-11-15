@@ -3,8 +3,8 @@ import { format } from "date-fns";
 import {
 	convertNumberToTimeHalfString,
 	convertNumberToTimeString,
-} from "../helpers/text-manipulation";
-import { ControlBoardInterface, ShiftType } from "../types/control-board";
+} from "../helpers";
+import { ControlBoardInterface, ShiftType } from "../types";
 
 interface TableControlBoardProps {
 	data?: ControlBoardInterface[];

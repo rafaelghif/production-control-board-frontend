@@ -1,6 +1,6 @@
 import { IonItem, IonSelect, IonSelectOption } from "@ionic/react";
 
-import { useQueryActiveLine } from "../hooks/useQueryActiveLine";
+import { useQueryActiveLine } from "../hooks";
 
 interface SelectLineWithoutAllProps {
 	value?: string;

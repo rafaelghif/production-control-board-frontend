@@ -3,12 +3,10 @@ import { AxiosError } from "axios";
 import {
 	ApiResponseErrorInterface,
 	ApiResponseInterface,
-} from "../types/api-response-type";
-import {
 	CreateDepartmentType,
 	DepartmentInterface,
 	UpdateDepartmentType,
-} from "../types/department-type";
+} from "../types";
 import { axiosGet, axiosPatch, axiosPost } from "./api-service";
 
 const apiName = "/department";

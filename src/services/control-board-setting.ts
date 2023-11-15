@@ -3,16 +3,14 @@ import { AxiosError } from "axios";
 import {
 	ApiResponseErrorInterface,
 	ApiResponseInterface,
-} from "../types/api-response-type";
-import { UpdateControlBoardPlanningDetailType } from "../types/control-board-planning-type";
-import {
 	ControlBoardSettingDetailInterface,
 	ControlBoardSettingInterface,
 	ControlBoardSettingInterfaceWithDetail,
 	ControlBoardSettingWithLineInterface,
 	CreateControlBoardSettingInterface,
+	UpdateControlBoardPlanningDetailType,
 	UpdateControlBoardSettingType,
-} from "../types/control-board-setting-type";
+} from "../types";
 import { axiosGet, axiosPatch, axiosPost } from "./api-service";
 
 const apiName = "/control-board-setting";

@@ -2,7 +2,7 @@ import { IonInput, IonItem } from "@ionic/react";
 
 import { useEffect, useState } from "react";
 
-import { CreateControlBoardPlanningDetailType } from "../../../types/control-board-planning-type";
+import { CreateControlBoardPlanningDetailType } from "../../../types";
 
 interface FormControlBoardPlanningDetailProps {
 	value: CreateControlBoardPlanningDetailType;

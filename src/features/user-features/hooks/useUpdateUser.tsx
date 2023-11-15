@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { updateUser } from "../../../services/user-service";
-import useLoadingStore from "../../../stores/useLoadingStore";
-import { UpdateUserType } from "../../../types/user-type";
+import { useToast } from "../../../hooks";
+import { updateUser } from "../../../services";
+import { useLoadingStore } from "../../../stores";
+import { UpdateUserType } from "../../../types";
 
 export const useUpdateUser = () => {
 	const queryClient = useQueryClient();

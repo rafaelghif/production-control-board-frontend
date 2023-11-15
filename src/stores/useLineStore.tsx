@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { LineInterface } from "../types/line-type";
+import { LineInterface } from "../types";
 
 type LineType = Pick<LineInterface, "id" | "name">;
 

@@ -3,8 +3,8 @@ import { IonButton, IonInput, IonItem } from "@ionic/react";
 import { useEffect, useState } from "react";
 
 import Modal from "../../../components/Modal";
-import { CreateLineType } from "../../../types/line-type";
-import { useCreateLine } from "../hooks/useCreateLine";
+import { CreateLineType } from "../../../types";
+import { useCreateLine } from "../hooks";
 
 interface ModalCreateLineProps {
 	isOpen: boolean;

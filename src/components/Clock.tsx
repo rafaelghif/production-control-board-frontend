@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { formatDateLongString, formatTimeString } from "../libs/date-fns";
+import { formatDateLongString, formatTimeString } from "../libs";
 
 const Clock: React.FC = () => {
 	const [currentTime, setCurrentTime] = useState(new Date());

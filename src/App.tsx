@@ -19,9 +19,9 @@ import "@ionic/react/css/typography.css";
 import { useEffect } from "react";
 
 import "./index.css";
-import socket from "./libs/socket.io";
+import { socket } from "./libs";
 import MainRouter from "./routes/MainRouter";
-import useLoadingStore from "./stores/useLoadingStore";
+import { useLoadingStore } from "./stores";
 import "./theme/font.css";
 
 /* Theme variables */

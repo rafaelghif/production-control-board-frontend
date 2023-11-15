@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
 
-import { getActiveLineByDepartment } from "../services/line-service";
-import useLoadingStore from "../stores/useLoadingStore";
-import { useToast } from "./useToast";
+import { getActiveLineByDepartment } from "../services";
+import { useLoadingStore } from "../stores";
+import useToast from "./useToast";
 
-export const useQueryActiveLineByDepartment = (departmentId: string) => {
+const useQueryActiveLineByDepartment = (departmentId: string) => {
 	const { setLoading } = useLoadingStore();
 	const { errorToast } = useToast();
 	return useQuery({
@@ -21,3 +21,5 @@ export const useQueryActiveLineByDepartment = (departmentId: string) => {
 		retry: false,
 	});
 };
+
+export default useQueryActiveLineByDepartment;

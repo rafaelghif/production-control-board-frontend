@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { UserInterface } from "../types/user-type";
+import { UserInterface } from "../types";
 
 type UserType = Pick<UserInterface, "id" | "badgeId" | "name" | "role">;
 

@@ -1,6 +1,6 @@
 import { IonItem, IonSelect, IonSelectOption } from "@ionic/react";
 
-import { useQueryActiveDepartment } from "../hooks/useQueryActiveDepartment";
+import { useQueryActiveDepartment } from "../hooks";
 
 interface SelectDepartmentProps {
 	value?: string;

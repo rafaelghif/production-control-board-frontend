@@ -1,8 +1,8 @@
 import { useMutation } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { getOrderInput } from "../../../services/order-service";
-import useLoadingStore from "../../../stores/useLoadingStore";
+import { useToast } from "../../../hooks";
+import { getOrderInput } from "../../../services";
+import { useLoadingStore } from "../../../stores";
 
 export const useGetOrderInput = () => {
 	const { setLoading } = useLoadingStore();

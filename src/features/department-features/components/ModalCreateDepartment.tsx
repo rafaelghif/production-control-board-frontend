@@ -3,8 +3,8 @@ import { IonButton, IonInput, IonItem } from "@ionic/react";
 import { useState } from "react";
 
 import Modal from "../../../components/Modal";
-import { CreateDepartmentType } from "../../../types/department-type";
-import { useCreateDepartment } from "../hooks/useCreateDepartment";
+import { CreateDepartmentType } from "../../../types";
+import { useCreateDepartment } from "../hooks";
 
 interface ModalCreateDepartmentProps {
 	isOpen: boolean;

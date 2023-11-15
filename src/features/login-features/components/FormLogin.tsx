@@ -3,8 +3,8 @@ import { IonButton, IonIcon, IonInput, IonItem } from "@ionic/react";
 import { lockClosedOutline, personOutline } from "ionicons/icons";
 import { useState } from "react";
 
-import { AuthenticationInterface } from "../../../types/authentication-type";
-import { useAuthentication } from "../hooks/useAuthentication";
+import { AuthenticationInterface } from "../../../types";
+import { useAuthentication } from "../hooks";
 
 const FormLogin: React.FC = () => {
 	const [formData, setFormData] = useState<AuthenticationInterface>({

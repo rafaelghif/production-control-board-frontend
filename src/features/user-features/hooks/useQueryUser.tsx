@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { getUsers } from "../../../services/user-service";
-import useLoadingStore from "../../../stores/useLoadingStore";
+import { useToast } from "../../../hooks";
+import { getUsers } from "../../../services";
+import { useLoadingStore } from "../../../stores";
 
 export const useQueryUser = () => {
 	const { setLoading } = useLoadingStore();

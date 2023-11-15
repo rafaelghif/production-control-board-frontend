@@ -2,9 +2,9 @@ import { IonButton } from "@ionic/react";
 
 import { Fragment } from "react";
 
-import useSelectLineRemarkStore from "../stores/useSelectLineRemarkStore";
-import { ControlBoardInterface } from "../types/control-board";
-import { ControlBoardPlanningInterface } from "../types/control-board-planning-type";
+import { useSelectLineRemarkStore } from "../stores";
+import { ControlBoardInterface } from "../types";
+import { ControlBoardPlanningInterface } from "../types";
 import Card from "./Card";
 import ColumnControlBoard from "./ColumnControlBoard";
 import ColumnHeaderControlBoard from "./ColumnHeaderControlBoard";

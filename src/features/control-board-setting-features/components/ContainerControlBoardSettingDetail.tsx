@@ -7,8 +7,8 @@ import Card from "../../../components/Card";
 import {
 	ControlBoardSettingDetailInterface,
 	ControlBoardSettingWithLineInterface,
-} from "../../../types/control-board-setting-type";
-import { useQueryControlBoardSettingDetail } from "../hooks/useQueryControlBoardSettingDetail";
+} from "../../../types";
+import { useQueryControlBoardSettingDetail } from "../hooks";
 import ModalUpdateControlBoardSettingDetail from "./ModalUpdateControlBoardSettingDetail";
 
 const TableControlBoardSettingDetail = lazy(

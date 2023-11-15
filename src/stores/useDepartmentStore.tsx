@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-import { DepartmentInterface } from "../types/department-type";
+import { DepartmentInterface } from "../types";
 
 type DepartmentType = Pick<DepartmentInterface, "id" | "name" | "abbreviation">;
 

@@ -4,7 +4,7 @@ import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 
 import App from "./App";
-import queryClient from "./libs/react-query";
+import { queryClient } from "./libs";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);

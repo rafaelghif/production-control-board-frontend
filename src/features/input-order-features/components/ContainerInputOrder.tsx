@@ -11,10 +11,10 @@ import {
 import { Suspense, lazy, useRef, useState } from "react";
 
 import Card from "../../../components/Card";
-import useLineStore from "../../../stores/useLineStore";
-import { OrderResponseType } from "../../../types/order-type";
-import { useCreateOrder } from "../hooks/useCreateOrder";
-import { useGetOrderInput } from "../hooks/useGetOrderInput";
+import { useLineStore } from "../../../stores";
+import { OrderResponseType } from "../../../types";
+import { useCreateOrder } from "../hooks";
+import { useGetOrderInput } from "../hooks";
 import OrderInformationColumn from "./OrderInformationColumn";
 import OrderInformationGrid from "./OrderInformationGrid";
 

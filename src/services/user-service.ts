@@ -3,13 +3,11 @@ import { AxiosError } from "axios";
 import {
 	ApiResponseErrorInterface,
 	ApiResponseInterface,
-} from "../types/api-response-type";
-import {
 	CreateUserType,
 	UpdateUserType,
 	UserInterface,
 	UserWithDepartmentAndLineInterface,
-} from "../types/user-type";
+} from "../types";
 import { axiosGet, axiosPatch, axiosPost } from "./api-service";
 
 const apiName = "/user";

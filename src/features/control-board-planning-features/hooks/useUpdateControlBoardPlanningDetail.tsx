@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import socket from "../../../libs/socket.io";
-import { updateControlBoardPlanningDetail } from "../../../services/control-board-planning";
-import useLoadingStore from "../../../stores/useLoadingStore";
-import { UpdateControlBoardPlanningDetailType } from "../../../types/control-board-planning-type";
+import { useToast } from "../../../hooks";
+import { socket } from "../../../libs";
+import { updateControlBoardPlanningDetail } from "../../../services";
+import { useLoadingStore } from "../../../stores/";
+import { UpdateControlBoardPlanningDetailType } from "../../../types";
 
 export const useUpdateControlBoardPlanningDetail = () => {
 	const queryClient = useQueryClient();

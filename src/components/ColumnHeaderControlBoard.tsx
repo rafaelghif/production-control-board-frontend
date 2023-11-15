@@ -6,9 +6,6 @@ const ColumnHeaderControlBoard: React.FC = () => {
 			<span className="self-start">Actual</span>
 			<span className="self-start">Difference</span>
 			<span className="self-start">Remark</span>
-			{/* <span className="self-start">Planning Cum</span>
-            <span className="self-start">Actual Cum</span>
-            <span className="self-start">Different Cum</span> */}
 		</div>
 	);
 };

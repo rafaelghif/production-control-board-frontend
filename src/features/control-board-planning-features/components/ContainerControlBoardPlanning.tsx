@@ -11,9 +11,9 @@ import {
 import { Suspense, lazy, useState } from "react";
 
 import Card from "../../../components/Card";
-import useLineStore from "../../../stores/useLineStore";
-import { ControlBoardPlanningInterface } from "../../../types/control-board-planning-type";
-import { useQueryControlBoardPlanning } from "../hooks/useQueryControlBoardPlanning";
+import { useLineStore } from "../../../stores";
+import { ControlBoardPlanningInterface } from "../../../types";
+import { useQueryControlBoardPlanning } from "../hooks";
 import ModalUpdateControlBoardPlanning from "./ModalUpdateControlBoardPlanning";
 
 const TableControlBoardPlanning = lazy(

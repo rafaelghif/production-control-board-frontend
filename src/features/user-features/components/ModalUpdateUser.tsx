@@ -11,8 +11,8 @@ import {
 import { Suspense, lazy, useEffect, useState } from "react";
 
 import Modal from "../../../components/Modal";
-import { UpdateUserType, UserInterface } from "../../../types/user-type";
-import { useUpdateUser } from "../hooks/useUpdateUser";
+import { UpdateUserType, UserInterface } from "../../../types";
+import { useUpdateUser } from "../hooks";
 
 const SelectDepartment = lazy(
 	() => import("../../../components/SelectDepartment"),

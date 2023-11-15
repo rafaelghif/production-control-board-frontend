@@ -6,8 +6,8 @@ import Modal from "../../../components/Modal";
 import {
 	ControlBoardSettingDetailInterface,
 	UpdateControlBoardSettingDetailType,
-} from "../../../types/control-board-setting-type";
-import { useUpdateControlBoardSettingDetail } from "../hooks/useUpdateControlBoardSettingDetail";
+} from "../../../types";
+import { useUpdateControlBoardSettingDetail } from "../hooks";
 
 interface ModalUpdateControlBoardSettingDetailProps {
 	isOpen: boolean;

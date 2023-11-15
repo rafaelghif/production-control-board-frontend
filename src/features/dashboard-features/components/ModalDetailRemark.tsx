@@ -1,6 +1,6 @@
 import Modal from "../../../components/Modal";
-import useSelectLineRemarkStore from "../../../stores/useSelectLineRemarkStore";
-import { useQueryRemarkControlBoard } from "../hooks/useQueryRemarkControlBoard";
+import { useSelectLineRemarkStore } from "../../../stores";
+import { useQueryRemarkControlBoard } from "../hooks";
 import TableRemark from "./TableRemark";
 
 interface ModalDetailRemarkProps {

@@ -13,10 +13,10 @@ import { useHistory } from "react-router";
 
 import logo from "../../../assets/images/logo.png";
 import GridControlBoard from "../../../components/GridControlBoard";
-import { formatDateString } from "../../../libs/date-fns";
-import socket from "../../../libs/socket.io";
-import { getLine, setLine } from "../../../services/local-storage-service";
-import { useQueryControlBoard } from "../hooks/useQueryControlBoard";
+import { formatDateString } from "../../../libs";
+import { socket } from "../../../libs";
+import { getLine, setLine } from "../../../services";
+import { useQueryControlBoard } from "../hooks";
 import ModalDetailRemark from "./ModalDetailRemark";
 
 const SelectLine = lazy(() => import("../../../components/SelectLine"));
@@ -120,7 +120,7 @@ const ContainerDashboard: React.FC = () => {
 					) : (
 						<GridControlBoard
 							data={data}
-							dateFilter={dateFilter}
+							shiftFilter="Normal"
 							openModal={() => setIsOpenRemark(true)}
 						/>
 					)}

@@ -13,9 +13,9 @@ import { Suspense, lazy, useState } from "react";
 import { ExpanderComponentProps } from "react-data-table-component";
 
 import Card from "../../../components/Card";
-import { DepartmentInterface } from "../../../types/department-type";
-import { LineInterface } from "../../../types/line-type";
-import { useQueryLine } from "../hooks/useQueryLine";
+import { DepartmentInterface } from "../../../types";
+import { LineInterface } from "../../../types";
+import { useQueryLine } from "../hooks";
 import ModalCreateLine from "./ModalCreateLine";
 import ModalUpdateLine from "./ModalUpdateLine";
 

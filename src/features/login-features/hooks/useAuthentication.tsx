@@ -1,15 +1,15 @@
 import { useMutation } from "react-query";
 import { useHistory } from "react-router";
 
-import { useToast } from "../../../hooks/useToast";
-import { authentication } from "../../../services/authentication-service";
-import { setToken } from "../../../services/local-storage-service";
-import useAuthStore from "../../../stores/useAuthStore";
-import useDepartmentStore from "../../../stores/useDepartmentStore";
-import useLineStore from "../../../stores/useLineStore";
-import useLoadingStore from "../../../stores/useLoadingStore";
-import useUserStore from "../../../stores/useUserStore";
-import { AuthenticationInterface } from "../../../types/authentication-type";
+import { useToast } from "../../../hooks";
+import { authentication } from "../../../services";
+import { setToken } from "../../../services";
+import { useAuthStore } from "../../../stores";
+import { useDepartmentStore } from "../../../stores";
+import { useLineStore } from "../../../stores";
+import { useLoadingStore } from "../../../stores";
+import { useUserStore } from "../../../stores";
+import { AuthenticationInterface } from "../../../types";
 
 export const useAuthentication = () => {
 	const history = useHistory();

@@ -2,7 +2,7 @@ import { IonInput, IonItem } from "@ionic/react";
 
 import { useEffect, useState } from "react";
 
-import { CreateControlBoardSettingDetailType } from "../../../types/control-board-setting-type";
+import { CreateControlBoardSettingDetailType } from "../../../types";
 
 interface FormControlBoardSettingDetailProps {
 	value: CreateControlBoardSettingDetailType;

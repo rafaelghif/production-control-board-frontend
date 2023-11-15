@@ -3,13 +3,11 @@ import { AxiosError } from "axios";
 import {
 	ApiResponseErrorInterface,
 	ApiResponseInterface,
-} from "../types/api-response-type";
-import {
 	CreateOrderType,
 	OrderResponseInterface,
 	OrderResponseType,
 	OrderWithLineInterface,
-} from "../types/order-type";
+} from "../types";
 import { axiosGet, axiosPost } from "./api-service";
 
 const apiName = "/order";

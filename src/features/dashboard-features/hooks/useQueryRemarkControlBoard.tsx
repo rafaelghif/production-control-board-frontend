@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { getRemarkControlBoard } from "../../../services/control-board";
-import useLoadingStore from "../../../stores/useLoadingStore";
+import { useToast } from "../../../hooks";
+import { getRemarkControlBoard } from "../../../services";
+import { useLoadingStore } from "../../../stores";
 
 export const useQueryRemarkControlBoard = (line: string, date: string) => {
 	const { setLoading } = useLoadingStore();

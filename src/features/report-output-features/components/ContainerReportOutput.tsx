@@ -14,11 +14,11 @@ import {
 import { Suspense, lazy, useEffect, useState } from "react";
 
 import Card from "../../../components/Card";
-import { ExportExcelReportOutput } from "../../../helpers/export-report";
-import { formatDateString } from "../../../libs/date-fns";
-import { getLine } from "../../../services/local-storage-service";
-import { ControlBoardInterface } from "../../../types/control-board";
-import { useQueryControlBoardReport } from "../hooks/useQueryControlBoardReport";
+import { ExportExcelReportOutput } from "../../../helpers";
+import { formatDateString } from "../../../libs";
+import { getLine } from "../../../services";
+import { ControlBoardInterface } from "../../../types";
+import { useQueryControlBoardReport } from "../hooks";
 import TableReportOutput from "./TableReportOutput";
 
 const SelectLineWithoutAll = lazy(

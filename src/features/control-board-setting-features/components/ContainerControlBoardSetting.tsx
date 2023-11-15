@@ -11,11 +11,11 @@ import {
 import { Suspense, lazy, useState } from "react";
 
 import Card from "../../../components/Card";
-import useDepartmentStore from "../../../stores/useDepartmentStore";
-import useUserStore from "../../../stores/useUserStore";
-import { ControlBoardSettingInterface } from "../../../types/control-board-setting-type";
-import { useQueryControlBoard } from "../hooks/useQueryControlBoard";
-import { useQueryControlBoardSettingByDepartment } from "../hooks/useQueryControlBoardSettingByDepartment";
+import { useDepartmentStore } from "../../../stores";
+import { useUserStore } from "../../../stores";
+import { ControlBoardSettingInterface } from "../../../types";
+import { useQueryControlBoard } from "../hooks";
+import { useQueryControlBoardSettingByDepartment } from "../hooks";
 import ModalUpdateControlBoardSetting from "./ModalUpdateControlBoardSetting";
 
 const TableControlBoardSetting = lazy(

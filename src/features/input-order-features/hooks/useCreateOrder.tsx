@@ -1,10 +1,10 @@
 import { useMutation } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import socket from "../../../libs/socket.io";
-import { createOrder } from "../../../services/order-service";
-import useLoadingStore from "../../../stores/useLoadingStore";
-import { CreateOrderType } from "../../../types/order-type";
+import { useToast } from "../../../hooks";
+import { socket } from "../../../libs";
+import { createOrder } from "../../../services";
+import { useLoadingStore } from "../../../stores";
+import { CreateOrderType } from "../../../types";
 
 export const useCreateOrder = () => {
 	const { setLoading } = useLoadingStore();

@@ -2,8 +2,8 @@ import { useMemo } from "react";
 import { TableColumn } from "react-data-table-component";
 
 import Table from "../../../components/Table";
-import { plus1HourTime } from "../../../libs/date-fns";
-import { ControlBoardPlanningDetailInterface } from "../../../types/control-board-planning-type";
+import { plus1HourTime } from "../../../libs";
+import { ControlBoardPlanningDetailInterface } from "../../../types";
 
 interface TableRemarkProps {
 	data?: ControlBoardPlanningDetailInterface[];

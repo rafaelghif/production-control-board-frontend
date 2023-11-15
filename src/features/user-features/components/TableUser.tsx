@@ -4,11 +4,11 @@ import { useMemo } from "react";
 import { TableColumn } from "react-data-table-component";
 
 import Table from "../../../components/Table";
-import { formatDateTime } from "../../../libs/date-fns";
+import { formatDateTime } from "../../../libs";
 import {
 	UserInterface,
 	UserWithDepartmentAndLineInterface,
-} from "../../../types/user-type";
+} from "../../../types";
 
 interface TableUserProps {
 	data?: UserWithDepartmentAndLineInterface[];

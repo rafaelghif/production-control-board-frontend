@@ -11,8 +11,8 @@ import {
 import { Suspense, lazy, useState } from "react";
 
 import Card from "../../../components/Card";
-import { UserInterface } from "../../../types/user-type";
-import { useQueryUser } from "../hooks/useQueryUser";
+import { UserInterface } from "../../../types";
+import { useQueryUser } from "../hooks";
 import ModalUpdateUser from "./ModalUpdateUser";
 
 const TableUser = lazy(() => import("./TableUser"));

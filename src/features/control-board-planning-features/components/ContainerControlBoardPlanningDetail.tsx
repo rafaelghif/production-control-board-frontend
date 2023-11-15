@@ -4,12 +4,12 @@ import { Suspense, lazy, useState } from "react";
 import { ExpanderComponentProps } from "react-data-table-component";
 
 import Card from "../../../components/Card";
-import ContainerSettingDashboard from "../../../components/ContainerSettingDashboard";
+import { ContainerSettingDashboard } from "../../../components/ContainerSettingDashboard";
 import {
 	ControlBoardPlanningDetailInterface,
 	ControlBoardPlanningWithLineInterface,
-} from "../../../types/control-board-planning-type";
-import { useQueryControlBoardPlanningDetail } from "../hooks/useQueryControlBoardPlanningDetail";
+} from "../../../types";
+import { useQueryControlBoardPlanningDetail } from "../hooks";
 import ModalUpdateControlBoardPlanningDetail from "./ModalUpdateControlBoardPlanningDetail";
 
 const TableControlBoardPlanningDetail = lazy(

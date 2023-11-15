@@ -2,8 +2,8 @@ import { IonButton, IonInput, IonItem, IonSpinner } from "@ionic/react";
 
 import { Suspense, lazy } from "react";
 
-import useDepartmentStore from "../../../stores/useDepartmentStore";
-import { CreateControlBoardPlanningType } from "../../../types/control-board-planning-type";
+import { useDepartmentStore } from "../../../stores";
+import { CreateControlBoardPlanningType } from "../../../types";
 
 const SelectLineByDepartment = lazy(
 	() => import("../../../components/SelectLineByDepartment"),

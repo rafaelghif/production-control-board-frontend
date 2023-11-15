@@ -14,17 +14,16 @@ import {
 	newspaperOutline,
 	pushOutline,
 	radioButtonOffOutline,
-	readerOutline,
 	serverOutline,
 } from "ionicons/icons";
 
 import profilePicture from "../assets/images/profile.png";
 import MenuItem from "../components/MenuItem";
 import MenuItemDropDown from "../components/MenuItemDropDown";
-import useAuthStore from "../stores/useAuthStore";
-import useDepartmentStore from "../stores/useDepartmentStore";
-import useLineStore from "../stores/useLineStore";
-import useUserStore from "../stores/useUserStore";
+import { useAuthStore } from "../stores";
+import { useDepartmentStore } from "../stores";
+import { useLineStore } from "../stores";
+import { useUserStore } from "../stores";
 
 interface MenuProps {
 	isAuth: boolean;

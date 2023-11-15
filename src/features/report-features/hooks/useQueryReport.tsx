@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 
-import { useToast } from "../../../hooks/useToast";
-import { getOrders } from "../../../services/order-service";
-import useLoadingStore from "../../../stores/useLoadingStore";
+import { useToast } from "../../../hooks";
+import { getOrders } from "../../../services";
+import { useLoadingStore } from "../../../stores";
 
 export const useQueryReport = (line: string, date: string, search: string) => {
 	const { setLoading } = useLoadingStore();

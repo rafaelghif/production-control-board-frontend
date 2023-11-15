@@ -11,12 +11,12 @@ import {
 import { Suspense, lazy, useEffect, useState } from "react";
 
 import Modal from "../../../components/Modal";
-import useDepartmentStore from "../../../stores/useDepartmentStore";
+import { useDepartmentStore } from "../../../stores";
 import {
 	ControlBoardSettingInterface,
 	UpdateControlBoardSettingType,
-} from "../../../types/control-board-setting-type";
-import { useUpdateControlBoardSetting } from "../hooks/useUpdateControlBoardSetting";
+} from "../../../types";
+import { useUpdateControlBoardSetting } from "../hooks";
 
 const SelectLine = lazy(
 	() => import("../../../components/SelectLineByDepartment"),
