@@ -8,14 +8,10 @@ const ContainerControlBoardV2 = lazy(() => import("./ContainerControlBoardV2"));
 
 interface GridControlBoardProps {
 	data?: ControlBoardWithLineShiftInterface[];
-	shiftFilter: ShiftType;
 	openModal: () => void;
 }
 
-const GridControlBoard: React.FC<GridControlBoardProps> = ({
-	data,
-	shiftFilter,
-}) => {
+const GridControlBoard: React.FC<GridControlBoardProps> = ({ data }) => {
 	return (
 		<IonGrid>
 			<IonRow>
@@ -25,8 +21,6 @@ const GridControlBoard: React.FC<GridControlBoardProps> = ({
 						key={`control-board-${controlBoard.lineName}`}>
 						<Suspense fallback={<IonSpinner name="crescent" />}>
 							<ContainerControlBoardV2
-								shiftFilter={shiftFilter}
-								title={`Control Board ${controlBoard.lineName}`}
 								data={controlBoard.plannings}
 								settings={controlBoard.settings}
 							/>

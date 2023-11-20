@@ -6,52 +6,42 @@ import {
 	IonSpinner,
 } from "@ionic/react";
 
+import { format } from "date-fns";
 import { Suspense, lazy } from "react";
 
-import { ShiftType } from "../../../types";
+import { setLine as setLineLocal } from "../../../services/local-storage-service";
+import useDashboardStore from "../../../stores/useDashboardStore";
 
 const SelectLine = lazy(() => import("../../../components/SelectLine"));
 
-interface ContainerFilterDashboardProps {
-	line: string;
-	date: string;
-	shift: string;
-	handleChangeDate: (date: string) => void;
-	handleChangeLine: (id: string) => void;
-	handleChangeShift: (shift: ShiftType) => void;
-}
+const ContainerFilterDashboard: React.FC = ({}) => {
+	const { line, shift, date, setLine, setShift } = useDashboardStore();
 
-const ContainerFilterDashboard: React.FC<ContainerFilterDashboardProps> = ({
-	line,
-	date,
-	shift,
-	handleChangeLine,
-	handleChangeDate,
-	handleChangeShift,
-}) => {
+	const handleChangeLine = (lineId: string) => {
+		setLine(lineId);
+		setLineLocal(lineId);
+	};
 	return (
-		<div className="grid w-11/12 grid-cols-3 gap-3 p-5 rounded shadow lg:w-8/12 xl:w-4/12 dark:bg-[#181818]">
+		<div className="grid w-11/12 grid-cols-3 gap-3 p-5 rounded shadow dark:bg-[#181818]">
 			<Suspense fallback={<IonSpinner />}>
-				<SelectLine value={line} onChange={handleChangeLine} />
-			</Suspense>
-			<IonItem>
-				<IonInput
-					type="date"
-					label="Date"
-					labelPlacement="floating"
-					value={date}
-					onIonInput={(e) => handleChangeDate(e.detail.value!)}
+				<SelectLine
+					value={line}
+					onChange={(lineId) => handleChangeLine(lineId)}
 				/>
-			</IonItem>
+			</Suspense>
+			<div className="w-full h-full bg-[#1e1e1e] flex flex-col py-1 px-3 rounded hover:bg-[#272727]">
+				<span>Date</span>
+				<div>{format(new Date(date), "dd - LLLL - yyyy")}</div>
+			</div>
 			<IonItem>
 				<IonSelect
 					label="Shift"
 					labelPlacement="stacked"
 					value={shift}
-					onIonChange={(e) => handleChangeShift(e.detail.value!)}>
+					onIonChange={(e) => setShift(e.detail.value!)}>
 					<IonSelectOption value="Normal">Normal</IonSelectOption>
-					<IonSelectOption value="Short">Short</IonSelectOption>
-					<IonSelectOption value="Long">Long</IonSelectOption>
+					<IonSelectOption value="Short">7 Hours</IonSelectOption>
+					<IonSelectOption value="Long">8 Hours</IonSelectOption>
 				</IonSelect>
 			</IonItem>
 		</div>

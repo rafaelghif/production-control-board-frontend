@@ -10,8 +10,8 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import { application } from "../../../constant";
 import { formatDateString } from "../../../libs";
 import { socket } from "../../../libs";
-import { getLine, setLine } from "../../../services";
-import { ShiftType } from "../../../types";
+import { getLine } from "../../../services";
+import useDashboardStore from "../../../stores/useDashboardStore";
 import { useQueryControlBoardV2 } from "../hooks";
 import FooterDashboard from "./FooterDashboard";
 import ModalDetailRemark from "./ModalDetailRemark";
@@ -26,16 +26,12 @@ const ContainerFilterDashboard = lazy(
 );
 
 const ContainerDashboardVersionTwo: React.FC = () => {
-	const [dateFilter, setDateFilter] = useState<string>(
-		formatDateString(new Date()),
-	);
-	const [lineFilter, setLineFilter] = useState<string>(getLine());
-	const [shiftFilter, setShiftFilter] = useState<ShiftType>("Long");
+	const { date, line, shift, setDate, setLine } = useDashboardStore();
 
 	const { data, isLoading, refetch } = useQueryControlBoardV2(
-		lineFilter,
-		dateFilter,
-		shiftFilter,
+		line,
+		date,
+		shift,
 	);
 
 	const [isOpenRemark, setIsOpenRemark] = useState<boolean>(false);
@@ -45,21 +41,17 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 		event.detail.complete();
 	};
 
-	const handleChangeLine = (id: string) => {
-		setLineFilter(id);
-		setLine(id);
-	};
-
 	useEffect(() => {
 		socket.on("input", () => {
 			refetch();
 		});
+		setLine(getLine());
 	}, []);
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			if (dateFilter !== formatDateString(new Date())) {
-				setDateFilter(formatDateString(new Date()));
+			if (date !== formatDateString(new Date())) {
+				setDate(formatDateString(new Date()));
 			}
 		}, 1000);
 
@@ -79,16 +71,7 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 					</span>
 				</div>
 				<Suspense fallback={<IonSpinner name="dots" />}>
-					<ContainerFilterDashboard
-						line={lineFilter}
-						date={dateFilter}
-						shift={shiftFilter}
-						handleChangeLine={(id) => handleChangeLine(id)}
-						handleChangeDate={(date) => setDateFilter(date)}
-						handleChangeShift={(shift: ShiftType) =>
-							setShiftFilter(shift)
-						}
-					/>
+					<ContainerFilterDashboard />
 				</Suspense>
 				<div className="w-full">
 					{isLoading ? (
@@ -97,7 +80,6 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 						<Suspense fallback={<IonSpinner name="dots" />}>
 							<GridControlBoard
 								data={data}
-								shiftFilter={shiftFilter}
 								openModal={() => setIsOpenRemark(true)}
 							/>
 						</Suspense>
