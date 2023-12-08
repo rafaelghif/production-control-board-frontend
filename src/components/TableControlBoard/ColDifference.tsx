@@ -57,7 +57,7 @@ const ColDifference: React.FC<ColDifferenceProps> = ({
 		}
 
 		if (differenceQty > 0) {
-			setColorCumulative("text-[#33ffff]");
+			setColorCumulative("text-[#035BC8]");
 		} else if (differenceQty < 0) {
 			setColorCumulative("text-red-500");
 		} else {

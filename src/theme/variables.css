@@ -281,6 +281,6 @@ ion-split-pane {
 
 ion-select.select-line {
 	text-align: center;
-	font-size: 35px;
-	font-weight: 500;
+	font-size: 4em;
+	font-weight: 700;
 }

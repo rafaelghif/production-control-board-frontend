@@ -19,7 +19,7 @@ const ContainerFilterDashboard: React.FC = ({}) => {
 	};
 	return (
 		<div className="flex flex-col justify-center gap-2 items-center w-[996px] p-5 rounded shadow dark:bg-[#121212]">
-			<div className="flex flex-col items-center justify-center w-[450px] gap-2 dark:bg-[#181818] p-5">
+			<div className="flex flex-col items-center justify-center w-[800px] gap-2 dark:bg-[#181818] p-5">
 				<div className="flex items-center justify-center w-full">
 					<div className="w-full">
 						<Suspense fallback={<IonSpinner />}>

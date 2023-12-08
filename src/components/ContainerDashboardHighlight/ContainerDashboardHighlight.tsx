@@ -48,36 +48,36 @@ const ContainerDashboardHighlight: React.FC<
 		});
 	}, [currentHour]);
 	return (
-		<div className="bg-[#1e1e1e] w-[999px] mt-8 p-5 ml-3 flex flex-row items-center gap-3">
-			<div className="flex flex-col items-center justify-center w-2/12 h-56 p-5 text-center text-black bg-sky-300">
-				<span className="w-full text-4xl font-semibold border-b border-black -mt-[0.3rem]">
+		<div className="bg-[#1e1e1e] w-[999px] mt-8 p-5 ml-3 flex flex-row items-center gap-3 rounded">
+			<div className="flex flex-col items-center justify-center w-2/12 h-56 p-5 text-center text-black rounded bg-sky-300">
+				<span className="w-full text-xl font-semibold border-b border-black -mt-[0.3rem]">
 					Time
 				</span>
 				<span className="text-[1.9rem] mt-5">
 					{getPlanningTime(controlBoard?.planningTime || 0, shift)}
 				</span>
 			</div>
-			<div className="flex flex-col items-center justify-center w-4/12 h-56 p-5 text-center text-black bg-sky-300">
-				<span className="w-full text-4xl font-semibold border-b border-black -mt-[1.5rem]">
-					Current
+			<div className="flex flex-col items-center justify-center w-4/12 h-56 p-5 text-center text-black rounded bg-sky-300">
+				<span className="w-full text-xl font-semibold border-b border-black -mt-[1.5rem]">
+					Current Target
 				</span>
 				<span className="text-[2.85rem] mt-6 font-extrabold">
 					{controlBoard?.totalOrderComplete} /{" "}
 					{controlBoard?.planningQty}
 				</span>
 			</div>
-			<div className="h-56 bg-[#181818] flex items-center justify-center p-5 text-center flex-col w-4/12">
-				<span className="w-full -mt-[1.5rem] text-4xl font-semibold border-b">
-					Total
+			<div className="h-56 bg-[#181818] flex items-center justify-center p-5 text-center flex-col w-4/12 rounded">
+				<span className="w-full -mt-[1.5rem] text-xl font-semibold border-b">
+					Total Till Now
 				</span>
 				<span className="text-[2.85rem] mt-6 font-extrabold">
 					{controlBoard?.totalOrderCompleteCumulative} /{" "}
 					{controlBoard?.planningQtyCumulative}
 				</span>
 			</div>
-			<div className="h-56 bg-[#181818] flex items-center justify-center p-5 text-center  flex-col w-2/12">
-				<span className="w-full -mt-5 text-4xl font-semibold border-b">
-					Target
+			<div className="h-56 bg-[#181818] flex items-center justify-center p-5 text-center  flex-col w-2/12 rounded">
+				<span className="w-full -mt-5 text-xl font-semibold border-b">
+					Daily Target
 				</span>
 				<span className="text-[2.85rem] mt-6 font-extrabold">
 					{setting?.productLoadingPlanQty}
