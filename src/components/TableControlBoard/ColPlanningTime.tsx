@@ -13,7 +13,7 @@ const ColPlanningTime: React.FC<ColPlanningTimeInterface> = ({
 	planningTime,
 }) => {
 	const [className, setClassName] = useState<string>(
-		"px-2 py-[0.78rem] font-medium h-28 whitespace-nowrap",
+		"px-2 py-[0.78rem] font-medium h-[5.5rem] whitespace-nowrap",
 	);
 	const { shift } = useDashboardStore();
 
@@ -24,17 +24,17 @@ const ColPlanningTime: React.FC<ColPlanningTimeInterface> = ({
 		const firstTime = parseFloat(planningTimes[0]);
 		const secondTime = parseFloat(planningTimes[1]);
 
-		if (currentHour > firstTime && currentHour < secondTime) {
+		if (currentHour >= firstTime && currentHour <= secondTime) {
 			setClassName(
-				"px-2 py-[0.78rem] text-white font-medium h-28 whitespace-nowrap",
+				"px-2 py-[0.78rem] text-black font-semibold font-medium h-[5.58rem] whitespace-nowrap",
 			);
 		} else if (firstTime > currentHour) {
 			setClassName(
-				"px-2 py-[0.78rem] text-[#383838] font-medium h-28 whitespace-nowrap",
+				"px-2 py-[0.78rem] text-[#383838] font-medium h-[5.58rem] whitespace-nowrap",
 			);
 		} else {
 			setClassName(
-				"px-2 py-[0.78rem] font-medium h-28 whitespace-nowrap",
+				"px-2 py-[0.78rem] font-medium h-[5.58rem] whitespace-nowrap",
 			);
 		}
 	}, [currentHour]);

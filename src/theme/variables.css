@@ -278,3 +278,9 @@ ion-split-pane {
 	width: 350px !important;
 	max-width: 450px !important;
 }
+
+ion-select.select-line {
+	text-align: center;
+	font-size: 35px;
+	font-weight: 500;
+}

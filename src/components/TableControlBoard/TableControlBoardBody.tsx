@@ -7,6 +7,7 @@ import {
 } from "../../helpers";
 import useDashboardStore from "../../stores/useDashboardStore";
 import { ControlBoardInterface } from "../../types";
+import { getPlanningTime } from "../../utils/dashboard";
 import ColActual from "./ColActual";
 import ColDifference from "./ColDifference";
 import ColPlanning from "./ColPlanning";
@@ -18,6 +19,8 @@ interface TableControlBoardBody {
 
 const TableControlBoardBody: React.FC<TableControlBoardBody> = ({ data }) => {
 	const [currentHour, setCurrentHour] = useState<number>(0);
+	const [dataIndex, setDataIndex] = useState<number>(0);
+
 	const { shift } = useDashboardStore();
 
 	useEffect(() => {
@@ -33,12 +36,30 @@ const TableControlBoardBody: React.FC<TableControlBoardBody> = ({ data }) => {
 		return () => clearInterval(interval);
 	}, []);
 
+	useEffect(() => {
+		data?.map((res, index) => {
+			const planningTimes = getPlanningTime(res.planningTime, shift)
+				.split(" - ")
+				.map((res) => res.replace(":", "."));
+
+			const firstTime = parseFloat(planningTimes[0]);
+			const secondTime = parseFloat(planningTimes[1]);
+			if (currentHour >= firstTime && currentHour <= secondTime) {
+				setDataIndex(index);
+			}
+		});
+	}, [currentHour]);
+
 	return (
 		<tbody className={shift === "Normal" ? "" : "text-4xl"}>
 			{data?.map((res, index) => (
 				<tr
 					key={`tr-${index}`}
-					className="border-b dark:border-gray-700">
+					className={
+						dataIndex === index
+							? "border-b dark:border-gray-700 bg-sky-300"
+							: "border-b dark:border-gray-700"
+					}>
 					<ColPlanningTime
 						currentHour={currentHour}
 						planningTime={res.planningTime}

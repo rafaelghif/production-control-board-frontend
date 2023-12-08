@@ -5,8 +5,11 @@ import { Suspense, lazy } from "react";
 import { ControlBoardInterface } from "../types";
 import { ControlBoardPlanningInterface } from "../types";
 import Card from "./Card";
+import ContainerDashboardHighlight from "./ContainerDashboardHighlight/ContainerDashboardHighlight";
 
-const TableControlBoard = lazy(() => import("./TableControlBoard/TableControlBoard"));
+const TableControlBoard = lazy(
+	() => import("./TableControlBoard/TableControlBoard"),
+);
 
 const ContainerSettingDashboardLarge = lazy(
 	() => import("./ContainerSettingDashboardLarge"),
@@ -22,28 +25,31 @@ const ContainerControlBoardV2: React.FC<ContainerControlBoardProps> = ({
 	settings,
 }) => {
 	return (
-		<Card title={""}>
-			<div className="flex flex-col gap-1">
-				<div>
-					<Suspense fallback={<IonSpinner name="dots" />}>
-						<ContainerSettingDashboardLarge
-							data={settings}
-							orderCompleteNumber={
-								data
-									? data[data.length - 1]
-											.totalOrderCompleteCumulative
-									: 0
-							}
-						/>
-					</Suspense>
+		<>
+			<Card title={""}>
+				<div className="flex flex-col gap-1">
+					<div>
+						<Suspense fallback={<IonSpinner name="dots" />}>
+							<ContainerSettingDashboardLarge
+								data={settings}
+								orderCompleteNumber={
+									data
+										? data[data.length - 1]
+												.totalOrderCompleteCumulative
+										: 0
+								}
+							/>
+						</Suspense>
+					</div>
+					<div>
+						<Suspense fallback={<IonSpinner name="dots" />}>
+							<TableControlBoard data={data} />
+						</Suspense>
+					</div>
 				</div>
-				<div>
-					<Suspense fallback={<IonSpinner name="dots" />}>
-						<TableControlBoard data={data} />
-					</Suspense>
-				</div>
-			</div>
-		</Card>
+			</Card>
+			<ContainerDashboardHighlight data={data} setting={settings} />
+		</>
 	);
 };
 

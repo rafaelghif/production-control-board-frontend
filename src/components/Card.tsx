@@ -13,6 +13,7 @@ interface CardProps {
 	color?: IonicColorType;
 	headerColor?: IonicColorType;
 	optionButton?: React.ReactNode;
+	className?: string;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -21,6 +22,7 @@ const Card: React.FC<CardProps> = ({
 	color,
 	headerColor,
 	optionButton: OptionButton,
+	className,
 }) => {
 	return (
 		<IonCard color={color}>
@@ -30,7 +32,7 @@ const Card: React.FC<CardProps> = ({
 				<IonCardTitle>{title}</IonCardTitle>
 				{OptionButton}
 			</IonCardHeader>
-			<IonCardContent>{children}</IonCardContent>
+			<IonCardContent className={className}>{children}</IonCardContent>
 		</IonCard>
 	);
 };

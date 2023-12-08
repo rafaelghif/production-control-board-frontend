@@ -6,7 +6,7 @@ const TableControlBoardHeader: React.FC = () => {
 					Time
 				</th>
 				<th scope="col" className="px-6 py-2">
-					Planning
+					Plan
 				</th>
 				<th scope="col" className="px-6 py-2">
 					Actual

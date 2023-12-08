@@ -24,8 +24,8 @@ const ColPlanning: React.FC<ColPlanningProps> = ({
 			.map((res) => res.replace(":", "."));
 		const firstTime = parseFloat(planningTimes[0]);
 		const secondTime = parseFloat(planningTimes[1]);
-		if (currentHour > firstTime && currentHour < secondTime) {
-			setClassName("text-white");
+		if (currentHour >= firstTime && currentHour <= secondTime) {
+			setClassName("text-black font-semibold");
 		} else if (firstTime > currentHour) {
 			setClassName("text-[#383838]");
 		} else {

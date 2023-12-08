@@ -31,11 +31,11 @@ const ColDifference: React.FC<ColDifferenceProps> = ({
 			.map((res) => res.replace(":", "."));
 		const firstTime = parseFloat(planningTimes[0]);
 		const secondTime = parseFloat(planningTimes[1]);
-		if (currentHour > firstTime && currentHour < secondTime) {
-			setClassName("text-white");
+		if (currentHour >= firstTime && currentHour <= secondTime) {
+			setClassName("text-black font-semibold");
 			setIsOpen(true);
 		} else if (firstTime > currentHour) {
-			setClassName("text-[#383838]");
+			setClassName("text-[#383838] font-semibold");
 			setIsOpen(false);
 		} else {
 			setClassName("");
@@ -49,11 +49,11 @@ const ColDifference: React.FC<ColDifferenceProps> = ({
 
 	useEffect(() => {
 		if (orderComplete > 0) {
-			setColorActual("text-[#33ffff]");
+			setColorActual("text-[#035BC8]");
 		} else if (orderComplete < 0) {
-			setColorActual("text-red-500");
+			setColorActual("text-red-500 font-semibold");
 		} else {
-			setColorActual("text-white");
+			setColorActual("text-white font-semibold");
 		}
 
 		if (differenceQty > 0) {
@@ -61,7 +61,7 @@ const ColDifference: React.FC<ColDifferenceProps> = ({
 		} else if (differenceQty < 0) {
 			setColorCumulative("text-red-500");
 		} else {
-			setColorCumulative("text-white");
+			setColorCumulative("text-white font-semibold");
 		}
 	}, [orderComplete, differenceQty]);
 
