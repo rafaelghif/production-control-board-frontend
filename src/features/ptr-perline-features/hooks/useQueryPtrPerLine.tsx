@@ -1,10 +1,14 @@
 import { useQuery } from "react-query";
 
 import { useToast } from "../../../hooks";
-import { getOrders, getPtrPerLine } from "../../../services";
+import { getPtrPerLine } from "../../../services";
 import { useLoadingStore } from "../../../stores";
 
-export const useQueryPtrPerLine = (line: string, month: number,year:number) => {
+export const useQueryPtrPerLine = (
+	line: string,
+	month: number,
+	year: number,
+) => {
 	const { setLoading } = useLoadingStore();
 	const { errorToast } = useToast();
 	return useQuery({

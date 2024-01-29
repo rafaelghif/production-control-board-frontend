@@ -2,7 +2,7 @@ import { IonCol, IonGrid, IonRow, IonSpinner } from "@ionic/react";
 
 import { Suspense, lazy } from "react";
 
-import { ControlBoardWithLineShiftInterface, ShiftType } from "../types";
+import { ControlBoardWithLineShiftInterface } from "../types";
 
 const ContainerControlBoardV2 = lazy(() => import("./ContainerControlBoardV2"));
 

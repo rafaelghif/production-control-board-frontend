@@ -52,7 +52,7 @@ const TableReport: React.FC<TableReportProps> = ({ data = [] }) => {
 	);
 	return (
 		<Table
-			columns={columns}
+			columns={columns as OrderWithLineInterface[]}
 			data={data}
 			responsive
 			pagination

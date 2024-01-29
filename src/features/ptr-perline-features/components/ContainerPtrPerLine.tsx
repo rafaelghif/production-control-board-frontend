@@ -29,7 +29,7 @@ const ContainerPtrPerLine: React.FC = () => {
 		getCurrentDate().getMonth() + 1,
 	);
 
-	const { data, isLoading, refetch } = useQueryPtrPerLine(
+	const { data, isLoading } = useQueryPtrPerLine(
 		lineFilter,
 		monthFilter,
 		yearFilter,

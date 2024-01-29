@@ -6,9 +6,7 @@ interface ItemControlBoard {
 }
 const ItemControlBoard: React.FC<ItemControlBoard> = ({
 	text,
-	isHeader = false,
-	left = false,
-	center = false,
+	isHeader = false
 }) => {
 	return <span className={`${isHeader ? "" : ""}`}>{text}</span>;
 };

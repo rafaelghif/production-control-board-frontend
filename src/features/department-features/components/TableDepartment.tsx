@@ -2,6 +2,7 @@ import { IonButton, IonText } from "@ionic/react";
 
 import { useMemo } from "react";
 import { TableColumn } from "react-data-table-component";
+import { ExpandableRowsComponent } from "react-data-table-component/dist/src/DataTable/types";
 
 import Table from "../../../components/Table";
 import { formatDateTime } from "../../../libs";
@@ -70,14 +71,16 @@ const TableDepartment: React.FC<TableDepartmentProps> = ({
 	);
 	return (
 		<Table
-			columns={columns}
+			columns={columns as DepartmentInterface[]}
 			data={data}
 			responsive
 			pagination
 			striped
 			highlightOnHover
 			expandableRows
-			expandableRowsComponent={ContainerLine}
+			expandableRowsComponent={
+				ContainerLine as ExpandableRowsComponent<unknown>
+			}
 		/>
 	);
 };

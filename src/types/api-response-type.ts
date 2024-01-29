@@ -3,11 +3,13 @@ export interface ApiResponseInterface<T> {
 	data: T;
 }
 
+export interface ApiErrorDataInterface {
+	title: string;
+	msg: string;
+	validationError?: unknown[];
+}
+
 export interface ApiResponseErrorInterface {
 	isExpressValidation: boolean;
-	data: {
-		title: string;
-		message: string;
-		validationError?: any[];
-	};
+	data: ApiErrorDataInterface;
 }

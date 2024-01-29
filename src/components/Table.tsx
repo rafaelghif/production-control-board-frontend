@@ -8,8 +8,8 @@ import { ExpandableRowsComponent } from "react-data-table-component/dist/src/Dat
 import useMediaQuery from "../hooks/useMediaQuery";
 
 interface ReactDataTableProps {
-	data?: Array<any>;
-	columns: TableColumn<any>[];
+	data?: unknown[];
+	columns: TableColumn<unknown>[];
 	pagination?: boolean;
 	paginationServer?: boolean;
 	striped?: boolean;
@@ -22,7 +22,7 @@ interface ReactDataTableProps {
 	progressPending?: boolean;
 	progressComponent?: React.ReactNode;
 	expandableRows?: boolean;
-	expandableRowsComponent?: ExpandableRowsComponent<any>;
+	expandableRowsComponent?: ExpandableRowsComponent<unknown>;
 }
 
 createTheme("dark", {

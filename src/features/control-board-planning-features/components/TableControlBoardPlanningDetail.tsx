@@ -74,7 +74,7 @@ const TableControlBoardPlanningDetail: React.FC<
 	);
 	return (
 		<Table
-			columns={columns}
+			columns={columns as ControlBoardPlanningDetailInterface[]}
 			data={data}
 			responsive
 			pagination

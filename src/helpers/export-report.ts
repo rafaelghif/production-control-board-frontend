@@ -7,6 +7,12 @@ import { OrderWithLineInterface } from "../types";
 import { FormattedDay } from "../utils/date";
 import { convertNumberToTimeString } from "./text-manipulation";
 
+interface DataItemInterface {
+	No: number;
+	Model: string;
+	[key: string]: number | string;
+}
+
 export const ExportExcel = (
 	apiData: OrderWithLineInterface[],
 	fileName: string,
@@ -84,13 +90,30 @@ export const ExportExcelPtr = (
 		new Set(data?.map((ptrData) => ptrData.model).sort()),
 	);
 
-	let no = 0;
-	const datas = models.map((model) => {
-		const newData: any = {};
-		no += 1;
-		newData.No = no;
-		newData.Model = model;
+	const datas: DataItemInterface[] = generateDataItems(models, data, days);
+	const fileExtension = ".xlsx";
 
+	set_fs(fs);
+
+	const worksheet = utils.json_to_sheet(datas);
+	const workbook = utils.book_new();
+	utils.book_append_sheet(workbook, worksheet, "Report-Output");
+
+	writeFile(
+		workbook,
+		`PTR - ${formatDateString(new Date())}${fileExtension}`,
+		{ compression: true },
+	);
+};
+
+const generateDataItems = (
+	models: string[],
+	data: PtrPerLineInterface[],
+	days: FormattedDay[],
+): DataItemInterface[] => {
+	let no = 0;
+	return models.map((model) => {
+		const newData: DataItemInterface = { No: no++, Model: model };
 		days.forEach((day) => {
 			newData[day.date] =
 				data?.find(
@@ -99,20 +122,6 @@ export const ExportExcelPtr = (
 						res.createdDay.toString().padStart(2, "0") === day.day,
 				)?.total ?? 0;
 		});
-
 		return newData;
 	});
-
-	const fileExtension = ".xlsx";
-
-	set_fs(fs);
-
-	const worksheet = utils.json_to_sheet(datas);
-	const workbook = utils.book_new();
-	utils.book_append_sheet(workbook, worksheet, "Report-Output");
-	writeFile(
-		workbook,
-		"PTR -" + formatDateString(new Date()) + fileExtension,
-		{ compression: true },
-	);
 };

@@ -90,7 +90,7 @@ const TableUser: React.FC<TableUserProps> = ({
 	);
 	return (
 		<Table
-			columns={columns}
+			columns={columns as UserWithDepartmentAndLineInterface[]}
 			data={data}
 			responsive
 			pagination

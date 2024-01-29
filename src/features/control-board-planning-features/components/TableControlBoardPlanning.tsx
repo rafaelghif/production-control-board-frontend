@@ -10,6 +10,7 @@ import {
 	ControlBoardPlanningWithLineInterface,
 } from "../../../types";
 import ContainerControlBoardPlanningDetail from "./ContainerControlBoardPlanningDetail";
+import { ExpandableRowsComponent } from "react-data-table-component/dist/src/DataTable/types";
 
 interface TableControlBoardPlanningProps {
 	data?: ControlBoardPlanningWithLineInterface[];
@@ -80,14 +81,16 @@ const TableControlBoardPlanning: React.FC<TableControlBoardPlanningProps> = ({
 		);
 	return (
 		<Table
-			columns={columns}
+			columns={columns as ControlBoardPlanningWithLineInterface[]}
 			data={data}
 			responsive
 			pagination
 			striped
 			highlightOnHover
 			expandableRows
-			expandableRowsComponent={ContainerControlBoardPlanningDetail}
+			expandableRowsComponent={
+				ContainerControlBoardPlanningDetail as ExpandableRowsComponent<unknown>
+			}
 		/>
 	);
 };

@@ -57,12 +57,11 @@ const TableReportOutput: React.FC<TableReportOutputProps> = ({ data = [] }) => {
 				sortable: true,
 				wrap: true,
 			},
-		],
-		[],
+		],[],
 	);
 	return (
 		<Table
-			columns={columns}
+			columns={columns as TableColumn<unknown>[]}
 			data={data}
 			responsive
 			pagination

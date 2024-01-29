@@ -120,7 +120,6 @@ const ContainerDashboard: React.FC = () => {
 					) : (
 						<GridControlBoard
 							data={data}
-							shiftFilter="Normal"
 							openModal={() => setIsOpenRemark(true)}
 						/>
 					)}

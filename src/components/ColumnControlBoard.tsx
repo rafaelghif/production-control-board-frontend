@@ -23,7 +23,7 @@ const ColumnControlBoard: React.FC<ColumnControlBoardProps> = ({ data }) => {
 			<span>
 				{data.totalOrderComplete} / {data.totalOrderCompleteCumulative}
 			</span>
-			<span className={isBackLog ? `text-red-500` : ``}>
+			<span className={isBackLog ? "text-red-500" : ""}>
 				{data.totalOrderComplete - data.planningQty} /{" "}
 				{data.differenceQty}
 			</span>

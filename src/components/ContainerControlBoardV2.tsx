@@ -35,7 +35,7 @@ const ContainerControlBoardV2: React.FC<ContainerControlBoardProps> = ({
 								orderCompleteNumber={
 									data
 										? data[data.length - 1]
-												.totalOrderCompleteCumulative
+											.totalOrderCompleteCumulative
 										: 0
 								}
 							/>

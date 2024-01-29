@@ -27,7 +27,7 @@ export const useAuthentication = () => {
 		onMutate: () => {
 			setLoading(true);
 		},
-		onError: async (error: any) => {
+		onError: async (error: unknown) => {
 			errorToast(error);
 		},
 		onSuccess: async (response) => {

@@ -17,7 +17,7 @@ export const axiosGet = async <T>(
 
 export const axiosPost = async <T>(
 	url: string,
-	payload: any,
+	payload: unknown,
 	multipart: boolean = false,
 ): Promise<ApiResponseInterface<T>> => {
 	try {
@@ -34,7 +34,7 @@ export const axiosPost = async <T>(
 
 export const axiosPatch = async <T>(
 	url: string,
-	payload: any,
+	payload: unknown,
 	multipart: boolean = false,
 ): Promise<ApiResponseInterface<T>> => {
 	try {

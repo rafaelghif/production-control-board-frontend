@@ -2,8 +2,6 @@ import { useIonRouter } from "@ionic/react";
 
 import { useHistory } from "react-router";
 
-import logo from "../../../assets/images/logo.png";
-
 const NavbarDashboard: React.FC = () => {
 	const { routeInfo } = useIonRouter();
 	const history = useHistory();

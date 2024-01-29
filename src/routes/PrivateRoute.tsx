@@ -4,7 +4,7 @@ import Strict from "../pages/Strict";
 import { useUserStore } from "../stores";
 
 interface PrivateRouteProps {
-	component: React.FC<any>;
+	component: React.FC;
 	isAuth: boolean;
 	isStrictRole?: boolean;
 	roles?: string[];

@@ -49,11 +49,10 @@ const ContainerControlBoard: React.FC<ContainerControlBoardProps> = ({
 				<div>
 					<ContainerSettingDashboardLarge
 						data={settings}
-						shiftFilter={"Normal"}
 					/>
 				</div>
 				<div
-					className={`grid grid-cols-5 relative w-full overflow-auto scroll-smooth font-['Source_Sans_3'] dark:text-white snap-x snap-mandatory`}>
+					className={"grid grid-cols-5 relative w-full overflow-auto scroll-smooth font-['Source_Sans_3'] dark:text-white snap-x snap-mandatory"}>
 					{data?.map((planning, index) => (
 						<Fragment key={`planning-${planning.planningTime}`}>
 							{index % 4 === 0 && <ColumnHeaderControlBoard />}

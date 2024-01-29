@@ -29,7 +29,7 @@ const TableRemark: React.FC<TableRemarkProps> = ({ data = [] }) => {
 	);
 	return (
 		<Table
-			columns={columns}
+			columns={columns as ControlBoardPlanningDetailInterface[]}
 			data={data}
 			responsive
 			pagination

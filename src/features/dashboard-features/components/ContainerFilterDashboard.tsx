@@ -10,7 +10,7 @@ const SelectLineDashboard = lazy(
 	() => import("../../../components/SelectLineDashboard"),
 );
 
-const ContainerFilterDashboard: React.FC = ({}) => {
+const ContainerFilterDashboard: React.FC = () => {
 	const { line, shift, date, setLine, setShift } = useDashboardStore();
 
 	const handleChangeLine = (lineId: string) => {

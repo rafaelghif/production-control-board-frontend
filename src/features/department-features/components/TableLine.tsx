@@ -63,7 +63,7 @@ const TableLine: React.FC<TableLineProps> = ({
 	);
 	return (
 		<Table
-			columns={columns}
+			columns={columns as LineInterface[]}
 			data={data}
 			responsive
 			pagination
