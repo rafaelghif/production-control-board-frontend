@@ -15,6 +15,15 @@ export interface ControlBoardInterface {
 	remark: string;
 }
 
+export interface PtrPerLineInterface {
+	LineId: string;
+	model: string;
+	createdDay: number;
+	createdMonth: number;
+	createdYear: number;
+	total: number;
+}
+
 export interface ControlBoardWithLineInterface {
 	lineName: string;
 	plannings: ControlBoardInterface[];

@@ -4,6 +4,7 @@ import {
 	ApiResponseErrorInterface,
 	ApiResponseInterface,
 	CreateOrderType,
+	OrderResponseCableType,
 	OrderResponseInterface,
 	OrderResponseType,
 	OrderWithLineInterface,
@@ -42,6 +43,19 @@ export const getOrderInput = async (
 	}
 };
 
+export const getOrderInputCable = async (
+	indexNumber: string,
+): Promise<OrderResponseCableType> => {
+	try {
+		const response: ApiResponseInterface<OrderResponseCableType> =
+			await axiosPost(`${apiName}/input-cable`, { indexNumber });
+		return response.data;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+
 export const createOrder = async (
 	payload: CreateOrderType,
 ): Promise<OrderResponseInterface> => {
@@ -56,3 +70,19 @@ export const createOrder = async (
 		throw err;
 	}
 };
+
+export const createOrderCable = async (
+	payload: CreateOrderType,
+): Promise<OrderResponseInterface> => {
+	try {
+		const response: OrderResponseInterface = await axiosPost(
+			`${apiName}/cable`,
+			payload,
+		);
+		return response;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+

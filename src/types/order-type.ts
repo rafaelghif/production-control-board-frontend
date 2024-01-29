@@ -15,6 +15,23 @@ export interface OrderInterface {
 	LineId: string;
 }
 
+export interface OrderCableInterface {
+	id: string;
+	model: string;
+	orderQty:number;
+	serialNumber: string;
+	serialNumberType: "Plasma Order Tag" | "Inhouse";
+	barcodeIssueNo: string;
+	sapLinkageNo: string;
+	scannedOrder: number;
+	inActive: boolean;
+	createdBy: string;
+	updatedBy: string;
+	createdAt: string;
+	updatedAt: string;
+	LineId: string;
+}
+
 export type OrderResponseType = Pick<
 	OrderInterface,
 	| "serialNumberType"
@@ -23,6 +40,18 @@ export type OrderResponseType = Pick<
 	| "barcodeIssueNo"
 	| "sapLinkageNo"
 >;
+
+export type OrderResponseCableType = Pick<
+OrderCableInterface,
+	| "serialNumberType"
+	| "serialNumber"
+	| "model"
+	| "scannedOrder"
+	| "orderQty"
+	| "barcodeIssueNo"
+	| "sapLinkageNo"
+>;
+
 export type CreateOrderType = Pick<
 	OrderInterface,
 	| "serialNumberType"

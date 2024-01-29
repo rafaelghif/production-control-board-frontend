@@ -79,11 +79,20 @@ const Menu: React.FC<MenuProps> = ({ isAuth }) => {
 				</div>
 				<div className="bg-slate-600">
 					<MenuItem url="/home" text="Home" icon={homeOutline} />
-					<MenuItem
-						url="/input-order"
-						text="Input Order"
-						icon={pushOutline}
-					/>
+					<MenuItemDropDown
+						headerText="Input Order"
+						headerIcon={pushOutline}>
+						<MenuItem
+							url="/input-order"
+							text="Input Order"
+							icon={radioButtonOffOutline}
+						/>
+						<MenuItem
+							url="/input-order-cable"
+							text="Input Order Cable"
+							icon={radioButtonOffOutline}
+						/>
+					</MenuItemDropDown>
 					<MenuItemDropDown
 						headerText="Master Data"
 						headerIcon={serverOutline}>
@@ -123,6 +132,11 @@ const Menu: React.FC<MenuProps> = ({ isAuth }) => {
 						<MenuItem
 							url="/report-output"
 							text="Report Output"
+							icon={radioButtonOffOutline}
+						/>
+							<MenuItem
+							url="/report-ptr"
+							text="Report PTR PerLine"
 							icon={radioButtonOffOutline}
 						/>
 					</MenuItemDropDown>

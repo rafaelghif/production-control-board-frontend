@@ -6,6 +6,7 @@ import {
 	ControlBoardPlanningDetailInterface,
 	ControlBoardWithLineInterface,
 	ControlBoardWithLineShiftInterface,
+	PtrPerLineInterface,
 } from "../types";
 import { axiosGet } from "./api-service";
 
@@ -51,6 +52,24 @@ export const getRemarkControlBoard = async (
 		const response: ApiResponseInterface<
 			ControlBoardPlanningDetailInterface[]
 		> = await axiosGet(`${apiName}/remark/line/${line}/date/${date}`);
+		return response.data;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+
+export const getPtrPerLine = async (
+	line: string,
+	month: number,
+	year: number,
+) => {
+	try {
+		const response: ApiResponseInterface<
+		PtrPerLineInterface[]
+		> = await axiosGet(
+			`${apiName}/ptr/line/${line}/month/${month}/year/${year}`,
+		);
 		return response.data;
 	} catch (error) {
 		const err = error as AxiosError<ApiResponseErrorInterface>;

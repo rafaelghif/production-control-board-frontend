@@ -2,8 +2,9 @@ import * as fs from "fs";
 import { set_fs, utils, writeFile } from "xlsx";
 
 import { formatDateString, formatDateTime } from "../libs";
-import { ControlBoardInterface } from "../types";
+import { ControlBoardInterface, PtrPerLineInterface } from "../types";
 import { OrderWithLineInterface } from "../types";
+import { FormattedDay } from "../utils/date";
 import { convertNumberToTimeString } from "./text-manipulation";
 
 export const ExportExcel = (
@@ -71,6 +72,47 @@ export const ExportExcelReportOutput = (
 	writeFile(
 		workbook,
 		fileName + "-" + formatDateString(new Date()) + fileExtension,
+		{ compression: true },
+	);
+};
+
+export const ExportExcelPtr = (
+	data: PtrPerLineInterface[],
+	days: FormattedDay[],
+) => {
+	const models = Array.from(
+		new Set(data?.map((ptrData) => ptrData.model).sort()),
+	);
+
+	let no = 0;
+	const datas = models.map((model) => {
+		const newData: any = {};
+		no += 1;
+		newData.No = no;
+		newData.Model = model;
+
+		days.forEach((day) => {
+			newData[day.date] =
+				data?.find(
+					(res) =>
+						res.model === model &&
+						res.createdDay.toString().padStart(2, "0") === day.day,
+				)?.total ?? 0;
+		});
+
+		return newData;
+	});
+
+	const fileExtension = ".xlsx";
+
+	set_fs(fs);
+
+	const worksheet = utils.json_to_sheet(datas);
+	const workbook = utils.book_new();
+	utils.book_append_sheet(workbook, worksheet, "Report-Output");
+	writeFile(
+		workbook,
+		"PTR -" + formatDateString(new Date()) + fileExtension,
 		{ compression: true },
 	);
 };

@@ -5,7 +5,6 @@ import { useHistory } from "react-router";
 import logo from "../../../assets/images/logo.png";
 
 const NavbarDashboard: React.FC = () => {
-	
 	const { routeInfo } = useIonRouter();
 	const history = useHistory();
 	const handleClickBtnLogin = () => {
@@ -17,10 +16,7 @@ const NavbarDashboard: React.FC = () => {
 				routeInfo.pathname !== "/dashboardV2" ? "hidden" : ""
 			} select-none`}
 			hidden={routeInfo.pathname !== "/dashboardV2"}>
-			<div className="flex items-center justify-center gap-3 font-['Source_Sans_3'] cursor-pointer">
-				<img src={logo} alt="Yokogawa Logo" className="w-10 h-auto" />
-				<span className="text-2xl font-semibold">Yokogawa</span>
-			</div>
+			<div></div>
 			<div className="text-blue-400 hover:text-blue-500">
 				<button
 					className="px-5 py-2 tracking-wide"

@@ -19,8 +19,10 @@ const ControlBoardPlanning = lazy(
 	() => import("../pages/ControlBoardPlanning"),
 );
 const InputOrder = lazy(() => import("../pages/InputOrder"));
+const InputOrderCable = lazy(() => import("../pages/InputOrderCable"));
 const Report = lazy(() => import("../pages/Report"));
 const ReportOutput = lazy(() => import("../pages/ReportOutput"));
+const ReportPTR = lazy(() => import("../pages/ReportPTR"));
 
 const MainRouter: React.FC = () => {
 	const { isAuth } = useAuthStore();
@@ -53,6 +55,16 @@ const MainRouter: React.FC = () => {
 								<PrivateRoute
 									isAuth={isAuth}
 									component={InputOrder}
+								/>
+							)}
+						/>
+						<Route
+							exact
+							path="/input-order-cable"
+							component={() => (
+								<PrivateRoute
+									isAuth={isAuth}
+									component={InputOrderCable}
 								/>
 							)}
 						/>
@@ -119,6 +131,16 @@ const MainRouter: React.FC = () => {
 								<PrivateRoute
 									isAuth={isAuth}
 									component={ReportOutput}
+								/>
+							)}
+						/>
+						<Route
+							exact
+							path="/report-ptr"
+							component={() => (
+								<PrivateRoute
+									isAuth={isAuth}
+									component={ReportPTR}
 								/>
 							)}
 						/>

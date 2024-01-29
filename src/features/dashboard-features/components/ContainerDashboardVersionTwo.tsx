@@ -13,7 +13,6 @@ import { socket } from "../../../libs";
 import { getLine } from "../../../services";
 import useDashboardStore from "../../../stores/useDashboardStore";
 import { useQueryControlBoardV2 } from "../hooks";
-import FooterDashboard from "./FooterDashboard";
 import ModalDetailRemark from "./ModalDetailRemark";
 import NavbarDashboard from "./NavbarDashboard";
 
@@ -86,7 +85,6 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 					)}
 				</div>
 			</div>
-			<FooterDashboard />
 			<ModalDetailRemark
 				isOpen={isOpenRemark}
 				onDidDismiss={() => setIsOpenRemark(false)}
