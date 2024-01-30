@@ -10,11 +10,14 @@ import {
 	IonSpinner,
 } from "@ionic/react";
 
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 
 import Card from "../../../components/Card";
 import Modal from "../../../components/Modal";
-import { initialValueDetail } from "../../../datas";
+import {
+	initialValueDetailLong,
+	initialValueDetailShort,
+} from "../../../datas";
 import { plus1HourTime } from "../../../libs";
 import { useDepartmentStore } from "../../../stores";
 import {
@@ -55,7 +58,7 @@ const ModalCreateControlBoardSetting: React.FC<
 		});
 
 	const [controlBoardSettingDetails, setControlBoardSettingDetails] =
-		useState<CreateControlBoardSettingDetailType[]>(initialValueDetail);
+		useState<CreateControlBoardSettingDetailType[]>(initialValueDetailLong);
 
 	const { mutate } = useCreateControlBoardSetting();
 
@@ -86,6 +89,14 @@ const ModalCreateControlBoardSetting: React.FC<
 		});
 		onDidDismiss();
 	};
+
+	useEffect(() => {
+		setControlBoardSettingDetails(
+			controlBoardSetting.shift === "Long"
+				? initialValueDetailLong
+				: initialValueDetailShort,
+		);
+	}, [controlBoardSetting.shift]);
 	return (
 		<Modal
 			title="Create Control Board Setting"

@@ -131,11 +131,7 @@ const ModalCreateControlBoardPlanning: React.FC<
 	};
 
 	useEffect(() => {
-		setControlBoardPlanningDetails(
-			controlBoardPlanning.shift === "Long"
-				? initialValueDetailLong
-				: initialValueDetailShort,
-		);
+		setControlBoardPlanningDetails(controlBoardPlanningDetails);
 	}, [controlBoardPlanning]);
 
 	return (
