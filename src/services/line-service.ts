@@ -35,6 +35,18 @@ export const getActiveLines = async (): Promise<LineInterface[]> => {
 	}
 };
 
+export const getActiveLinesSql = async (): Promise<LineInterface[]> => {
+	try {
+		const response: ApiResponseInterface<LineInterface[]> = await axiosGet(
+			`${apiName}/sql/active`,
+		);
+		return response.data;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+
 export const getLineByDepartment = async (
 	departmentId: string,
 ): Promise<LineInterface[]> => {

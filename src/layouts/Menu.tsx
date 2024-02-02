@@ -139,6 +139,11 @@ const Menu: React.FC<MenuProps> = ({ isAuth }) => {
 							text="Report PTR PerLine"
 							icon={radioButtonOffOutline}
 						/>
+						<MenuItem
+							url="/report-ptr-pts"
+							text="Report PTR PerLine PTS"
+							icon={radioButtonOffOutline}
+						/>
 					</MenuItemDropDown>
 
 					<MenuItem

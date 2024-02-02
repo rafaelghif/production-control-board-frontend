@@ -10,18 +10,18 @@ import {
 	getDaysInCurrentMonth,
 	getDaysInMonthYear,
 } from "../../../utils/date";
-import { useQueryPtrPerLine } from "../hooks";
+import { useQueryPtrPerLinePts } from "../hooks";
 
-const TablePtr = lazy(() => import("./TablePtr"));
-const SelectLine = lazy(() => import("../../../components/SelectLine"));
+const TablePtrPts = lazy(() => import("./TablePtrPts"));
+const SelectLineSql = lazy(() => import("../../../components/SelectLineSql"));
 const SelectMonth = lazy(() => import("../../../components/SelectMonth"));
 const SelectYear = lazy(() => import("../../../components/SelectYear"));
 
-const ContainerPtrPerLine: React.FC = () => {
+const ContainerPtrPerLinePts: React.FC = () => {
 	const { days, setDays, setMonth, setYear } = useDate();
 	const { line } = useLineStore();
 
-	const [lineFilter, setLineFilter] = useState<string>(line.id || "All");
+	const [lineFilter, setLineFilter] = useState<string>(line.name || "All");
 	const [yearFilter, setYearFilter] = useState<number>(
 		getCurrentDate().getFullYear(),
 	);
@@ -29,7 +29,7 @@ const ContainerPtrPerLine: React.FC = () => {
 		getCurrentDate().getMonth() + 1,
 	);
 
-	const { data, isLoading } = useQueryPtrPerLine(
+	const { data, isLoading } = useQueryPtrPerLinePts(
 		lineFilter,
 		monthFilter,
 		yearFilter,
@@ -60,7 +60,7 @@ const ContainerPtrPerLine: React.FC = () => {
 			<IonRow>
 				<IonCol size="4">
 					<Suspense fallback={<IonSpinner />}>
-						<SelectLine
+						<SelectLineSql
 							value={lineFilter}
 							onChange={(id) => setLineFilter(id)}
 						/>
@@ -95,7 +95,7 @@ const ContainerPtrPerLine: React.FC = () => {
 							{isLoading ? (
 								<IonSpinner />
 							) : (
-								<TablePtr data={data} />
+								<TablePtrPts data={data} />
 							)}
 						</Suspense>
 					</Card>
@@ -104,4 +104,4 @@ const ContainerPtrPerLine: React.FC = () => {
 		</IonGrid>
 	);
 };
-export default ContainerPtrPerLine;
+export default ContainerPtrPerLinePts;
