@@ -88,6 +88,11 @@ const Menu: React.FC<MenuProps> = ({ isAuth }) => {
 							icon={radioButtonOffOutline}
 						/>
 						<MenuItem
+							url="/input-order-node"
+							text="Input Order Node"
+							icon={radioButtonOffOutline}
+						/>
+						<MenuItem
 							url="/input-order-cable"
 							text="Input Order Cable"
 							icon={radioButtonOffOutline}

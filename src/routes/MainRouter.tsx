@@ -20,6 +20,7 @@ const ControlBoardPlanning = lazy(
 );
 const InputOrder = lazy(() => import("../pages/InputOrder"));
 const InputOrderCable = lazy(() => import("../pages/InputOrderCable"));
+const InputOrderNode = lazy(() => import("../pages/InputOrderNode"));
 const Report = lazy(() => import("../pages/Report"));
 const ReportOutput = lazy(() => import("../pages/ReportOutput"));
 const ReportPTR = lazy(() => import("../pages/ReportPTR"));
@@ -66,6 +67,16 @@ const MainRouter: React.FC = () => {
 								<PrivateRoute
 									isAuth={isAuth}
 									component={InputOrderCable}
+								/>
+							)}
+						/>
+						<Route
+							exact
+							path="/input-order-node"
+							component={() => (
+								<PrivateRoute
+									isAuth={isAuth}
+									component={InputOrderNode}
 								/>
 							)}
 						/>

@@ -12,13 +12,13 @@ import { axiosGet, axiosPatch, axiosPost } from "./api-service";
 
 const apiName = "/user";
 
-export const getUsers = async (): Promise<
-	UserWithDepartmentAndLineInterface[]
-> => {
+export const getUsers = async (
+	search: string,
+): Promise<UserWithDepartmentAndLineInterface[]> => {
 	try {
 		const response: ApiResponseInterface<
 			UserWithDepartmentAndLineInterface[]
-		> = await axiosGet(`${apiName}/`);
+		> = await axiosGet(`${apiName}/?search=${search}`);
 		return response.data;
 	} catch (error) {
 		const err = error as AxiosError<ApiResponseErrorInterface>;

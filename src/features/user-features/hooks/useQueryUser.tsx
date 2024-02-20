@@ -4,12 +4,12 @@ import { useToast } from "../../../hooks";
 import { getUsers } from "../../../services";
 import { useLoadingStore } from "../../../stores";
 
-export const useQueryUser = () => {
+export const useQueryUser = (search: string) => {
 	const { setLoading } = useLoadingStore();
 	const { errorToast } = useToast();
 	return useQuery({
-		queryKey: ["users"],
-		queryFn: () => getUsers(),
+		queryKey: ["users", { search: search }],
+		queryFn: () => getUsers(search),
 		onError: async (error) => {
 			errorToast(error);
 			setLoading(false);

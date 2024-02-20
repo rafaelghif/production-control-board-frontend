@@ -4,6 +4,7 @@ import {
 	IonRefresher,
 	IonRefresherContent,
 	IonRow,
+	IonSearchbar,
 	IonSpinner,
 	RefresherEventDetail,
 } from "@ionic/react";
@@ -18,7 +19,8 @@ import ModalUpdateUser from "./ModalUpdateUser";
 const TableUser = lazy(() => import("./TableUser"));
 
 const ContainerUser: React.FC = () => {
-	const { data, isLoading, refetch } = useQueryUser();
+	const [search, setSearch] = useState<string>("");
+	const { data, isLoading, refetch } = useQueryUser(search);
 	const [selectValue, setSelectValue] = useState<UserInterface>();
 	const [isOpenModalUpdate, setIsOpenModalUpdate] = useState<boolean>(false);
 
@@ -38,7 +40,14 @@ const ContainerUser: React.FC = () => {
 			</IonRefresher>
 			<IonGrid>
 				<IonRow>
-					<IonCol>
+					<IonCol size="12">
+						<IonSearchbar
+							value={search}
+							onIonInput={(e) => setSearch(e.detail.value!)}
+							debounce={1000}
+						/>
+					</IonCol>
+					<IonCol size="12">
 						<Card title="Data User">
 							{isLoading ? (
 								<IonSpinner name="crescent" />

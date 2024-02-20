@@ -43,6 +43,19 @@ export const getOrderInput = async (
 	}
 };
 
+export const getOrderInputNode = async (
+	serialNumber: string,
+): Promise<OrderResponseType> => {
+	try {
+		const response: ApiResponseInterface<OrderResponseType> =
+			await axiosPost(`${apiName}/input-node`, { serialNumber });
+		return response.data;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+
 export const getOrderInputCable = async (
 	indexNumber: string,
 ): Promise<OrderResponseCableType> => {
@@ -62,6 +75,21 @@ export const createOrder = async (
 	try {
 		const response: OrderResponseInterface = await axiosPost(
 			`${apiName}/`,
+			payload,
+		);
+		return response;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+
+export const createOrderNode = async (
+	payload: CreateOrderType,
+): Promise<OrderResponseInterface> => {
+	try {
+		const response: OrderResponseInterface = await axiosPost(
+			`${apiName}/node`,
 			payload,
 		);
 		return response;
