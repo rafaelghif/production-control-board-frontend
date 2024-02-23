@@ -9,6 +9,7 @@ import {
 } from "@ionic/react";
 
 import {
+	ellipsisVerticalOutline,
 	homeOutline,
 	logOutOutline,
 	newspaperOutline,
@@ -150,7 +151,15 @@ const Menu: React.FC<MenuProps> = ({ isAuth }) => {
 							icon={radioButtonOffOutline}
 						/>
 					</MenuItemDropDown>
-
+					<MenuItemDropDown
+						headerText="Other"
+						headerIcon={ellipsisVerticalOutline}>
+						<MenuItem
+							url="/part-not-register"
+							text="Part Not Register"
+							icon={radioButtonOffOutline}
+						/>
+					</MenuItemDropDown>
 					<MenuItem
 						url="/dashboardV2"
 						text="Logout"

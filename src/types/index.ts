@@ -8,3 +8,4 @@ export * from "./line-type";
 export * from "./order-type";
 export * from "./user-type";
 export * from "./ionic-type";
+export * from "./part-type";

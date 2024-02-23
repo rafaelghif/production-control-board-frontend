@@ -6,9 +6,11 @@ import {
 	ControlBoardPlanningDetailInterface,
 	ControlBoardWithLineInterface,
 	ControlBoardWithLineShiftInterface,
+	CreatePartOrderInterface,
+	PartOrderInterface,
 	PtrPerLineInterface,
 } from "../types";
-import { axiosGet } from "./api-service";
+import { axiosGet, axiosPost } from "./api-service";
 
 const apiName = "/control-board";
 
@@ -65,11 +67,10 @@ export const getPtrPerLine = async (
 	year: number,
 ) => {
 	try {
-		const response: ApiResponseInterface<
-		PtrPerLineInterface[]
-		> = await axiosGet(
-			`${apiName}/ptr/line/${line}/month/${month}/year/${year}`,
-		);
+		const response: ApiResponseInterface<PtrPerLineInterface[]> =
+			await axiosGet(
+				`${apiName}/ptr/line/${line}/month/${month}/year/${year}`,
+			);
 		return response.data;
 	} catch (error) {
 		const err = error as AxiosError<ApiResponseErrorInterface>;
@@ -83,12 +84,38 @@ export const getPtrPerLinePts = async (
 	year: number,
 ) => {
 	try {
-		const response: ApiResponseInterface<
-		PtrPerLineInterface[]
-		> = await axiosGet(
-			`${apiName}/ptr-pts/line/${line.replace("/","-")}/month/${month}/year/${year}`,
-		);
+		const response: ApiResponseInterface<PtrPerLineInterface[]> =
+			await axiosGet(
+				`${apiName}/ptr-pts/line/${line.replace(
+					"/",
+					"-",
+				)}/month/${month}/year/${year}`,
+			);
 		return response.data;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+
+export const getPartNotRegister = async () => {
+	try {
+		const response: ApiResponseInterface<PartOrderInterface[]> =
+			await axiosGet(`${apiName}/part-not-registered`);
+		return response.data;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+
+export const createPartOrder = async (
+	payload: CreatePartOrderInterface,
+): Promise<string> => {
+	try {
+		const response: ApiResponseInterface<CreatePartOrderInterface> =
+			await axiosPost(`${apiName}/part-not-registered`, payload);
+		return response.message;
 	} catch (error) {
 		const err = error as AxiosError<ApiResponseErrorInterface>;
 		throw err;

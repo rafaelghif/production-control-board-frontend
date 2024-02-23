@@ -25,6 +25,7 @@ const Report = lazy(() => import("../pages/Report"));
 const ReportOutput = lazy(() => import("../pages/ReportOutput"));
 const ReportPTR = lazy(() => import("../pages/ReportPTR"));
 const ReportPTRPTS = lazy(() => import("../pages/ReportPTRPTS"));
+const PartNotRegister = lazy(() => import("../pages/PartNotRegister"));
 
 const MainRouter: React.FC = () => {
 	const { isAuth } = useAuthStore();
@@ -163,6 +164,16 @@ const MainRouter: React.FC = () => {
 								<PrivateRoute
 									isAuth={isAuth}
 									component={ReportPTRPTS}
+								/>
+							)}
+						/>
+						<Route
+							exact
+							path="/part-not-register"
+							component={() => (
+								<PrivateRoute
+									isAuth={isAuth}
+									component={PartNotRegister}
 								/>
 							)}
 						/>
