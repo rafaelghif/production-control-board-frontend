@@ -1,10 +1,10 @@
 import { IonCol, IonGrid, IonRow, IonSpinner } from "@ionic/react";
 
+import ContainerSettingDashboard from "@/components/ContainerSettingDashboard";
 import { Suspense, lazy, useState } from "react";
 import { ExpanderComponentProps } from "react-data-table-component";
 
 import Card from "../../../components/Card";
-import { ContainerSettingDashboard } from "../../../components/ContainerSettingDashboard";
 import {
 	ControlBoardPlanningDetailInterface,
 	ControlBoardPlanningWithLineInterface,
