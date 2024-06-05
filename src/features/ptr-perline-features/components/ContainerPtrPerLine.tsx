@@ -3,7 +3,7 @@ import { IonButton, IonCol, IonGrid, IonRow, IonSpinner } from "@ionic/react";
 import { Suspense, lazy, useEffect, useState } from "react";
 
 import Card from "../../../components/Card";
-import { ExportExcelPtr } from "../../../helpers";
+import { ExportAllExcelPtr, ExportExcelPtr } from "../../../helpers";
 import { useDate, useLineStore } from "../../../stores";
 import {
 	getCurrentDate,
@@ -90,6 +90,14 @@ const ContainerPtrPerLine: React.FC = () => {
 								ExportExcelPtr(data ? data : [], days)
 							}>
 							Export to Excel
+						</IonButton>
+						<IonButton
+							className="float-right mb-3"
+							onClick={() =>
+								ExportAllExcelPtr(monthFilter, yearFilter, days)
+							}
+							color={"warning"}>
+							Export All line to Excel
 						</IonButton>
 						<Suspense fallback={<IonSpinner />}>
 							{isLoading ? (

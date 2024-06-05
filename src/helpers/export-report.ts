@@ -1,3 +1,4 @@
+import { getPtrMonthly } from "@/services";
 import * as fs from "fs";
 import { set_fs, utils, writeFile } from "xlsx";
 
@@ -102,6 +103,32 @@ export const ExportExcelPtr = (
 	writeFile(
 		workbook,
 		`PTR - ${formatDateString(new Date())}${fileExtension}`,
+		{ compression: true },
+	);
+};
+
+export const ExportAllExcelPtr = async (
+	month: number,
+	year: number,
+	days: FormattedDay[],
+) => {
+	const data = await getPtrMonthly(month, year);
+	const models = Array.from(
+		new Set(data?.map((ptrData) => ptrData.model).sort()),
+	);
+
+	const datas: DataItemInterface[] = generateDataItems(models, data, days);
+	const fileExtension = ".xlsx";
+
+	set_fs(fs);
+
+	const worksheet = utils.json_to_sheet(datas);
+	const workbook = utils.book_new();
+	utils.book_append_sheet(workbook, worksheet, "Report-Output");
+
+	writeFile(
+		workbook,
+		`PTR All line- ${formatDateString(new Date())}${fileExtension}`,
 		{ compression: true },
 	);
 };

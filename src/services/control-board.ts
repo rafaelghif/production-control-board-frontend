@@ -78,6 +78,17 @@ export const getPtrPerLine = async (
 	}
 };
 
+export const getPtrMonthly = async (month: number, year: number) => {
+	try {
+		const response: ApiResponseInterface<PtrPerLineInterface[]> =
+			await axiosGet(`${apiName}/ptr/month/${month}/year/${year}`);
+		return response.data;
+	} catch (error) {
+		const err = error as AxiosError<ApiResponseErrorInterface>;
+		throw err;
+	}
+};
+
 export const getPtrPerLinePts = async (
 	line: string,
 	month: number,
