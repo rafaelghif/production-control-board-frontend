@@ -70,6 +70,28 @@ const ModalUpdateControlBoardSettingDetail: React.FC<
 						required
 					/>
 				</IonItem>
+				<IonItem>
+					<IonInput
+						type="text"
+						label="Remark"
+						labelPlacement="floating"
+						value={formData?.remark}
+						onIonInput={(e) =>
+							handleInput("remark", e.detail.value!)
+						}
+					/>
+				</IonItem>
+				<IonItem>
+					<IonInput
+						type="number"
+						label="Break"
+						labelPlacement="floating"
+						value={formData?.breakTime}
+						onIonInput={(e) =>
+							handleInput("breakTime", e.detail.value!)
+						}
+					/>
+				</IonItem>
 				<IonButton type="submit" expand="block">
 					Submit
 				</IonButton>

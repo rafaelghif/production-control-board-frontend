@@ -30,6 +30,18 @@ const TableControlBoardSettingDetail: React.FC<
 				wrap: true,
 			},
 			{
+				name: "Remark",
+				selector: (row) => row.remark,
+				sortable: true,
+				wrap: true,
+			},
+			{
+				name: "Break",
+				selector: (row) => row.breakTime,
+				sortable: true,
+				wrap: true,
+			},
+			{
 				name: "Status",
 				cell: (row) => (
 					<IonText color={row.inActive ? "danger" : "success"}>

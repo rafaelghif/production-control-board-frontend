@@ -20,6 +20,7 @@ import {
 	CreateControlBoardPlanningType,
 } from "../../../types";
 import { useCreateControlBoardPlanning } from "../hooks";
+import FooterTotal from "./FooterTotal";
 import FormControlBoardPlanningDetail from "./FormControlBoardPlanningDetail";
 
 const FormControlBoardPlanning = lazy(
@@ -60,6 +61,9 @@ const ModalCreateControlBoardPlanning: React.FC<
 			...initialValue,
 			LineId: line.id,
 		});
+
+	const [initialShift, setInitialShift] = useState<"Long" | "Short">();
+
 	const [controlBoardPlanningDetails, setControlBoardPlanningDetails] =
 		useState<CreateControlBoardPlanningDetailType[]>(
 			controlBoardPlanning.shift === "Long"
@@ -134,11 +138,28 @@ const ModalCreateControlBoardPlanning: React.FC<
 		setControlBoardPlanningDetails(controlBoardPlanningDetails);
 	}, [controlBoardPlanning]);
 
+	useEffect(() => {
+		if (isSubmitPlanning) {
+			setInitialShift(controlBoardPlanning.shift);
+		}
+	}, [isSubmitPlanning]);
+
+	useEffect(() => {
+		console.log(initialShift, controlBoardPlanning.shift);
+	}, [controlBoardPlanning]);
+
 	return (
 		<Modal
 			title="Create Control Board Planning"
 			isOpen={isOpen}
-			onDidDismiss={handleDismissModal}>
+			onDidDismiss={handleDismissModal}
+			useFooter={true}
+			footerComponent={
+				<FooterTotal
+					data={controlBoardPlanningDetails}
+					planTotal={controlBoardPlanning.productLoadingPlanQty}
+				/>
+			}>
 			<IonGrid>
 				<IonRow>
 					<IonCol size="12">

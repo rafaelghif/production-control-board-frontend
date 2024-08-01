@@ -28,6 +28,7 @@ export interface ControlBoardPlanningDetailInterface {
 	sequence: number;
 	qty: number;
 	remark: string;
+	breakTime: string;
 	inActive: boolean;
 	createdBy: string;
 	updatedBy: string;

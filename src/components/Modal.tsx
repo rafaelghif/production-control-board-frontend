@@ -2,6 +2,7 @@ import {
 	IonButton,
 	IonButtons,
 	IonContent,
+	IonFooter,
 	IonHeader,
 	IonIcon,
 	IonModal,
@@ -38,6 +39,8 @@ interface ModalProps {
 		| "light"
 		| "medium"
 		| "tertiary";
+	useFooter?: boolean;
+	footerComponent?: React.ReactNode;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -50,6 +53,8 @@ const Modal: React.FC<ModalProps> = ({
 	className = "",
 	color,
 	headerColor,
+	useFooter,
+	footerComponent,
 }) => {
 	const enterAnimation = (baseEl: HTMLElement) => {
 		const root = baseEl.shadowRoot;
@@ -92,6 +97,7 @@ const Modal: React.FC<ModalProps> = ({
 				</IonToolbar>
 			</IonHeader>
 			<IonContent className="ion-padding">{children}</IonContent>
+			{useFooter ? <IonFooter>{footerComponent}</IonFooter> : null}
 		</IonModal>
 	);
 };

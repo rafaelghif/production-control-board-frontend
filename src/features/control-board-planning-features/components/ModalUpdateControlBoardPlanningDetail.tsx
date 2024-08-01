@@ -82,6 +82,17 @@ const ModalUpdateControlBoardPlanningDetail: React.FC<
 						}
 					/>
 				</IonItem>
+				<IonItem>
+					<IonInput
+						type="number"
+						label="Break Time"
+						labelPlacement="floating"
+						value={formData?.breakTime}
+						onIonInput={(e) =>
+							handleInput("breakTime", e.detail.value!)
+						}
+					/>
+				</IonItem>
 				<IonButton type="submit" expand="block">
 					Submit
 				</IonButton>

@@ -31,6 +31,8 @@ export interface ControlBoardSettingDetailInterface {
 	time: string;
 	sequence: number;
 	qty: number;
+	remark: string;
+	breakTime: string;
 	inActive: boolean;
 	createdBy: string;
 	updatedBy: string;

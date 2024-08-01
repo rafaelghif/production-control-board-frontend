@@ -37,7 +37,7 @@ const ContainerControlBoardSettingDetail: React.FC<
 					<IonCol size="12">
 						<Card
 							title={`Detail ${controlBoardSetting.Line.name}`}
-							headerColor="light">
+							headerColor="light" className="w-[40%]">
 							{isLoading ? (
 								<IonSpinner name="crescent" />
 							) : (
