@@ -1,12 +1,4 @@
-import {
-	IonButton,
-	IonCol,
-	IonGrid,
-	IonItem,
-	IonRow,
-	IonSelect,
-	IonSelectOption,
-} from "@ionic/react";
+import { IonButton, IonCol, IonGrid, IonRow } from "@ionic/react";
 
 import Card from "@/components/Card";
 import { initialValueDetailLong, initialValueDetailShort } from "@/datas";
@@ -144,11 +136,7 @@ const ContainerCreateControlBoardPlanning: React.FC<
 			setPlanningDetail(planningDetailDefault);
 		}
 	}, [planning]);
-
-	useEffect(() => {
-		console.log("Planning Detail", planningDetail);
-	}, [planningDetail]);
-
+	
 	const onClickBtnSubmit = () => {
 		mutate({
 			planning: planning,

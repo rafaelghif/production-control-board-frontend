@@ -14,7 +14,6 @@ const ContainerPartNotRegister: React.FC = () => {
 	const [partOrder, setPartOrder] = useState("");
 
 	const handleAction = (partOrder: string) => {
-		console.log(partOrder);
 		setPartOrder(partOrder);
 		setIsOpen(true);
 	};
