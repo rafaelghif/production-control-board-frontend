@@ -1,8 +1,9 @@
+import { ShiftType } from "./control-board";
 import { LineInterface } from "./line-type";
 
 export interface ControlBoardPlanningInterface {
 	id: string;
-	shift: "Long" | "Short";
+	shift: ShiftType;
 	date: string;
 	actualWorkingTimeAll: number;
 	productLoadingPlanQty: number;
@@ -73,3 +74,8 @@ export interface CreateControlBoardPlanningInterface {
 
 export type UpdateControlBoardPlanningDetailType =
 	Partial<ControlBoardPlanningDetailInterface>;
+
+export interface InitialPlanningInterface {
+	lineId: string;
+	date: string;
+}

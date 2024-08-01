@@ -1,8 +1,9 @@
+import { ShiftType } from "./control-board";
 import { LineInterface } from "./line-type";
 
 export interface ControlBoardSettingInterface {
 	id: string;
-	shift: "Long" | "Short";
+	shift: ShiftType;
 	actualWorkingTimeAll: number;
 	productLoadingPlanQty: number;
 	productLoadingPlanBacklogQty: number;

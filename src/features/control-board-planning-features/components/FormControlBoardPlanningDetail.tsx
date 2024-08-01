@@ -53,7 +53,9 @@ const FormControlBoardPlanningDetail: React.FC<
 					label="Qty"
 					labelPlacement="floating"
 					min={0}
-					onIonInput={(e) => handleInput("qty", e.detail.value!)}
+					onIonInput={(e) =>
+						handleInput("qty", parseInt(e.detail.value!))
+					}
 				/>
 			</IonItem>
 		</>
