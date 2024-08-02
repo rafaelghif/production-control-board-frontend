@@ -41,6 +41,7 @@ const ModalUpdateControlBoardPlanningDetail: React.FC<
 			id: data?.id,
 			qty: data?.qty,
 			remark: data?.remark,
+			breakTime: data?.breakTime,
 		}));
 	}, [data]);
 

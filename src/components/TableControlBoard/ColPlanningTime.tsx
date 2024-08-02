@@ -6,11 +6,13 @@ import { getPlanningTime } from "../../utils/dashboard";
 interface ColPlanningTimeInterface {
 	currentHour: number;
 	planningTime: number;
+	isHighlight: boolean;
 }
 
 const ColPlanningTime: React.FC<ColPlanningTimeInterface> = ({
 	currentHour,
 	planningTime,
+	isHighlight,
 }) => {
 	const [className, setClassName] = useState<string>(
 		"px-2 py-[0.78rem] font-medium h-[5.5rem] whitespace-nowrap",
@@ -21,10 +23,11 @@ const ColPlanningTime: React.FC<ColPlanningTimeInterface> = ({
 		const planningTimes = getPlanningTime(planningTime, shift)
 			.split(" - ")
 			.map((res) => res.replace(":", "."));
+
 		const firstTime = parseFloat(planningTimes[0]);
 		const secondTime = parseFloat(planningTimes[1]);
-
-		if (currentHour >= firstTime && currentHour <= secondTime) {
+		
+		if (isHighlight) {
 			setClassName(
 				"px-2 py-[0.78rem] text-black font-semibold font-medium h-[5.58rem] whitespace-nowrap",
 			);
@@ -37,7 +40,7 @@ const ColPlanningTime: React.FC<ColPlanningTimeInterface> = ({
 				"px-2 py-[0.78rem] font-medium h-[5.58rem] whitespace-nowrap",
 			);
 		}
-	}, [currentHour]);
+	}, [currentHour, isHighlight]);
 
 	return (
 		<td scope="row" className={className}>

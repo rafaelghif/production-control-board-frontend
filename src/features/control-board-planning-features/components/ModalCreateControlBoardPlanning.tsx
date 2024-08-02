@@ -1,10 +1,12 @@
 import { IonCol, IonGrid, IonRow, IonSpinner } from "@ionic/react";
 
+import { formatDateString } from "@/libs";
 import { InitialPlanningInterface } from "@/types";
 import { Suspense, lazy, useEffect, useState } from "react";
 
 import Modal from "../../../components/Modal";
 import { useLineStore } from "../../../stores";
+import FooterTotal from "./FooterTotal";
 
 const ContainerCreateControlBoardPlanning = lazy(
 	() => import("./ContainerCreateControlBoardPlanning"),
@@ -27,7 +29,10 @@ const ModalCreateControlBoardPlanning: React.FC<
 	const [isSubmitPlanning, setIsSubmitPlanning] = useState<boolean>(false);
 
 	const [initialPlanning, setInitialPlanning] =
-		useState<InitialPlanningInterface>({ lineId: line.id, date: "" });
+		useState<InitialPlanningInterface>({
+			lineId: line.id,
+			date: formatDateString(new Date()),
+		});
 
 	const handleSubmitInitialPlanning = (e: React.FormEvent) => {
 		e.preventDefault();
@@ -49,12 +54,14 @@ const ModalCreateControlBoardPlanning: React.FC<
 			}));
 		}
 	}, [line]);
-
+	
 	return (
 		<Modal
 			title="Create Control Board Planning"
 			isOpen={isOpen}
-			onDidDismiss={onDidDismiss}>
+			onDidDismiss={onDidDismiss}
+			useFooter={true}
+			footerComponent={<FooterTotal />}>
 			<IonGrid>
 				<IonRow>
 					<IonCol size="12">

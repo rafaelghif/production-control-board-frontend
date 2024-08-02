@@ -64,7 +64,7 @@ export type UpdateControlBoardPlanningType =
 	Partial<ControlBoardPlanningInterface>;
 export type CreateControlBoardPlanningDetailType = Pick<
 	ControlBoardPlanningDetailInterface,
-	"time" | "sequence" | "qty"
+	"time" | "sequence" | "qty" | "remark" | "breakTime"
 >;
 
 export interface CreateControlBoardPlanningInterface {

@@ -8,6 +8,7 @@ interface ColActualProps {
 	planningTime: number;
 	totalOrderComplete: number;
 	totalOrderCompleteCumulative: number;
+	isHighlight: boolean;
 }
 
 const ColActual: React.FC<ColActualProps> = ({
@@ -15,6 +16,7 @@ const ColActual: React.FC<ColActualProps> = ({
 	planningTime,
 	totalOrderComplete,
 	totalOrderCompleteCumulative,
+	isHighlight,
 }) => {
 	const [className, setClassName] = useState("");
 	const { shift } = useDashboardStore();
@@ -22,16 +24,18 @@ const ColActual: React.FC<ColActualProps> = ({
 		const planningTimes = getPlanningTime(planningTime, shift)
 			.split(" - ")
 			.map((res) => res.replace(":", "."));
+
 		const firstTime = parseFloat(planningTimes[0]);
 		const secondTime = parseFloat(planningTimes[1]);
-		if (currentHour >= firstTime && currentHour <= secondTime) {
+
+		if (isHighlight) {
 			setClassName("text-black font-semibold");
 		} else if (firstTime > currentHour) {
 			setClassName("text-[#383838]");
 		} else {
 			setClassName("");
 		}
-	}, [currentHour]);
+	}, [currentHour, isHighlight]);
 	return (
 		<td className={className}>
 			{totalOrderComplete} / {totalOrderCompleteCumulative}

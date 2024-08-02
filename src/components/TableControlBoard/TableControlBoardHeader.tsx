@@ -17,6 +17,9 @@ const TableControlBoardHeader: React.FC = () => {
 				<th scope="col" className="px-6 py-2">
 					Remark
 				</th>
+				<th scope="col" className="px-6 py-2">
+					Break
+				</th>
 			</tr>
 		</thead>
 	);

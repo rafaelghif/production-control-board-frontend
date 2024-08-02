@@ -40,6 +40,8 @@ const ModalUpdateControlBoardSettingDetail: React.FC<
 			...prevState,
 			id: data?.id,
 			qty: data?.qty,
+			remark: data?.remark,
+			breakTime: data?.breakTime,
 		}));
 	}, [data]);
 

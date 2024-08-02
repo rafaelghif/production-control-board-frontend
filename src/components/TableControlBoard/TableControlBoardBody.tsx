@@ -40,6 +40,7 @@ const TableControlBoardBody: React.FC<TableControlBoardBody> = ({ data }) => {
 
 			const firstTime = parseFloat(planningTimes[0]);
 			const secondTime = parseFloat(planningTimes[1]);
+
 			if (currentHour >= firstTime && currentHour <= secondTime) {
 				setDataIndex(index);
 			}
@@ -59,12 +60,14 @@ const TableControlBoardBody: React.FC<TableControlBoardBody> = ({ data }) => {
 					<ColPlanningTime
 						currentHour={currentHour}
 						planningTime={res.planningTime}
+						isHighlight={dataIndex === index}
 					/>
 					<ColPlanning
 						currentHour={currentHour}
 						planningTime={res.planningTime}
 						planningQty={res.planningQty}
 						planningQtyCumulative={res.planningQtyCumulative}
+						isHighlight={dataIndex === index}
 					/>
 					<ColActual
 						currentHour={currentHour}
@@ -73,6 +76,7 @@ const TableControlBoardBody: React.FC<TableControlBoardBody> = ({ data }) => {
 						totalOrderCompleteCumulative={
 							res.totalOrderCompleteCumulative
 						}
+						isHighlight={dataIndex === index}
 					/>
 					<ColDifference
 						currentHour={currentHour}
@@ -80,8 +84,12 @@ const TableControlBoardBody: React.FC<TableControlBoardBody> = ({ data }) => {
 						differenceQty={res.differenceQty}
 						planningQty={res.planningQty}
 						totalOrderComplete={res.totalOrderComplete}
+						isHighlight={dataIndex === index}
 					/>
 					<td className="text-[#ffff33] text-2xl">{res.remark}</td>
+					<td className="text-[#e4852d] text-2xl">
+						{res.breakTime ? `${res.breakTime}min` : null}
+					</td>
 				</tr>
 			))}
 		</tbody>

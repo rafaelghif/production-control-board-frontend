@@ -1,25 +1,25 @@
-import { CreateControlBoardPlanningDetailType } from "@/types";
+import usePlanning from "@/stores/usePlanning";
+import usePlanningDetail from "@/stores/usePlanningDetail";
 import { useEffect, useState } from "react";
 
-interface FooterTotalProps {
-	data: CreateControlBoardPlanningDetailType[];
-	planTotal: number;
-}
+const FooterTotal: React.FC = () => {
+	const { planning } = usePlanning();
+	const { planningDetail } = usePlanningDetail();
 
-const FooterTotal: React.FC<FooterTotalProps> = ({ data, planTotal }) => {
 	const [total, setTotal] = useState<number>(0);
 	useEffect(() => {
-		const totalVal = data
+		const totalVal = planningDetail
 			.map((val) => parseInt(val.qty.toString()))
 			.reduce((prev, cur) => prev + cur, 0);
 
 		setTotal(totalVal);
-	}, [data, planTotal]);
+	}, [planning, planningDetail]);
+
 	return (
 		<div className="flex justify-between w-full p-3">
 			<div>
 				<span>Planning: </span>
-				<span>{planTotal}</span>
+				<span>{planning.productLoadingPlanQty}</span>
 			</div>
 			<div>
 				<span>Input Total: </span>

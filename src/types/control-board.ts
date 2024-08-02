@@ -13,6 +13,7 @@ export interface ControlBoardInterface {
 	totalOrderCompleteCumulative: number;
 	differenceQty: number;
 	remark: string;
+	breakTime: string;
 }
 
 export interface PtrPerLineInterface {

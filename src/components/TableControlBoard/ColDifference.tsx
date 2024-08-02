@@ -9,6 +9,7 @@ interface ColDifferenceProps {
 	totalOrderComplete: number;
 	planningQty: number;
 	differenceQty: number;
+	isHighlight: boolean;
 }
 
 const ColDifference: React.FC<ColDifferenceProps> = ({
@@ -17,6 +18,7 @@ const ColDifference: React.FC<ColDifferenceProps> = ({
 	planningTime,
 	totalOrderComplete,
 	differenceQty,
+	isHighlight,
 }) => {
 	const [isOpen, setIsOpen] = useState<boolean>(false);
 	const [orderComplete, setOrderComplete] = useState<number>(0);
@@ -29,9 +31,11 @@ const ColDifference: React.FC<ColDifferenceProps> = ({
 		const planningTimes = getPlanningTime(planningTime, shift)
 			.split(" - ")
 			.map((res) => res.replace(":", "."));
+
 		const firstTime = parseFloat(planningTimes[0]);
 		const secondTime = parseFloat(planningTimes[1]);
-		if (currentHour >= firstTime && currentHour <= secondTime) {
+
+		if (isHighlight) {
 			setClassName("text-black font-semibold");
 			setIsOpen(true);
 		} else if (firstTime > currentHour) {
@@ -41,7 +45,7 @@ const ColDifference: React.FC<ColDifferenceProps> = ({
 			setClassName("");
 			setIsOpen(true);
 		}
-	}, [currentHour]);
+	}, [currentHour, isHighlight]);
 
 	useEffect(() => {
 		setOrderComplete(totalOrderComplete - planningQty);

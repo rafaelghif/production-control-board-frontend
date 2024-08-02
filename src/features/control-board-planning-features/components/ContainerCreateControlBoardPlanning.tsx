@@ -6,6 +6,8 @@ import {
 	convertNumberToTimeHalfString,
 	convertNumberToTimeString,
 } from "@/helpers";
+import usePlanning from "@/stores/usePlanning";
+import usePlanningDetail from "@/stores/usePlanningDetail";
 import {
 	CreateControlBoardPlanningDetailType,
 	CreateControlBoardPlanningType,
@@ -22,7 +24,7 @@ import FormControlBoardPlanningDetail from "./FormControlBoardPlanningDetail";
 import FormCreateControlBoardPlanning from "./FormCreateControlBoardPlanning";
 
 interface ContainerCreateControlBoardPlanningProps {
-	issuePlanning?: InitialPlanningInterface;
+	issuePlanning: InitialPlanningInterface;
 	onDidDismiss: () => void;
 }
 
@@ -30,6 +32,10 @@ const ContainerCreateControlBoardPlanning: React.FC<
 	ContainerCreateControlBoardPlanningProps
 > = ({ issuePlanning, onDidDismiss }) => {
 	const { mutate } = useCreateControlBoardPlanning();
+
+	const { clearPlanning, setPlanning: setPlanningState } = usePlanning();
+	const { clearPlanningDetail, setPlanningDetail: setPlanningDetailState } =
+		usePlanningDetail();
 
 	const [settingShift, setSettingShift] = useState<ShiftType>();
 	const initialPlanning: CreateControlBoardPlanningType = {
@@ -93,6 +99,8 @@ const ContainerCreateControlBoardPlanning: React.FC<
 						sequence: ControlBoardSettingDetail.sequence,
 						time: ControlBoardSettingDetail.time,
 						qty: ControlBoardSettingDetail.qty,
+						remark: ControlBoardSettingDetail.remark,
+						breakTime: ControlBoardSettingDetail.breakTime,
 					}),
 				);
 
@@ -136,14 +144,28 @@ const ContainerCreateControlBoardPlanning: React.FC<
 			setPlanningDetail(planningDetailDefault);
 		}
 	}, [planning]);
-	
+
 	const onClickBtnSubmit = () => {
 		mutate({
-			planning: planning,
+			planning: {
+				...planning,
+				LineId: issuePlanning.lineId,
+				date: issuePlanning.date,
+			},
 			planningDetails: planningDetail,
 		});
 		onDidDismiss();
 	};
+
+	useEffect(() => {
+		clearPlanning();
+		clearPlanningDetail();
+	}, []);
+
+	useEffect(() => {
+		setPlanningState(planning);
+		setPlanningDetailState(planningDetail);
+	}, [planning, planningDetail]);
 
 	return (
 		<IonGrid>
