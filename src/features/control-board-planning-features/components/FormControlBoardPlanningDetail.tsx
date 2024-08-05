@@ -17,6 +17,8 @@ const FormControlBoardPlanningDetail: React.FC<
 			time: "07:00",
 			qty: 0,
 			sequence: 1,
+			breakTime: "",
+			remark: "",
 		});
 
 	const handleInput = (
