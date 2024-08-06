@@ -16,6 +16,8 @@ import { useQueryControlBoardV2 } from "../hooks";
 import ModalDetailRemark from "./ModalDetailRemark";
 import NavbarDashboard from "./NavbarDashboard";
 
+const NoProduction = lazy(() => import("./NoProduction"));
+
 const GridControlBoard = lazy(
 	() => import("../../../components/GridControlBoard"),
 );
@@ -56,7 +58,7 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 
 		return () => clearInterval(interval);
 	}, []);
-
+	
 	return (
 		<div className="relative h-screen w-full overflow-auto scroll-smooth bg-white dark:bg-[#121212]">
 			<IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
@@ -77,10 +79,14 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 						<IonSpinner name="crescent" />
 					) : (
 						<Suspense fallback={<IonSpinner name="dots" />}>
-							<GridControlBoard
-								data={data}
-								openModal={() => setIsOpenRemark(true)}
-							/>
+							{data && data.length > 0 ? (
+								<GridControlBoard
+									data={data}
+									openModal={() => setIsOpenRemark(true)}
+								/>
+							) : (
+								<NoProduction />
+							)}
 						</Suspense>
 					)}
 				</div>
