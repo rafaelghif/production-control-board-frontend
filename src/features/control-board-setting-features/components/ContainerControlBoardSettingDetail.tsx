@@ -1,6 +1,6 @@
 import { IonCol, IonGrid, IonRow, IonSpinner } from "@ionic/react";
 
-import { Suspense, lazy, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { ExpanderComponentProps } from "react-data-table-component";
 
 import Card from "../../../components/Card";
@@ -35,9 +35,24 @@ const ContainerControlBoardSettingDetail: React.FC<
 			<IonGrid>
 				<IonRow>
 					<IonCol size="12">
+						<div>
+							<p>
+								Planning Loading Qty:{" "}
+								{controlBoardSetting.productLoadingPlanQty}
+							</p>
+							<p>
+								Detail Qty:{" "}
+								{data
+									?.map((res) => parseInt(res.qty.toString()))
+									.reduce((prev, cur) => prev + cur, 0)}
+							</p>
+						</div>
+					</IonCol>
+					<IonCol size="12">
 						<Card
 							title={`Detail ${controlBoardSetting.Line.name}`}
-							headerColor="light" className="w-[40%]">
+							headerColor="light"
+							className="w-[40%]">
 							{isLoading ? (
 								<IonSpinner name="crescent" />
 							) : (

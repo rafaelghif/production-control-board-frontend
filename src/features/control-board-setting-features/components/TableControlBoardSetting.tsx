@@ -25,6 +25,20 @@ const TableControlBoardSetting: React.FC<TableControlBoardSettingProps> = ({
 		useMemo(
 			() => [
 				{
+					name: "Edit",
+					cell: (row) => (
+						<IonButton
+							fill="clear"
+							color="warning"
+							onClick={() => {
+								handleClickBtnEdit(row);
+							}}>
+							Edit
+						</IonButton>
+					),
+					center: true,
+				},
+				{
 					name: "Shift",
 					selector: (row) => row.shift,
 					sortable: true,
@@ -115,20 +129,6 @@ const TableControlBoardSetting: React.FC<TableControlBoardSettingProps> = ({
 					selector: (row) => formatDateTime(row.updatedAt),
 					sortable: true,
 					wrap: true,
-				},
-				{
-					name: "Edit",
-					cell: (row) => (
-						<IonButton
-							fill="clear"
-							color="warning"
-							onClick={() => {
-								handleClickBtnEdit(row);
-							}}>
-							Edit
-						</IonButton>
-					),
-					center: true,
 				},
 			],
 			[handleClickBtnEdit],
