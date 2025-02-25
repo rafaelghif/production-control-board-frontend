@@ -9,3 +9,4 @@ export * from "./order-type";
 export * from "./user-type";
 export * from "./ionic-type";
 export * from "./part-type";
+export * from "./dashboard-three-type";

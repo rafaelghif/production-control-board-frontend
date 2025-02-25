@@ -1,6 +1,7 @@
 import { IonRouterOutlet, IonSpinner } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
 
+import DashboardVersionThree from "@/pages/DashboardVersionThree";
 import { Suspense, lazy } from "react";
 import { Redirect, Route } from "react-router";
 
@@ -39,6 +40,11 @@ const MainRouter: React.FC = () => {
 						exact
 						path="/dashboardV2"
 						component={DashboardVersionTwo}
+					/>
+					<Route
+						exact
+						path="/dashboardV3"
+						component={DashboardVersionThree}
 					/>
 					<Suspense fallback={<IonSpinner name="crescent" />}>
 						<Route
