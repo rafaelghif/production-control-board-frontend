@@ -40,23 +40,28 @@ const DashboardVersionThree: React.FC = () => {
 	}, []);
 
 	const renderRow = (val: DashboardThreeInterface, index: number) => {
-		const differenceQty =
-			val.totalOrderComplete - parseInt(val.totalPlanningQty);
+		const bgRows = ["bg-[#1e1e1e]", ""];
+		const differenceQty = val.passQty - parseInt(val.plantPassQty);
 		const isOrderMoreThanPlanning =
-			val.totalOrderComplete > parseInt(val.totalPlanningQty);
+			val.passQty > parseInt(val.plantPassQty);
 
 		const textColor =
 			differenceQty < 0
-				? "px-6 py-2 text-red-500"
+				? "px-2 py-2 text-red-500"
 				: isOrderMoreThanPlanning
-				? "px-6 py-2 text-[#035BC8]"
-				: "px-6 py-2";
+				? "px-2 py-2 text-[#035BC8]"
+				: "px-2 py-2";
 
-		if (val.totalPlanningQty === "0") {
+		if (val.plantCurrQty === "0" || val.plantCurrQty === null) {
 			return (
-				<tr key={index} className="border-b dark:border-white">
-					<td className="px-6 py-2">{val.lineName}</td>
-					<td className="px-6 py-2 text-red-500" colSpan={3}>
+				<tr
+					key={index}
+					className={`border-b dark:border-white ${
+						bgRows[index % 2]
+					}`}>
+					<td className="px-2 py-2 border">{index + 1}</td>
+					<td className="px-2 py-2 border">{val.lineName}</td>
+					<td className="px-2 py-2 text-green-500 border" colSpan={5}>
 						No Production
 					</td>
 				</tr>
@@ -64,10 +69,15 @@ const DashboardVersionThree: React.FC = () => {
 		}
 
 		return (
-			<tr key={index} className="border-b dark:border-white">
-				<td className="px-6 py-2">{val.lineName}</td>
-				<td className="px-6 py-2">{val.totalPlanningQty}</td>
-				<td className="px-6 py-2">{val.totalOrderComplete}</td>
+			<tr
+				key={index}
+				className={`border-b dark:border-white ${bgRows[index % 2]}`}>
+				<td className="px-2 py-2 border">{index + 1}</td>
+				<td className="px-2 py-2 border">{val.lineName}</td>
+				<td className="px-2 py-2 border">{val.plantCurrQty}</td>
+				<td className="px-2 py-2 border">{val.currentQty}</td>
+				<td className="px-2 py-2 border">{val.plantPassQty}</td>
+				<td className="px-2 py-2 border">{val.passQty}</td>
 				<td className={textColor}>{differenceQty}</td>
 			</tr>
 		);
@@ -86,76 +96,169 @@ const DashboardVersionThree: React.FC = () => {
 					<IonGrid className="w-full">
 						<IonRow>
 							<IonCol size="6">
-								<table className="w-full text-xl text-center text-gray-500 border border-collapse dark:text-gray-400">
-									<thead className="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-										<tr>
-											<th
-												scope="col"
-												className="px-6 py-2">
-												Line
-											</th>
-											<th
-												scope="col"
-												className="px-6 py-2">
-												Plan
-											</th>
-											<th
-												scope="col"
-												className="px-6 py-2">
-												Actual
-											</th>
-											<th
-												scope="col"
-												className="px-6 py-2">
-												Difference
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										{data
-											?.filter(
-												(val, index) => index <= 14,
-											)
-											.map((res, index) =>
-												renderRow(res, index),
-											)}
-									</tbody>
-								</table>
+								<IonGrid>
+									<IonRow>
+										<IonCol size="12">
+											<table className="w-full text-lg text-center text-gray-500 border border-collapse dark:text-gray-400">
+												<thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+													<tr>
+														<th
+															colSpan={7}
+															className="p-3 text-xl border">
+															PD1
+														</th>
+													</tr>
+													<tr>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															rowSpan={2}>
+															No
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															rowSpan={2}>
+															Line
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															rowSpan={2}>
+															Daily Target
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															rowSpan={2}>
+															Current Qty
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															colSpan={3}>
+															Last Hour
+															Accumulation
+														</th>
+													</tr>
+													<tr>
+														<th
+															scope="col"
+															className="px-2 py-2 border">
+															Target
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border">
+															Actual
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 text-2xl border">
+															±
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													{data
+														?.filter(
+															(val, index) =>
+																index <= 14,
+														)
+														.map((res, index) =>
+															renderRow(
+																res,
+																index,
+															),
+														)}
+												</tbody>
+											</table>
+										</IonCol>
+									</IonRow>
+								</IonGrid>
 							</IonCol>
 							<IonCol size="6">
-								<table className="w-full text-xl text-center text-gray-500 border border-collapse dark:text-gray-400">
-									<thead className="text-xl text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-										<tr>
-											<th
-												scope="col"
-												className="px-6 py-2">
-												Line
-											</th>
-											<th
-												scope="col"
-												className="px-6 py-2">
-												Plan
-											</th>
-											<th
-												scope="col"
-												className="px-6 py-2">
-												Actual
-											</th>
-											<th
-												scope="col"
-												className="px-6 py-2">
-												Difference
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										{data
-											?.filter((val, index) => index > 14)
-											.map((res, index) =>
-												renderRow(res, index),
-											)}
-									</tbody>
-								</table>
+								<IonGrid>
+									<IonRow>
+										<IonCol size="12">
+											<table className="w-full text-lg text-center text-gray-500 border border-collapse dark:text-gray-400">
+												<thead className="text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+													<tr>
+														<th
+															colSpan={7}
+															className="p-3 text-xl border">
+															PD2
+														</th>
+													</tr>
+													<tr>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															rowSpan={2}>
+															No
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															rowSpan={2}>
+															Line
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															rowSpan={2}>
+															Daily Target
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															rowSpan={2}>
+															Current Qty
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border"
+															colSpan={3}>
+															Last Hour
+															Accumulation
+														</th>
+													</tr>
+													<tr>
+														<th
+															scope="col"
+															className="px-2 py-2 border">
+															Target
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 border">
+															Actual
+														</th>
+														<th
+															scope="col"
+															className="px-2 py-2 text-2xl border">
+															±
+														</th>
+													</tr>
+												</thead>
+												<tbody>
+													{data
+														?.filter(
+															(val, index) =>
+																index > 14 &&
+																index <= 26,
+														)
+														.map((res, index) =>
+															renderRow(
+																res,
+																index,
+															),
+														)}
+												</tbody>
+											</table>
+										</IonCol>
+									</IonRow>
+								</IonGrid>
 							</IonCol>
 						</IonRow>
 					</IonGrid>

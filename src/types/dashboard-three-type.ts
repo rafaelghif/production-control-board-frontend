@@ -1,6 +1,7 @@
 export interface DashboardThreeInterface {
-	id: string;
 	lineName: string;
-	totalOrderComplete: number;
-	totalPlanningQty: string;
+	plantCurrQty: string;
+	plantPassQty: string;
+	currentQty: number;
+	passQty: number;
 }
