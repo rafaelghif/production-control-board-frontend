@@ -47,10 +47,10 @@ const DashboardVersionThree: React.FC = () => {
 
 		const textColor =
 			differenceQty < 0
-				? "px-2 py-2 text-red-500"
+				? "px-2 py-2 text-red-500 font-bold"
 				: isOrderMoreThanPlanning
-				? "px-2 py-2 text-[#035BC8]"
-				: "px-2 py-2";
+				? "px-2 py-2 text-[#035BC8] font-bold"
+				: "px-2 py-2 font-bold";
 
 		if (val.plantCurrQty === "0" || val.plantCurrQty === null) {
 			return (
@@ -61,7 +61,7 @@ const DashboardVersionThree: React.FC = () => {
 					}`}>
 					<td className="px-2 py-2 border">{index + 1}</td>
 					<td className="px-2 py-2 border">{val.lineName}</td>
-					<td className="px-2 py-2 text-green-500 border" colSpan={5}>
+					<td className="px-2 py-2 font-bold text-green-500 border" colSpan={5}>
 						No Production
 					</td>
 				</tr>
@@ -74,10 +74,14 @@ const DashboardVersionThree: React.FC = () => {
 				className={`border-b dark:border-white ${bgRows[index % 2]}`}>
 				<td className="px-2 py-2 border">{index + 1}</td>
 				<td className="px-2 py-2 border">{val.lineName}</td>
-				<td className="px-2 py-2 border">{val.plantCurrQty}</td>
-				<td className="px-2 py-2 border">{val.currentQty}</td>
-				<td className="px-2 py-2 border">{val.plantPassQty}</td>
-				<td className="px-2 py-2 border">{val.passQty}</td>
+				<td className="px-2 py-2 font-bold border">
+					{val.plantCurrQty}
+				</td>
+				<td className="px-2 py-2 font-bold border">{val.currentQty}</td>
+				<td className="px-2 py-2 font-bold border">
+					{val.plantPassQty}
+				</td>
+				<td className="px-2 py-2 font-bold border">{val.passQty}</td>
 				<td className={textColor}>{differenceQty}</td>
 			</tr>
 		);
@@ -163,7 +167,7 @@ const DashboardVersionThree: React.FC = () => {
 													{data
 														?.filter(
 															(val, index) =>
-																index <= 14,
+																index <= 12,
 														)
 														.map((res, index) =>
 															renderRow(
@@ -245,7 +249,7 @@ const DashboardVersionThree: React.FC = () => {
 													{data
 														?.filter(
 															(val, index) =>
-																index > 14 &&
+																index > 12 &&
 																index <= 26,
 														)
 														.map((res, index) =>
