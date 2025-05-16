@@ -39,6 +39,16 @@ const DashboardVersionThree: React.FC = () => {
 		};
 	}, []);
 
+	const [time, setTime] = useState(() => new Date().toLocaleTimeString());
+
+	useEffect(() => {
+		const timer = setInterval(() => {
+			setTime(new Date().toLocaleTimeString());
+		}, 1000);
+
+		return () => clearInterval(timer);
+	}, []);
+
 	const renderRow = (val: DashboardThreeInterface, index: number) => {
 		const bgRows = ["bg-[#1e1e1e]", ""];
 		const differenceQty = val.passQty - parseInt(val.plantPassQty);
@@ -61,7 +71,9 @@ const DashboardVersionThree: React.FC = () => {
 					}`}>
 					<td className="px-2 py-2 border">{index + 1}</td>
 					<td className="px-2 py-2 border">{val.lineName}</td>
-					<td className="px-2 py-2 font-bold text-green-500 border" colSpan={5}>
+					<td
+						className="px-2 py-2 font-bold text-green-500 border"
+						colSpan={5}>
 						No Production
 					</td>
 				</tr>
@@ -91,10 +103,11 @@ const DashboardVersionThree: React.FC = () => {
 		<IonPage>
 			<IonContent fullscreen>
 				<div className="flex flex-col items-center w-full h-screen p-3 shadow">
-					<div className="font-['Source_Sans_3']">
+					<div className="relative flex justify-center font-['Source_Sans_3'] w-full">
 						<span className="text-2xl font-bold">
 							Production Control Board
 						</span>
+						<div className="absolute text-4xl top-2 right-5">{time}</div>
 					</div>
 					<div>{dateFilter}</div>
 					<IonGrid className="w-full">

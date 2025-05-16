@@ -1,7 +1,8 @@
 import { IonItem, IonSelect, IonSelectOption, IonSpinner } from "@ionic/react";
 
+import { socket } from "@/libs";
 import { format } from "date-fns";
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect } from "react";
 
 import { setLine as setLineLocal } from "../../../services/local-storage-service";
 import useDashboardStore from "../../../stores/useDashboardStore";
@@ -17,6 +18,11 @@ const ContainerFilterDashboard: React.FC = () => {
 		setLine(lineId);
 		setLineLocal(lineId);
 	};
+
+	useEffect(() => {
+		socket.emit("change-line", line);
+	}, [line]);
+
 	return (
 		<div className="flex flex-col justify-center gap-2 items-center w-[996px] p-5 rounded shadow dark:bg-[#121212]">
 			<div className="flex flex-col items-center justify-center w-[800px] gap-2 dark:bg-[#181818] p-5">

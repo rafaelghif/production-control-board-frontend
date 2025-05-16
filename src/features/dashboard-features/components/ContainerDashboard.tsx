@@ -50,8 +50,9 @@ const ContainerDashboard: React.FC = () => {
 	};
 
 	useEffect(() => {
-		socket.on("input", () => {
-			refetch();
+		socket.on("input", (payload) => {
+			console.log("input", payload);
+			// refetch();
 		});
 	}, []);
 

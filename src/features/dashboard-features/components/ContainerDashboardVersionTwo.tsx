@@ -43,8 +43,10 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 	};
 
 	useEffect(() => {
-		socket.on("input", () => {
-			refetch();
+		socket.on("input", (payload) => {
+			if (line === payload.LineId) {
+				refetch();
+			}
 		});
 		setLine(getLine());
 	}, []);
@@ -58,7 +60,7 @@ const ContainerDashboardVersionTwo: React.FC = () => {
 
 		return () => clearInterval(interval);
 	}, []);
-	
+
 	return (
 		<div className="relative h-screen w-full overflow-auto scroll-smooth bg-white dark:bg-[#121212]">
 			<IonRefresher slot="fixed" onIonRefresh={handleRefresh}>

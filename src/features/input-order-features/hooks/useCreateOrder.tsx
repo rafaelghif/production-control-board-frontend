@@ -18,9 +18,9 @@ export const useCreateOrder = () => {
 			setLoading(false);
 			errorToast(error);
 		},
-		onSuccess: (response) => {
+		onSuccess: (response, payload) => {
 			successToast(response.message);
-			socket.emit("input", "input");
+			socket.emit("input", payload);
 		},
 		onSettled: () => {
 			setLoading(false);
